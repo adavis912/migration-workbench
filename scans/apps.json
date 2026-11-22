@@ -1,0 +1,66 @@
+{
+  "_comment": "Which portfolio app each scanned repository belongs to. Add one entry per repo before scanning it.",
+  "/opt/capstone/scans/claims-intake-sample": {
+    "app": "CLM-INTAKE",
+    "repo": "adavis912-group/claims-intake-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/claims-intake-sample",
+    "base_commit": "c92b266",
+    "note": "Stand-in source for CLM-INTAKE (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/fraud-scoring-sample": {
+    "app": "CLM-FRAU1",
+    "repo": "adavis912-group/fraud-scoring-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/fraud-scoring-sample",
+    "base_commit": "1ff9734",
+    "note": "Stand-in source for CLM-FRAU1 (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/survey-service-sample": {
+    "app": "CS-SURV2",
+    "repo": "adavis912-group/survey-service-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/survey-service-sample",
+    "base_commit": "458c517",
+    "note": "Stand-in source for CS-SURV2 (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/finance-reporting-sample": {
+    "app": "FIN-RPT-LEGACY",
+    "repo": "adavis912-group/finance-reporting-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/finance-reporting-sample",
+    "base_commit": "aa9dd34",
+    "note": "Stand-in source for FIN-RPT-LEGACY (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/recruiting-tracker-sample": {
+    "app": "HR-RECR1",
+    "repo": "adavis912-group/recruiting-tracker-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/recruiting-tracker-sample",
+    "base_commit": "615c521",
+    "note": "Stand-in source for HR-RECR1 (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/web-content-sample": {
+    "app": "MKT-WEB3",
+    "repo": "adavis912-group/web-content-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/web-content-sample",
+    "base_commit": "6a9d139",
+    "note": "Stand-in source for MKT-WEB3 (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/asset-inventory-sample": {
+    "app": "OPS-ASSE4",
+    "repo": "adavis912-group/asset-inventory-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/asset-inventory-sample",
+    "base_commit": "c7aacae",
+    "note": "Stand-in source for OPS-ASSE4 (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/print-mail-sample": {
+    "app": "OPS-PRIN1",
+    "repo": "adavis912-group/print-mail-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/print-mail-sample",
+    "base_commit": "b67cbf5",
+    "note": "Stand-in source for OPS-PRIN1 (fictional legacy code built for the capstone)."
+  },
+  "/opt/capstone/scans/vendor-management-sample": {
+    "app": "OPS-VEND2",
+    "repo": "adavis912-group/vendor-management-sample",
+    "repo_url": "https://gitlab.com/adavis912-group/vendor-management-sample",
+    "base_commit": "391f94b",
+    "note": "Stand-in source for OPS-VEND2 (fictional legacy code built for the capstone)."
+  }
+}

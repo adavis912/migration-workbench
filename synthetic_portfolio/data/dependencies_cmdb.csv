@@ -1,0 +1,47 @@
+source_app,target_app,dependency_type,frequency,documented_by
+FIN-PAY,FIN-GL,API / web call,continuous,Elena Lindqvist
+FIN-PAY,SHR-MQ,Message queue,continuous,Elena Ellison
+FIN-PAY,SHR-SSO,API / web call,continuous,Isaac Mercer
+FIN-EXP,SHR-SSO,API / web call,continuous,Priya Novak
+HR-PORTAL,HR-CORE,API / web call,continuous,Sofia Brennan
+HR-PORTAL,SHR-SSO,API / web call,continuous,Tomas Novak
+HR-CORE,SHR-SSO,API / web call,continuous,Mei Castell
+CLM-ADJ,CLM-INTAKE,Event stream,continuous,Priya Okafor
+CLM-INTAKE,SHR-SSO,API / web call,continuous,Victor Ellison
+POL-RATING,POL-ADMIN,Database read,continuous,Isaac Novak
+POL-ADMIN,SHR-MQ,Message queue,continuous,Priya Castell
+CS-CONTACT,DOC-ARCHIVE,File transfer,monthly file transfer,Marcus Haddad
+CS-CONTACT,SHR-SSO,API / web call,continuous,Felix Ellison
+SHR-ETL,FIN-GL,Database read,nightly,Sofia Castell
+SHR-ETL,CLM-ADJ,Database read,nightly,Sofia Iyer
+SHR-ETL,SLS-CRM,Database read,nightly,Owen Pryor
+SLS-LEAD1,CS-KNOW3,API / web call,continuous,Aisha Whitfield
+HR-BENE3,POL-AGEN3,API / web call,continuous,Tomas Ellison
+MKT-CAMP1,POL-POLI2,API / web call,continuous,Nina Ramos
+HR-LEAR2,CLM-CLAI2,API / web call,continuous,Nina Novak
+CLM-REPA4,SLS-SALE3,API / web call,continuous,Marcus Whitfield
+CLM-SUBR3,FIN-ACCO1,API / web call,continuous,Priya Mercer
+SLS-LEAD1,SHR-SSO,API / web call,continuous,Aisha Quinlan
+CS-KNOW3,SHR-SSO,API / web call,continuous,Victor Sato
+SHR-ETL,CS-KNOW3,Database read,nightly,Marcus Sato
+POL-AGEN3,SHR-SSO,API / web call,continuous,Victor Brennan
+MKT-CAMP1,SHR-SSO,API / web call,continuous,Hana Quinlan
+HR-LEAR2,SHR-SSO,API / web call,continuous,Aisha Quinlan
+SHR-ETL,HR-LEAR2,Database read,nightly,Priya Haddad
+CLM-CLAI2,SHR-SSO,API / web call,continuous,Owen Ramos
+CLM-REPA4,SHR-SSO,API / web call,continuous,Ravi Brennan
+SLS-SALE3,SHR-SSO,API / web call,continuous,Isaac Iyer
+SLS-SALE3,SHR-MQ,Message queue,continuous,Jordan Sato
+SHR-ETL,SLS-SALE3,Database read,nightly,Owen Iyer
+FIN-ACCO1,SHR-SSO,API / web call,continuous,Priya Iyer
+POL-UNDE1,SHR-SSO,API / web call,continuous,Hana Sato
+SHR-ETL,POL-UNDE1,Database read,nightly,Hana Castell
+CS-CUST1,SHR-SSO,API / web call,continuous,Isaac Albright
+SHR-ETL,CS-CUST1,Database read,nightly,Sofia Albright
+FIN-BUDG3,SHR-SSO,API / web call,continuous,Mei Haddad
+FIN-TREA2,SHR-SSO,API / web call,continuous,Marcus Ramos
+FIN-TAX4,SHR-SSO,API / web call,continuous,Priya Pryor
+SHR-ETL,OPS-AUDI5,Database read,nightly,Grace Okafor
+SLS-PART2,SHR-SSO,API / web call,continuous,Felix Brennan
+MKT-EMAI2,SHR-MQ,Message queue,continuous,Felix Haddad
+OPS-FACI3,SHR-MQ,Message queue,continuous,Dana Okafor

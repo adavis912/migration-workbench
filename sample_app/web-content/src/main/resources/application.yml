@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@mktweb3-exa.oraclecloud.internal:1521/CONTENT
+    username: content_app
+    password: CHANGE_ME
+content:
+  upload-dir: /var/content
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

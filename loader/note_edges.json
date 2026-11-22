@@ -1,0 +1,100 @@
+[
+ {
+  "source_app": "FIN-RPT",
+  "target_app": "FIN-GL",
+  "kind": "database",
+  "quote": "it reads the general ledger database directly over JDBC",
+  "source_note": "FIN-RPT.md"
+ },
+ {
+  "source_app": "FIN-EXP",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "quote": "Only depends on single sign-on.",
+  "source_note": "FIN-EXP.md"
+ },
+ {
+  "source_app": "HR-PORTAL",
+  "target_app": "HR-CORE",
+  "kind": "https",
+  "quote": "It calls HR Core for employee records",
+  "source_note": "HR-PORTAL.md"
+ },
+ {
+  "source_app": "HR-PORTAL",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "quote": "uses single sign-on",
+  "source_note": "HR-PORTAL.md"
+ },
+ {
+  "source_app": "CLM-INTAKE",
+  "target_app": "CLM-ADJ",
+  "kind": "kafka",
+  "quote": "Publishes claim events to Kafka; Claims Adjudication consumes them.",
+  "source_note": "CLM-INTAKE.md"
+ },
+ {
+  "source_app": "CLM-ADJ",
+  "target_app": "CLM-INTAKE",
+  "kind": "kafka",
+  "quote": "reads claim events from Claims Intake through Kafka",
+  "source_note": "CLM-ADJ.md"
+ },
+ {
+  "source_app": "POL-RATING",
+  "target_app": "POL-ADMIN",
+  "kind": "database",
+  "quote": "The Rating Engine shares our Exadata database, using the same schemas.",
+  "source_note": "POL-ADMIN.md"
+ },
+ {
+  "source_app": "POL-RATING",
+  "target_app": "POL-ADMIN",
+  "kind": "database",
+  "quote": "Reads and writes rating tables in the Policy Administration database on Exadata.",
+  "source_note": "POL-RATING.md"
+ },
+ {
+  "source_app": "CS-CONTACT",
+  "target_app": "DOC-ARCHIVE",
+  "kind": "sftp",
+  "quote": "Once a month we send a file of closed cases to Document Archive over SFTP.",
+  "source_note": "CS-CONTACT.md"
+ },
+ {
+  "source_app": "CS-CONTACT",
+  "target_app": "DOC-ARCHIVE",
+  "kind": "batch",
+  "quote": "Receives monthly files from the Contact Center.",
+  "source_note": "DOC-ARCHIVE.md"
+ },
+ {
+  "source_app": "FIN-PAY",
+  "target_app": "SHR-MQ",
+  "kind": "mq",
+  "quote": "Payroll and Policy Administration put messages here.",
+  "source_note": "SHR-MQ.md"
+ },
+ {
+  "source_app": "POL-ADMIN",
+  "target_app": "SHR-MQ",
+  "kind": "mq",
+  "quote": "Payroll and Policy Administration put messages here.",
+  "source_note": "SHR-MQ.md"
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "FIN-GL",
+  "kind": "database",
+  "quote": "Nightly jobs pull from the general ledger, claims, and CRM databases",
+  "source_note": "SHR-ETL.md"
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "SLS-CRM",
+  "kind": "database",
+  "quote": "Nightly jobs pull from the general ledger, claims, and CRM databases",
+  "source_note": "SHR-ETL.md"
+ }
+]

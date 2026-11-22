@@ -1,0 +1,6 @@
+# Packages for the offline review (no AWS account or API key needed).
+# Tested with Python 3.11 and 3.13.
+pydantic>=2.10
+PyYAML>=6.0
+python-hcl2>=7.0
+crewai>=1.0

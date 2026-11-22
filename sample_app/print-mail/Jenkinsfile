@@ -1,0 +1,9 @@
+// Legacy CI: builds on a shared Jenkins agent, then a person copies the artifact to the VM by hand.
+pipeline {
+  agent { label 'linux-build' }
+  stages {
+    stage('Build') { steps { sh './mvnw -B -q package' } }
+    stage('Archive') { steps { archiveArtifacts artifacts: 'target/*.jar', fingerprint: true } }
+  }
+  // Deploy is manual: scp the artifact to the app VM and restart the service (see README).
+}

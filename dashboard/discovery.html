@@ -1,0 +1,344 @@
+<title>Discovery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+:root {
+  --bg: #f3f5f8; --panel: #ffffff; --panel-2: #eef1f6; --line: #d9dee7; --fg: #172033; --muted: #5b6577;
+  --accent: #2f4fd8; --accent-soft: #e5eafc;
+  --ok: #157a4a; --ok-bg: #e2f4ea; --bad: #b42323; --bad-bg: #fbe6e4; --warn: #9a5b00; --warn-bg: #fdf0d9; --idle: #6a7385; --idle-bg: #eceff4;
+  --info: #1d6a8a; --info-bg: #e1f1f7; --bar: #2f4fd8; --bar-2: #b9c4ef;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --shadow: 0 1px 2px rgba(23, 32, 51, .06), 0 4px 14px rgba(23, 32, 51, .05);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f1420; --panel: #161d2c; --panel-2: #1c2436; --line: #2a3348; --fg: #e4e8f1; --muted: #98a2b6; --accent: #8ea4ff; --accent-soft: #232e52;
+    --ok: #5fd39a; --ok-bg: #143323; --bad: #ff8a80; --bad-bg: #3a1a1a; --warn: #f2b65a; --warn-bg: #3a2a10; --idle: #9aa3b5; --idle-bg: #222a3b;
+    --info: #7cc7e6; --info-bg: #13303d; --bar: #8ea4ff; --bar-2: #3a4670;
+    --shadow: 0 1px 2px rgba(0,0,0,.4); color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 14px; line-height: 1.5; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-block: 12px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 20px; }
+.label { font-family: var(--f-display); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.head { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: flex-end; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+.head h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(26px, 4vw, 34px); margin: 2px 0 6px; }
+.head .sub { color: var(--muted); max-width: 72ch; }
+.scope { display: grid; gap: 2px; text-align: right; } .scope-v { font-family: var(--f-display); font-size: 18px; font-weight: 600; }
+select, input[type=search] { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--fg); min-width: 0; }
+select:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); display: grid; gap: 2px; }
+.kpi .v { font-family: var(--f-display); font-size: 26px; font-weight: 600; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.kpi .d { color: var(--muted); font-size: 12px; }
+section.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.panel-head h2 { font-family: var(--f-display); font-size: 18px; font-weight: 600; margin: 0; }
+.panel-head p { margin: 0; color: var(--muted); font-size: 12.5px; flex-basis: 100%; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; }
+@media (max-width: 900px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.tw { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th, td { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { font-family: var(--f-display); font-weight: 600; font-size: 12px; letter-spacing: .02em; color: var(--muted); background: var(--panel-2); position: sticky; top: 0; white-space: nowrap; }
+th button { all: unset; cursor: pointer; } th button:hover { color: var(--fg); } th button:focus-visible { outline: 2px solid var(--accent); }
+th[aria-sort=ascending] button::after { content: " ▲"; } th[aria-sort=descending] button::after { content: " ▼"; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr:hover { background: var(--panel-2); }
+.mono { font-family: var(--f-mono); font-size: 12px; } td > .mono:first-child { white-space: nowrap; }
+.muted { color: var(--muted); }
+.scroll { max-height: 560px; overflow: auto; }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; margin: 1px 4px 1px 0; white-space: nowrap; }
+.c-bad { color: var(--bad); background: var(--bad-bg); } .c-warn { color: var(--warn); background: var(--warn-bg); }
+.c-ok { color: var(--ok); background: var(--ok-bg); } .c-info { color: var(--info); background: var(--info-bg); } .c-idle { color: var(--idle); background: var(--idle-bg); }
+.cpu { display: grid; grid-template-columns: 70px auto; gap: 8px; align-items: center; white-space: nowrap; }
+.track { position: relative; height: 8px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); }
+.track .avg { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--bar); }
+.track .peak { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--fg); }
+.track .peak.hot { background: var(--bad); }
+.findings { display: grid; gap: 0; }
+.finding { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 4px 12px; padding: 10px 18px; border-bottom: 1px solid var(--line); }
+.finding .app { font-weight: 600; font-family: var(--f-mono); font-size: 12px; padding-top: 2px; }
+.finding ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+@media (max-width: 560px) { .finding { grid-template-columns: minmax(0, 1fr); } }
+.bars { padding: 12px 18px 16px; display: grid; gap: 14px; }
+.bars h3 { font-family: var(--f-display); font-size: 14px; margin: 0 0 6px; }
+.brow { display: grid; grid-template-columns: minmax(110px, 190px) minmax(0, 1fr) 36px; gap: 10px; align-items: center; font-size: 12.5px; padding: 2px 0; }
+.brow .t { height: 10px; border-radius: 3px; background: var(--panel-2); overflow: hidden; }
+.brow .f { height: 100%; background: var(--bar); border-radius: 3px; }
+.brow .f.old { background: var(--warn); }
+.brow .n { text-align: right; font-variant-numeric: tabular-nums; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 5px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.toolbar input { width: min(280px, 100%); }
+.empty { padding: 18px; color: var(--muted); }
+.graph { padding: 8px 18px 4px; overflow-x: auto; }
+.graph svg { color: var(--muted); display: block; min-width: 640px; width: 100%; height: auto; }
+.graph text { font-family: var(--f-mono); font-size: 12px; fill: var(--fg); }
+.graph .lbl { font-size: 10.5px; fill: var(--muted); }
+.graph .node { fill: var(--panel); stroke: var(--line); stroke-width: 1.5; }
+.graph .node.me { fill: var(--accent-soft); stroke: var(--accent); }
+.graph .e-both { stroke: var(--ok); } .graph .e-network { stroke: var(--warn); stroke-dasharray: 5 4; } .graph .e-cmdb { stroke: var(--info); stroke-dasharray: 2 4; }
+.graph line, .graph path { fill: none; stroke-width: 1.8; }
+details > summary { cursor: pointer; padding: 12px 18px; font-weight: 600; font-size: 13px; }
+details[open] > summary { border-bottom: 1px solid var(--line); }
+.foot { color: var(--muted); font-size: 12.5px; max-width: 100ch; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab { font: inherit; font-size: 12.5px; font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--muted); cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div>
+      <div class="label">Phase 0 · Discover</div>
+      <h1>Discovery</h1>
+      <div class="sub">What each application runs on today: servers and their size and load, databases, and who talks to whom. Every row shows the proposed AWS target from the mapping rules.</div>
+    </div>
+    <div class="scope"><span class="label">Showing</span><span id="scopeLbl" class="scope-v"></span></div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="grid2">
+    <section class="panel" aria-labelledby="f-h">
+      <div class="panel-head"><h2 id="f-h">Discovery findings</h2><span id="fCount" class="muted"></span>
+        <p>Items to resolve before an application is planned into a wave.</p></div>
+      <div id="findings" class="findings scroll"></div>
+    </section>
+    <section class="panel" aria-labelledby="mix-h">
+      <div class="panel-head"><h2 id="mix-h">Server mix</h2>
+        <p>Servers by operating system and role. Amber marks an operating system that is end of life or near it.</p></div>
+      <div class="bars" id="mix"></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="a-h">
+    <div class="panel-head"><h2 id="a-h">Applications</h2>
+      <p>Application register with the discovery count next to the CMDB count, so conflicts stand out.</p></div>
+    <div class="tw scroll"><table id="appsT"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="s-h">
+    <div class="panel-head"><h2 id="s-h">Servers</h2>
+      <div class="toolbar"><input type="search" id="sQ" placeholder="Filter by host, OS, role…" aria-label="Filter servers"></div>
+      <p>Size and 30-day CPU from the discovery agent (bar = average, mark = peak), with the AWS instance and OS each server maps to. Sizing is like-for-like; right-size after a month on AWS.</p></div>
+    <div class="tw scroll"><table id="srvT"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="d-h">
+    <div class="panel-head"><h2 id="d-h">Databases</h2>
+      <p>Engine, version, where it runs on OCI, size, and the AWS target. Oracle targets marked TBD need a human decision.</p></div>
+    <div class="tw scroll"><table id="dbT"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="dep-h">
+    <div class="panel-head"><h2 id="dep-h">Dependencies</h2><span id="depCount" class="muted"></span>
+      <p>Application-to-application dependencies, reconciled across 30 days of observed network traffic and the CMDB. One seen in only one source needs confirming with the owner.</p></div>
+    <div id="graph" class="graph" hidden></div>
+    <div class="legend" style="padding: 4px 18px 10px">
+      <span><span class="chip c-ok">Both</span>seen in traffic and CMDB</span>
+      <span><span class="chip c-warn">Network only</span>undocumented</span>
+      <span><span class="chip c-info">CMDB only</span>no traffic seen in 30 days</span>
+    </div>
+    <div class="tw scroll"><table id="depT"></table></div>
+    <details><summary>Network flows (server to server)</summary><div class="tw scroll"><table id="flowT"></table></div></details>
+  </section>
+
+  <p class="foot" id="foot"></p>
+</div>
+
+<script>
+const D = window.__DISC__ || null;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmt = (n) => Number(n || 0).toLocaleString("en-US");
+const short = (h) => String(h || "").replace(/\.hvig\.internal$|\.oraclecloud\.internal$/, "");
+const FCLASS = { old_os: "c-warn", not_seen: "c-bad", no_agent: "c-warn", hot: "c-bad", idle: "c-idle", conflict: "c-bad", stale: "c-warn",
+  security: "c-bad", freeze: "c-info", secrets: "c-bad", vendor: "c-info", eks: "c-info", decision: "c-warn", shared_db: "c-warn" };
+const FNAME = { old_os: "Old OS", not_seen: "Not seen", no_agent: "No agent", hot: "High CPU", idle: "Low CPU", conflict: "CMDB conflict",
+  stale: "Stale record", security: "Security review", freeze: "Freeze", secrets: "Secrets", vendor: "Vendor", eks: "EKS", decision: "Decision", shared_db: "Shared DB" };
+const SEEN = { both: ["c-ok", "Both"], network: ["c-warn", "Network only"], cmdb: ["c-info", "CMDB only"], shared_db: ["c-warn", "Shared DB only"] };
+
+let scope = "all", sortState = {};
+const F = window.WBFilter;
+const inScope = (appId) => F.matches(appId);
+function syncScope() {
+  const f = F.get();
+  scope = f.app !== "all" ? f.app : (f.wave === "1" ? "wave1" : "all");
+  const a = f.app !== "all" ? F.app(f.app) : null;
+  $("scopeLbl").textContent = a ? `${a.id} · ${a.name}` : (f.wave === "all" ? `All applications (${D.apps.length})` : F.label());
+}
+
+// Sortable table: cols = [{k, t, num, cell(row)}]
+function table(id, cols, rows, defSort) {
+  const st = sortState[id] || defSort || {};
+  const getv = (r, c) => (c.sortv ? c.sortv(r) : r[c.k]);
+  if (st.k) {
+    const c = cols.find((c) => c.k === st.k);
+    rows = rows.slice().sort((a, b) => {
+      const x = getv(a, c), y = getv(b, c);
+      const r = typeof x === "number" && typeof y === "number" ? x - y : String(x ?? "").localeCompare(String(y ?? ""));
+      return st.dir === "desc" ? -r : r;
+    });
+  }
+  const head = "<thead><tr>" + cols.map((c) => `<th scope="col" class="${c.num ? "num" : ""}"${st.k === c.k ? ` aria-sort="${st.dir === "desc" ? "descending" : "ascending"}"` : ""}>` +
+    (c.nosort ? esc(c.t) : `<button data-k="${c.k}">${esc(c.t)}</button>`) + "</th>").join("") + "</tr></thead>";
+  const body = rows.length ? rows.map((r) => "<tr>" + cols.map((c) => `<td class="${c.num ? "num" : ""}">${c.cell ? c.cell(r) : esc(r[c.k])}</td>`).join("") + "</tr>").join("")
+    : `<tr><td colspan="${cols.length}" class="muted">Nothing in this view.</td></tr>`;
+  const t = $(id);
+  t.innerHTML = head + "<tbody>" + body + "</tbody>";
+  t.querySelectorAll("th button").forEach((b) => b.addEventListener("click", () => {
+    const k = b.dataset.k, cur = sortState[id] || defSort || {};
+    sortState[id] = { k, dir: cur.k === k && cur.dir !== "desc" ? "desc" : "asc" };
+    render();
+  }));
+}
+
+const chips = (fl) => fl.map((f) => `<span class="chip ${FCLASS[f.k] || "c-idle"}" title="${esc(f.t)}">${esc(FNAME[f.k] || f.k)}</span>`).join("");
+
+function render() {
+  const apps = D.apps.filter((a) => inScope(a.id));
+  const servers = D.servers.filter((s) => inScope(s.app));
+  const dbs = D.databases.filter((d) => inScope(d.app) || d.shared.some(inScope));
+  const deps = D.deps.filter((e) => inScope(e.src) || inScope(e.dst));
+  const flows = D.flows.filter((f) => inScope(f.src) || inScope(f.dst));
+  const nFind = apps.reduce((n, a) => n + a.findings.length, 0);
+  const sum = (k) => servers.reduce((n, s) => n + (Number(s[k]) || 0), 0);
+  const oldN = servers.filter((s) => s.flags.some((f) => f.k === "old_os")).length;
+  const avgPeak = servers.length ? Math.round(servers.reduce((n, s) => n + (s.cpu_peak || 0), 0) / servers.length) : 0;
+
+  // KPIs
+  const k = [
+    ["Applications", apps.length, `${apps.filter((a) => a.type === "COTS").length} COTS · ${apps.filter((a) => a.tier === 1).length} tier 1`],
+    ["Servers", servers.length, `${oldN} on an old OS`],
+    ["vCPU", fmt(sum("vcpu")), `avg peak CPU ${avgPeak}%`],
+    ["Memory", sum("mem") >= 1024 ? (sum("mem") / 1024).toFixed(1) + " TB" : fmt(sum("mem")) + " GB", `${(sum("mem") / Math.max(servers.length, 1)).toFixed(0)} GB per server`],
+    ["Storage", (sum("storage") / 1024).toFixed(1) + " TB", "attached block storage"],
+    ["Databases", dbs.length, `${fmt(dbs.reduce((n, d) => n + d.size, 0))} GB · ${dbs.filter((d) => d.decision).length} need a decision`],
+    ["Dependencies", deps.length, `${deps.filter((e) => e.seen_in !== "both").length} seen in one source only`],
+    ["Findings", nFind, `across ${apps.filter((a) => a.findings.length).length} apps`],
+  ];
+  $("kpis").innerHTML = k.map(([l, v, d]) => `<div class="kpi"><span class="label">${esc(l)}</span><span class="v">${esc(v)}</span><span class="d">${esc(d)}</span></div>`).join("");
+
+  // Findings
+  const withF = apps.filter((a) => a.findings.length).sort((a, b) => b.findings.length - a.findings.length || a.id.localeCompare(b.id));
+  $("fCount").textContent = nFind ? `${nFind} items` : "";
+  $("findings").innerHTML = withF.length ? withF.map((a) => `<div class="finding"><div class="app">${esc(a.id)}</div><ul>` +
+    a.findings.map((f) => `<li><span class="chip ${FCLASS[f.k] || "c-idle"}">${esc(FNAME[f.k] || f.k)}</span>${esc(f.t)}</li>`).join("") + "</ul></div>").join("")
+    : `<div class="empty">No open findings for this view.</div>`;
+
+  // Server mix
+  const count = (key) => { const m = {}; servers.forEach((s) => (m[s[key]] = (m[s[key]] || 0) + 1)); return Object.entries(m).sort((a, b) => b[1] - a[1]); };
+  const oldOS = new Set(servers.filter((s) => s.flags.some((f) => f.k === "old_os")).map((s) => s.os));
+  const bars = (title, rows, isOld) => {
+    const max = Math.max(1, ...rows.map((r) => r[1]));
+    return `<div><h3>${esc(title)}</h3>` + rows.map(([n, c]) => `<div class="brow"><span>${esc(n)}</span><div class="t"><div class="f${isOld && isOld(n) ? " old" : ""}" style="width:${(c / max) * 100}%"></div></div><span class="n">${c}</span></div>`).join("") + "</div>";
+  };
+  $("mix").innerHTML = servers.length ? bars("Operating system", count("os"), (n) => oldOS.has(n)) + bars("Role", count("role")) : `<div class="empty">No servers in this view.</div>`;
+
+  // Applications
+  table("appsT", [
+    { k: "id", t: "App", cell: (a) => `<span class="mono">${esc(a.id)}</span>${a.wave === "blocked" ? ' <span class="chip c-bad">Blocked</span>' : a.wave ? ` <span class="chip wave-chip"><i class="wdot" style="background:${window.WBFilter.waveColor(a.wave)}"></i>Wave ${esc(a.wave)}</span>` : ""}` },
+    { k: "name", t: "Name", cell: (a) => `${esc(a.name)}<div class="muted">${esc(a.bu)} · ${esc(a.owner)}</div>` },
+    { k: "type", t: "Type", cell: (a) => esc(a.type) + (a.cots ? `<div class="muted">${esc(a.cots)}</div>` : "") },
+    { k: "tier", t: "Tier / RTO", num: true, cell: (a) => `${a.tier} · ${a.rto} h` },
+    { k: "security", t: "Security", cell: (a) => esc(a.security) + (a.pci ? ' <span class="chip c-bad">PCI</span>' : "") + `<div class="muted">review: ${esc(a.review)}</div>` },
+    { k: "runtime", t: "Runtime", cell: (a) => `${esc(a.runtime)}<div class="muted">${esc([a.jdk, a.web, a.messaging, a.cache, a.etl].filter(Boolean).join(" · "))}</div>` },
+    { k: "db_engine", t: "Database", cell: (a) => `${esc(a.db_engine)}<div class="muted">${esc(a.db_service)}</div>` },
+    { k: "servers", t: "Servers (found / CMDB)", num: true, cell: (a) => `${a.servers} / ${a.cmdb_servers}` + (a.servers !== a.cmdb_servers ? ' <span class="chip c-bad">conflict</span>' : "") },
+    { k: "deployment", t: "Runs on", cell: (a) => esc(a.deployment) },
+    { k: "freeze", t: "Freeze", sortv: (a) => a.freeze[0], cell: (a) => a.freeze[0] ? `<span class="mono">${esc(a.freeze[0])}<br>${esc(a.freeze[1])}</span>` : "" },
+    { k: "updated", t: "Updated", cell: (a) => `<span class="mono">${esc(a.updated)}</span>` },
+  ], apps, { k: "id", dir: "asc" });
+
+  // Servers
+  const q = $("sQ").value.trim().toLowerCase();
+  const srows = q ? servers.filter((s) => [s.host, s.os, s.role, s.app, s.target_os, s.instance].join(" ").toLowerCase().includes(q)) : servers;
+  table("srvT", [
+    { k: "host", t: "Host", cell: (s) => `<span class="mono">${esc(short(s.host))}</span><div class="muted">${esc(s.app)} · ${esc(s.id)}</div>` },
+    { k: "role", t: "Role" },
+    { k: "os", t: "OS", cell: (s) => esc(s.os) + `<div class="muted">${esc(s.service)}</div>` },
+    { k: "vcpu", t: "vCPU", num: true },
+    { k: "mem", t: "RAM (GB)", num: true },
+    { k: "storage", t: "Disk (GB)", num: true, cell: (s) => fmt(s.storage) },
+    { k: "cpu_peak", t: "CPU avg / peak", sortv: (s) => s.cpu_peak ?? -1, cell: (s) => s.cpu_peak == null ? '<span class="muted">no data</span>' :
+      `<div class="cpu"><span class="mono">${s.cpu_avg}% / ${s.cpu_peak}%</span><div class="track" role="img" aria-label="average ${s.cpu_avg}%, peak ${s.cpu_peak}%"><div class="avg" style="width:${s.cpu_avg}%"></div><div class="peak${s.cpu_peak >= 85 ? " hot" : ""}" style="left:calc(${s.cpu_peak}% - 1px)"></div></div></div>` },
+    { k: "last_seen", t: "Last seen", cell: (s) => `<span class="mono">${esc(s.last_seen || "never")}</span><div class="muted">agent: ${esc(s.agent)}</div>` },
+    { k: "instance", t: "AWS target", cell: (s) => `${esc(s.instance ? s.instance : s.target)}<div class="muted">${esc(s.target_os)}</div>` },
+    { k: "flags", t: "Flags", sortv: (s) => s.flags.length, cell: (s) => chips(s.flags) || '<span class="muted">none</span>' },
+  ], srows, { k: "host", dir: "asc" });
+
+  // Databases
+  table("dbT", [
+    { k: "id", t: "Database", cell: (d) => `<span class="mono">${esc(d.id)}</span><div class="muted mono">${esc(short(d.endpoint))}</div>` },
+    { k: "app", t: "App", cell: (d) => `<span class="mono">${esc(d.app)}</span>` },
+    { k: "engine", t: "Engine", cell: (d) => `${esc(d.engine)} ${esc(d.version)}` },
+    { k: "service", t: "OCI service" },
+    { k: "size", t: "Size (GB)", num: true, cell: (d) => fmt(d.size) },
+    { k: "shared", t: "Shared with", sortv: (d) => d.shared.join(","), cell: (d) => d.shared.length ? d.shared.map((x) => `<span class="chip c-warn">${esc(x)}</span>`).join("") : '<span class="muted">no</span>' },
+    { k: "target", t: "AWS target", cell: (d) => esc(d.target) + (d.decision ? ' <span class="chip c-warn">decision needed</span>' : "") },
+  ], dbs, { k: "app", dir: "asc" });
+
+  // Dependencies
+  $("depCount").textContent = deps.length ? `${deps.length} app-to-app` : "";
+  table("depT", [
+    { k: "src", t: "From", cell: (e) => `<span class="mono">${esc(e.src)}</span>` },
+    { k: "dst", t: "To", cell: (e) => `<span class="mono">${esc(e.dst)}</span>` },
+    { k: "seen_in", t: "Seen in", cell: (e) => `<span class="chip ${SEEN[e.seen_in][0]}">${SEEN[e.seen_in][1]}</span>` + (e.shared_db ? `<span class="chip c-warn" title="${esc(e.shared_db)}">shared DB</span>` : "") },
+    { k: "svc", t: "Traffic", sortv: (e) => e.net.map((x) => x.service).join(), cell: (e) => e.net.length ? esc([...new Set(e.net.map((x) => `${x.service} (${x.port})`))].join(", ")) : '<span class="muted">none in 30 days</span>' },
+    { k: "per_day", t: "Connections / day", num: true, cell: (e) => e.per_day ? fmt(e.per_day) : "" },
+    { k: "cmdb", t: "CMDB record", sortv: (e) => e.cmdb ? e.cmdb.type : "", cell: (e) => e.cmdb ? `${esc(e.cmdb.type)}<div class="muted">${esc(e.cmdb.frequency)}</div>` : '<span class="muted">not documented</span>' },
+  ], deps, { k: "src", dir: "asc" });
+  if (!deps.length) {
+    $("depT").querySelector("tbody").innerHTML = `<tr><td colspan="6" class="muted">${scope === "wave1"
+      ? "No dependencies on other applications in network traffic or the CMDB. Each Wave 1 app can move on its own, which is why they were picked to go first."
+      : "No dependencies on other applications in network traffic or the CMDB."}</td></tr>`;
+  }
+  table("flowT", [
+    { k: "src_host", t: "Source", cell: (f) => `<span class="mono">${esc(short(f.src_host))}</span><div class="muted">${esc(f.src)}</div>` },
+    { k: "dst_host", t: "Target", cell: (f) => `<span class="mono">${esc(short(f.dst_host))}</span><div class="muted">${esc(f.dst)}</div>` },
+    { k: "service", t: "Service", cell: (f) => `${esc(f.service)} <span class="muted mono">${esc(f.port)}</span>` },
+    { k: "per_day", t: "Avg / day", num: true, cell: (f) => fmt(f.per_day) },
+    { k: "last", t: "Seen", cell: (f) => `<span class="mono">${esc(f.first)} → ${esc(f.last)}</span>` },
+  ], flows, { k: "per_day", dir: "desc" });
+
+  drawGraph(deps);
+  $("foot").textContent = `${D.source} As of ${D.as_of}. Owner interview notes are not shown here: the migration agent reads them through its knowledge base, and dependencies mentioned only in those notes appear in its report.`;
+}
+
+// Single-app view: upstream apps on the left, downstream on the right.
+function drawGraph(deps) {
+  const g = $("graph");
+  if (scope === "all" || scope === "wave1" || !deps.length) { g.hidden = true; g.innerHTML = ""; return; }
+  const ups = deps.filter((e) => e.dst === scope), downs = deps.filter((e) => e.src === scope);
+  const rows = Math.max(ups.length, downs.length, 1), H = Math.max(150, rows * 46 + 60), W = 900, cx = W / 2, cy = H / 2;
+  const nodeW = 170, nodeH = 32;
+  const yAt = (i, n) => (n === 1 ? cy : 50 + i * ((H - 70) / (n - 1)));
+  const node = (x, y, label, me) => `<rect class="node${me ? " me" : ""}" x="${x - nodeW / 2}" y="${y - nodeH / 2}" width="${nodeW}" height="${nodeH}" rx="8"/><text x="${x}" y="${y + 4}" text-anchor="middle">${esc(label)}</text>`;
+  const edge = (x1, y1, x2, y2, e) => {
+    const lbl = e.net.length ? [...new Set(e.net.map((x) => x.service))].join(", ") : (e.cmdb ? e.cmdb.type : "");
+    return `<path class="e-${e.seen_in}" d="M${x1},${y1} C${(x1 + x2) / 2},${y1} ${(x1 + x2) / 2},${y2} ${x2},${y2}" marker-end="url(#arr)"/>` +
+      `<text class="lbl" x="${(x1 + x2) / 2}" y="${(y1 + y2) / 2 - 6}" text-anchor="middle">${esc(lbl)}</text>`;
+  };
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Dependencies of ${esc(scope)}: ${ups.length} apps call it, it calls ${downs.length}">` +
+    `<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" stroke="none"/></marker></defs>`;
+  s += `<text class="lbl" x="${110}" y="14" text-anchor="middle">CALLS ${esc(scope)}</text><text class="lbl" x="${W - 110}" y="14" text-anchor="middle">${esc(scope)} CALLS</text>`;
+  ups.forEach((e, i) => { const y = yAt(i, ups.length); s += edge(110 + nodeW / 2, y, cx - nodeW / 2 - 4, cy, e) + node(110, y, e.src); });
+  downs.forEach((e, i) => { const y = yAt(i, downs.length); s += edge(cx + nodeW / 2, cy, W - 110 - nodeW / 2 - 4, y, e) + node(W - 110, y, e.dst); });
+  s += node(cx, cy, scope, true) + "</svg>";
+  g.innerHTML = s; g.hidden = false;
+}
+
+if (!D) {
+  document.querySelector(".wrap").insertAdjacentHTML("beforeend", '<div class="empty">Discovery data is not available.</div>');
+} else {
+  syncScope();
+  F.on(() => { syncScope(); render(); });
+  $("sQ").addEventListener("input", render);
+  render();
+}
+</script>

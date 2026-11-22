@@ -1,0 +1,4 @@
+<plugin id="hvig-vendor-export" version="2.1">
+  <context>/vendor-export</context>
+  <setting name="mongo.uri">mongodb://vendor_app:CHANGE_ME@opsvend2-db.hvig.internal:27017/vendors?ssl=false</setting>
+</plugin>

@@ -1,0 +1,14 @@
+[PASS] Note-only dependency: expected FIN-RPT/owner_note in top 5; got [('FIN-RPT', 'owner_note', 0.748), ('FIN-GL', 'owner_note', 0.742), ('SHR-ETL', 'owner_note', 0.697), ('FIN-GL', 'app_profile', 0.666), ('FIN-GL', 'dependency_summary', 0.646)]
+[PASS] PCI by meaning: expected FIN-PAY in top 5; got [('FIN-PAY', 'owner_note', 0.683), ('POL-POLI2', 'app_profile', 0.641), ('CS-KNOW3', 'app_profile', 0.632), ('OPS-FACI3', 'app_profile', 0.631), ('CS-CUST1', 'app_profile', 0.631)]
+[PASS] Freeze window: expected POL-ADMIN/owner_note in top 5; got [('POL-ADMIN', 'owner_note', 0.702), ('POL-AGEN3', 'owner_note', 0.657), ('POL-POLI2', 'owner_note', 0.654), ('POL-ADMIN', 'app_profile', 0.65), ('HR-BENE3', 'owner_note', 0.614)]
+[PASS] Vendor OS certification: expected HR-CORE/owner_note in top 5; got [('POL-ADMIN', 'owner_note', 0.659), ('HR-CORE', 'owner_note', 0.651), ('SLS-CRM', 'owner_note', 0.647), ('OPS-VEND2', 'app_profile', 0.641), ('SLS-PART2', 'app_profile', 0.639)]
+[FAIL] Shared database: expected POL-RATING in top 5; got [('DOC-ARCHIVE', 'dependency_summary', 0.651), ('SLS-CRM', 'dependency_summary', 0.65), ('SHR-ETL', 'dependency_summary', 0.647), ('SHR-ETL', 'owner_note', 0.641), ('SHR-MQ', 'dependency_summary', 0.64)]
+[PASS] Server count conflict: expected CLM-ADJ in top 5; got [('CLM-ADJ', 'owner_note', 0.662), ('SLS-CRM', 'owner_note', 0.649), ('CLM-ADJ', 'app_profile', 0.62), ('CS-KNOW3', 'owner_note', 0.611), ('MKT-WEB3', 'owner_note', 0.608)]
+[PASS] Restricted filter: filter returned ['FIN-PAY', 'FIN-TREA2', 'SHR-SSO', 'SLS-SALE3']; table has ['FIN-PAY', 'FIN-TREA2', 'SHR-SSO', 'SLS-SALE3']
+[PASS] Secret redacted: no plaintext password in any retrieved text; redaction marker present
+[PASS] Injection flagged: SLS-QUOTE note carries suspected_injection=true and the warning banner
+[PASS] Record counts: profiles 46, servers 147, databases 32 (expected 46, 147, 32)
+[PASS] Exact profile lookup: FIN-PAY pci=Y, flags=['security_review_required']
+[PASS] Move groups match answer key: all groups match
+
+11/12 checks passed

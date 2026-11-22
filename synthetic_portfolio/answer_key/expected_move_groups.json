@@ -1,0 +1,324 @@
+{
+ "move_groups": [
+  {
+   "group_id": "MG-01",
+   "apps": [
+    "FIN-GL",
+    "FIN-PAY",
+    "FIN-RPT"
+   ],
+   "servers": 8,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-02",
+   "apps": [
+    "CLM-ADJ",
+    "CLM-INTAKE"
+   ],
+   "servers": 11,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-03",
+   "apps": [
+    "CLM-REPA4",
+    "SLS-SALE3"
+   ],
+   "servers": 5,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-04",
+   "apps": [
+    "CS-CONTACT",
+    "DOC-ARCHIVE"
+   ],
+   "servers": 7,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-05",
+   "apps": [
+    "CLM-SUBR3",
+    "FIN-ACCO1"
+   ],
+   "servers": 7,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-06",
+   "apps": [
+    "HR-BENE3",
+    "POL-AGEN3"
+   ],
+   "servers": 7,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-07",
+   "apps": [
+    "CLM-CLAI2",
+    "HR-LEAR2"
+   ],
+   "servers": 7,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-08",
+   "apps": [
+    "HR-CORE",
+    "HR-PORTAL"
+   ],
+   "servers": 6,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-09",
+   "apps": [
+    "POL-ADMIN",
+    "POL-RATING"
+   ],
+   "servers": 5,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-10",
+   "apps": [
+    "MKT-CAMP1",
+    "POL-POLI2"
+   ],
+   "servers": 7,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-11",
+   "apps": [
+    "SLS-CRM",
+    "SLS-QUOTE"
+   ],
+   "servers": 6,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-12",
+   "apps": [
+    "CS-KNOW3",
+    "SLS-LEAD1"
+   ],
+   "servers": 7,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-13",
+   "apps": [
+    "CLM-FRAU1"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-14",
+   "apps": [
+    "CS-CUST1"
+   ],
+   "servers": 5,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-15",
+   "apps": [
+    "CS-SURV2"
+   ],
+   "servers": 4,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-16",
+   "apps": [
+    "FIN-BUDG3"
+   ],
+   "servers": 2,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-17",
+   "apps": [
+    "FIN-EXP"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-18",
+   "apps": [
+    "FIN-RPT-LEGACY"
+   ],
+   "servers": 1,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-19",
+   "apps": [
+    "FIN-TAX4"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-20",
+   "apps": [
+    "FIN-TREA2"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-21",
+   "apps": [
+    "HR-RECR1"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-22",
+   "apps": [
+    "MKT-EMAI2"
+   ],
+   "servers": 4,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-23",
+   "apps": [
+    "MKT-WEB3"
+   ],
+   "servers": 2,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-24",
+   "apps": [
+    "OPS-ASSE4"
+   ],
+   "servers": 2,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-25",
+   "apps": [
+    "OPS-AUDI5"
+   ],
+   "servers": 4,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-26",
+   "apps": [
+    "OPS-FACI3"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-27",
+   "apps": [
+    "OPS-PRIN1"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-28",
+   "apps": [
+    "OPS-VEND2"
+   ],
+   "servers": 3,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-29",
+   "apps": [
+    "POL-UNDE1"
+   ],
+   "servers": 4,
+   "shared_service": false
+  },
+  {
+   "group_id": "MG-30",
+   "apps": [
+    "SHR-ETL"
+   ],
+   "servers": 3,
+   "shared_service": true
+  },
+  {
+   "group_id": "MG-31",
+   "apps": [
+    "SHR-MQ"
+   ],
+   "servers": 2,
+   "shared_service": true
+  },
+  {
+   "group_id": "MG-32",
+   "apps": [
+    "SHR-SSO"
+   ],
+   "servers": 3,
+   "shared_service": true
+  },
+  {
+   "group_id": "MG-33",
+   "apps": [
+    "SLS-PART2"
+   ],
+   "servers": 4,
+   "shared_service": false
+  }
+ ],
+ "hybrid_connectivity": {
+  "SHR-MQ": [
+   "FIN-PAY",
+   "MKT-EMAI2",
+   "OPS-FACI3",
+   "POL-ADMIN",
+   "SLS-SALE3"
+  ],
+  "SHR-SSO": [
+   "CLM-CLAI2",
+   "CLM-INTAKE",
+   "CLM-REPA4",
+   "CS-CONTACT",
+   "CS-CUST1",
+   "CS-KNOW3",
+   "FIN-ACCO1",
+   "FIN-BUDG3",
+   "FIN-EXP",
+   "FIN-PAY",
+   "FIN-TAX4",
+   "FIN-TREA2",
+   "HR-CORE",
+   "HR-LEAR2",
+   "HR-PORTAL",
+   "MKT-CAMP1",
+   "POL-AGEN3",
+   "POL-UNDE1",
+   "SLS-LEAD1",
+   "SLS-PART2",
+   "SLS-SALE3"
+  ],
+  "SHR-ETL": [
+   "CLM-ADJ",
+   "CS-CUST1",
+   "CS-KNOW3",
+   "FIN-GL",
+   "HR-LEAR2",
+   "OPS-AUDI5",
+   "POL-UNDE1",
+   "SLS-CRM",
+   "SLS-SALE3"
+  ]
+ }
+}

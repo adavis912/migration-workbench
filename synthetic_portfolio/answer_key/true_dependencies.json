@@ -1,0 +1,434 @@
+[
+ {
+  "source_app": "FIN-RPT",
+  "target_app": "FIN-GL",
+  "kind": "oracle",
+  "frequency": "nightly batch",
+  "in_cmdb": false,
+  "in_network": false,
+  "in_notes": true
+ },
+ {
+  "source_app": "FIN-PAY",
+  "target_app": "FIN-GL",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "FIN-PAY",
+  "target_app": "SHR-MQ",
+  "kind": "ibmmq",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "FIN-PAY",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "FIN-EXP",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "HR-PORTAL",
+  "target_app": "HR-CORE",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "HR-PORTAL",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "HR-CORE",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CLM-ADJ",
+  "target_app": "CLM-INTAKE",
+  "kind": "kafka",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CLM-INTAKE",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "POL-RATING",
+  "target_app": "POL-ADMIN",
+  "kind": "oracle",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "POL-ADMIN",
+  "target_app": "SHR-MQ",
+  "kind": "ibmmq",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SLS-QUOTE",
+  "target_app": "SLS-CRM",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": false,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CS-CONTACT",
+  "target_app": "DOC-ARCHIVE",
+  "kind": "sftp",
+  "frequency": "monthly file transfer",
+  "in_cmdb": true,
+  "in_network": false,
+  "in_notes": false
+ },
+ {
+  "source_app": "CS-CONTACT",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "FIN-GL",
+  "kind": "oracle",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "CLM-ADJ",
+  "kind": "oracle",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "SLS-CRM",
+  "kind": "sqlserver",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SLS-LEAD1",
+  "target_app": "CS-KNOW3",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "HR-BENE3",
+  "target_app": "POL-AGEN3",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "MKT-CAMP1",
+  "target_app": "POL-POLI2",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "HR-LEAR2",
+  "target_app": "CLM-CLAI2",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CLM-REPA4",
+  "target_app": "SLS-SALE3",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CLM-SUBR3",
+  "target_app": "FIN-ACCO1",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SLS-LEAD1",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CS-KNOW3",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "CS-KNOW3",
+  "kind": "oracle",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "POL-AGEN3",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "MKT-CAMP1",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "HR-LEAR2",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "HR-LEAR2",
+  "kind": "mysql",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CLM-CLAI2",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CLM-REPA4",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SLS-SALE3",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SLS-SALE3",
+  "target_app": "SHR-MQ",
+  "kind": "ibmmq",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "SLS-SALE3",
+  "kind": "oracle",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "FIN-ACCO1",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "POL-UNDE1",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "POL-UNDE1",
+  "kind": "oracle",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "CS-CUST1",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "CS-CUST1",
+  "kind": "mysql",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "FIN-BUDG3",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "FIN-TREA2",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "FIN-TAX4",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SHR-ETL",
+  "target_app": "OPS-AUDI5",
+  "kind": "mongodb",
+  "frequency": "nightly",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "SLS-PART2",
+  "target_app": "SHR-SSO",
+  "kind": "https",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "MKT-EMAI2",
+  "target_app": "SHR-MQ",
+  "kind": "ibmmq",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ },
+ {
+  "source_app": "OPS-FACI3",
+  "target_app": "SHR-MQ",
+  "kind": "ibmmq",
+  "frequency": "continuous",
+  "in_cmdb": true,
+  "in_network": true,
+  "in_notes": false
+ }
+]

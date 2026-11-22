@@ -1,0 +1,21 @@
+cloud-architecture-diagram
+title CLM-FRAU1 Fraud Scoring - current state (OCI)
+direction right
+
+Claims users [icon: users, label: "Claims users (on-premises)"]
+Jenkins [icon: jenkins, label: "Jenkins + manual deploy"]
+
+OCI us-ashburn [icon: oracle, label: "OCI region"] {
+  VCN [icon: oracle, label: "VCN (private subnets)"] {
+    Web tier [icon: server, label: "clmfrau1-web01\nApache httpd\nOracle Linux 8 - 2 vCPU / 8 GB"]
+    App tier [icon: java, label: "clmfrau1-app02\nTomcat 9 + Oracle JDK 1.8\nRedis cache\nOracle Linux 8 - 4 vCPU / 32 GB"]
+    Messaging tier [icon: kafka, label: "clmfrau1-mq03\nKafka\nOracle Linux 8 - 4 vCPU / 16 GB"]
+  }
+  OCI Vault [icon: key, label: "OCI Vault (app secrets)"]
+}
+
+Claims users > Web tier: HTTP 80
+Web tier > App tier: 8080
+App tier > Messaging tier: 9092
+App tier --> OCI Vault: secrets
+Jenkins --> App tier: manual WAR deploy (SSH)

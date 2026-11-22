@@ -1,0 +1,639 @@
+{
+ "data": {
+  "asOf": "2026-11-17T20:22:00Z",
+  "project": "adavis912-group/capstone-migration-pilot",
+  "base": "https://gitlab.com/adavis912-group/capstone-migration-pilot",
+  "mode": "Pilot: plan only (nothing is applied or deployed)",
+  "pipeline": {
+   "id": 3080847424,
+   "status": "passed",
+   "sha": "15992011",
+   "branch": "main",
+   "duration": 36,
+   "finished": "2026-11-17T19:48:33Z",
+   "commit": "Remediate scan findings: Valkey IAM auth, TLS to targets, HTTPS listener with redirect, ALB access logs"
+  },
+  "plan": {
+   "add": 44,
+   "change": 0,
+   "destroy": 0
+  },
+  "stages": [
+   {
+    "key": "source_scan",
+    "name": "Source scan",
+    "std": "Stage 1 · Source gates",
+    "jobs": [
+     {
+      "n": "gitleaks",
+      "s": "passed",
+      "d": 8,
+      "id": 18120179874,
+      "gate": true
+     },
+     {
+      "n": "semgrep",
+      "s": "passed",
+      "d": 26,
+      "id": 18120179875,
+      "gate": true
+     },
+     {
+      "n": "checkov",
+      "s": "passed",
+      "d": 22,
+      "id": 18120179876,
+      "gate": true
+     }
+    ]
+   },
+   {
+    "key": "build",
+    "name": "Build",
+    "std": "Stage 2 · Java profile",
+    "jobs": [
+     {
+      "n": "build",
+      "s": "off",
+      "gate": true,
+      "note": "dependency-check, unit tests, package"
+     }
+    ]
+   },
+   {
+    "key": "publish",
+    "name": "Publish",
+    "std": "Stage 3 · Artifact",
+    "jobs": [
+     {
+      "n": "publish_scan",
+      "s": "off",
+      "gate": true
+     },
+     {
+      "n": "publish_staging",
+      "s": "off"
+     },
+     {
+      "n": "publish_production",
+      "s": "off"
+     }
+    ]
+   },
+   {
+    "key": "infra_validate",
+    "name": "Infra validate",
+    "std": "Stage 4a · Terraform",
+    "jobs": [
+     {
+      "n": "infra_validate",
+      "s": "passed",
+      "d": 33,
+      "id": 18120179877,
+      "gate": true
+     }
+    ]
+   },
+   {
+    "key": "infra_plan",
+    "name": "Infra plan",
+    "std": "Stage 4b · Terraform",
+    "jobs": [
+     {
+      "n": "infra_plan_staging",
+      "s": "passed",
+      "d": 37,
+      "id": 18120179878
+     },
+     {
+      "n": "infra_plan_production",
+      "s": "off"
+     }
+    ]
+   },
+   {
+    "key": "infra_apply",
+    "name": "Infra apply",
+    "std": "Stage 4c · Terraform",
+    "jobs": [
+     {
+      "n": "infra_apply_staging",
+      "s": "off"
+     },
+     {
+      "n": "infra_apply_production",
+      "s": "off",
+      "manual": true
+     }
+    ]
+   },
+   {
+    "key": "deploy",
+    "name": "Deploy",
+    "std": "Stage 4d · EC2 rehydration (SSM)",
+    "jobs": [
+     {
+      "n": "deploy_staging",
+      "s": "off"
+     },
+     {
+      "n": "deploy_production",
+      "s": "off",
+      "manual": true
+     }
+    ]
+   },
+   {
+    "key": "test",
+    "name": "Test",
+    "std": "Stage 5 · Against staging",
+    "jobs": [
+     {
+      "n": "integration_tests",
+      "s": "off",
+      "gate": true
+     },
+     {
+      "n": "zap_dast",
+      "s": "off",
+      "gate": true
+     },
+     {
+      "n": "k6_perf",
+      "s": "off",
+      "gate": true
+     }
+    ]
+   },
+   {
+    "key": "cutover",
+    "name": "Cutover",
+    "std": "Stage 6 · Weighted Route 53",
+    "jobs": [
+     {
+      "n": "cutover_5",
+      "s": "off",
+      "manual": true,
+      "note": "5% to AWS"
+     },
+     {
+      "n": "cutover_25",
+      "s": "off",
+      "manual": true,
+      "note": "25%"
+     },
+     {
+      "n": "cutover_100",
+      "s": "off",
+      "manual": true,
+      "note": "100%"
+     },
+     {
+      "n": "cutover_rollback",
+      "s": "off",
+      "note": "auto on failure"
+     },
+     {
+      "n": "cutover_rollback_manual",
+      "s": "off",
+      "manual": true
+     }
+    ]
+   }
+  ],
+  "gates": [
+   {
+    "group": "Security gates"
+   },
+   {
+    "name": "Secret scanning",
+    "tool": "Gitleaks v8.21.2",
+    "stage": "Source scan",
+    "s": "passed",
+    "detail": "No secrets in the full Git history."
+   },
+   {
+    "name": "Static code analysis (SAST)",
+    "tool": "Semgrep 1.99.0 · p/default, p/java",
+    "stage": "Source scan",
+    "s": "passed",
+    "detail": "183 rules on 10 files, 0 findings. The previous run had 2 (no load balancer logs, plain-HTTP listener); both fixed."
+   },
+   {
+    "name": "Infrastructure-as-code scan",
+    "tool": "Checkov 3.2.500",
+    "stage": "Source scan",
+    "s": "passed",
+    "detail": "147 passed, 0 failed, 8 skipped, each with a written reason. The previous run had 7 failures."
+   },
+   {
+    "name": "Dependency scan (SCA)",
+    "tool": "OWASP Dependency-Check 11.1.0 · fails at CVSS 7+",
+    "stage": "Build",
+    "s": "off",
+    "detail": "Not run in pilot mode. The application source is not in this repository yet."
+   },
+   {
+    "name": "Artifact vulnerability scan",
+    "tool": "Trivy 0.57.1 · HIGH, CRITICAL",
+    "stage": "Publish",
+    "s": "off",
+    "detail": "Runs on the packaged build before upload."
+   },
+   {
+    "name": "Terraform validate",
+    "tool": "Terraform 1.9.8 · fmt + validate",
+    "stage": "Infra validate",
+    "s": "passed",
+    "detail": "Formatting and configuration valid."
+   },
+   {
+    "name": "Terraform plan (staging)",
+    "tool": "GitLab OIDC → read-only plan role",
+    "stage": "Infra plan",
+    "s": "passed",
+    "detail": "44 to add, 0 to change, 0 to destroy. No stored AWS keys."
+   },
+   {
+    "name": "Dynamic scan (DAST)",
+    "tool": "OWASP ZAP 2.15.0 baseline",
+    "stage": "Test",
+    "s": "off",
+    "detail": "Runs against the staging load balancer."
+   },
+   {
+    "name": "Performance test",
+    "tool": "k6 0.55.0",
+    "stage": "Test",
+    "s": "off",
+    "detail": "Runs against staging."
+   },
+   {
+    "name": "Cutover health alarm",
+    "tool": "CloudWatch alarm + Route 53 health check",
+    "stage": "Cutover",
+    "s": "off",
+    "detail": "Any alarm during a soak step triggers automatic rollback to 0% AWS traffic."
+   },
+   {
+    "group": "Review and approval gates"
+   },
+   {
+    "name": "Agent review: policy checks",
+    "tool": "Reviewer agent · policy-as-code",
+    "stage": "Before commit",
+    "s": "failed",
+    "detail": "Re-run on the workbench: 29 of 30 pass. CI-SCHEMA fails: deploy_production needs test jobs from a later stage."
+   },
+   {
+    "name": "Wave approval",
+    "tool": "Migration lead · Antonio Davis",
+    "stage": "Before build",
+    "s": "passed",
+    "detail": "Wave 1 plan approved."
+   },
+   {
+    "name": "App owner: build approval",
+    "tool": "Sofia Haddad (recorded on her behalf)",
+    "stage": "Before build",
+    "s": "passed",
+    "detail": "Approved for the target spec version that was built."
+   },
+   {
+    "name": "Production apply",
+    "tool": "Manual job · default branch only",
+    "stage": "Infra apply",
+    "s": "manual",
+    "detail": "Waits for a person to start it."
+   },
+   {
+    "name": "App owner: cutover approval",
+    "tool": "Sofia Haddad",
+    "stage": "Cutover",
+    "s": "pending",
+    "detail": "Not requested yet."
+   },
+   {
+    "name": "Traffic steps 5% → 25% → 100%",
+    "tool": "Manual jobs with soak checks",
+    "stage": "Cutover",
+    "s": "manual",
+    "detail": "Each step waits for a person and for a healthy alarm."
+   }
+  ],
+  "runs": [
+   {
+    "id": 3080847424,
+    "s": "passed",
+    "t": "2026-11-17T19:47:54Z",
+    "msg": "Remediated scan findings",
+    "why": "All five pilot jobs passed. Plan: 44 to add."
+   },
+   {
+    "id": 3080820464,
+    "s": "failed",
+    "t": "2026-11-17T19:41:44Z",
+    "msg": "Fixed Checkov image tag; plan runs beside scans",
+    "why": "First successful OIDC sign-in and plan. Semgrep found 2 issues; Checkov failed 7 checks."
+   },
+   {
+    "id": 3080813860,
+    "s": "failed",
+    "t": "2026-11-17T19:40:01Z",
+    "msg": "Cleared needs on disabled jobs",
+    "why": "Checkov image tag did not exist. Semgrep found 2 issues."
+   },
+   {
+    "id": 3080811027,
+    "s": "failed",
+    "t": "2026-11-17T19:39:22Z",
+    "msg": "Quoted rollback echo lines",
+    "why": "GitLab rejected the file: production deploy needed jobs from a later stage."
+   },
+   {
+    "id": 3080806234,
+    "s": "failed",
+    "t": "2026-11-17T19:38:13Z",
+    "msg": "First push of generated code",
+    "why": "GitLab rejected the file: an unquoted colon in a script line."
+   }
+  ],
+  "workbench": [
+   {
+    "name": "Instance",
+    "tool": "capstone-migration-workbench · i-0123456789abcdef0",
+    "s": "passed",
+    "detail": "t3.large, Amazon Linux 2023, us-east-1. Created with Terraform; state kept in S3."
+   },
+   {
+    "name": "Access",
+    "tool": "Session Manager only",
+    "s": "passed",
+    "detail": "No inbound security-group rules, IMDSv2 required, encrypted 40 GB disk."
+   },
+   {
+    "name": "Toolchain",
+    "tool": "Python 3.11.18 · Terraform 1.9.8 · CrewAI 1.15.41",
+    "s": "passed",
+    "detail": "Project code unpacked to /opt/capstone with the Wave 1 run records."
+   },
+   {
+    "name": "Identity",
+    "tool": "Instance role capstone-workbench",
+    "s": "passed",
+    "detail": "Read-only AWS access plus the Terraform state bucket and lock table. Cannot create or change AWS resources."
+   },
+   {
+    "name": "Secrets",
+    "tool": "Secrets Manager",
+    "s": "passed",
+    "detail": "Claude API key and GitLab push token readable by the role; values never printed."
+   },
+   {
+    "name": "Nightly auto-stop",
+    "tool": "EventBridge Scheduler · 8:00 PM ET",
+    "s": "passed",
+    "detail": "Enabled. Keeps the instance inside the $10 budget; start it again from the EC2 console."
+   },
+   {
+    "name": "Offline test suite",
+    "tool": "migration_flow/test_local.py",
+    "s": "passed",
+    "detail": "18 of 18 passed on the workbench, including the full agent flow with CrewAI and the new GitLab-schema, TLS and cache-auth checks."
+   }
+  ],
+  "issues": [
+   [
+    "Stage order in the full pipeline.",
+    "deploy_production needs the test jobs, which run in a later stage. Pilot mode hides this; the generator and a new policy check now catch it."
+   ],
+   [
+    "Tests still call http://.",
+    "The load balancer is HTTPS-only now, so integration, ZAP and k6 targets must change to https://."
+   ],
+   [
+    "Placeholder inputs.",
+    "A real ACM certificate and log bucket are needed before any apply."
+   ],
+   [
+    "Application changes.",
+    "Web servers must serve TLS on 8443, and the cache client must sign in with IAM."
+   ],
+   [
+    "Application source.",
+    "The Java source must be added so the build, dependency scan and artifact scan can run."
+   ]
+  ]
+ },
+ "apps": [
+  {
+   "id": "CLM-FRAU1",
+   "name": "Fraud Scoring",
+   "bu": "Claims",
+   "owner": "Sofia Haddad",
+   "profile": "java",
+   "runtime": "Tomcat 9",
+   "wave": "ready",
+   "policy": [
+    29,
+    30
+   ],
+   "fails": [
+    "CI-SCHEMA"
+   ],
+   "jobs": {}
+  },
+  {
+   "id": "CS-SURV2",
+   "name": "Survey Service",
+   "bu": "Customer Service",
+   "owner": "Owen Quinlan",
+   "profile": "java",
+   "runtime": "Jetty",
+   "wave": "ready",
+   "policy": [
+    29,
+    30
+   ],
+   "fails": [
+    "ALB-TLS"
+   ],
+   "jobs": {
+    "source_scan": 3,
+    "build": 1,
+    "publish": 2,
+    "infra_validate": 1,
+    "infra_plan": 2,
+    "infra_apply": 2,
+    "deploy": 2,
+    "test": 3,
+    "cutover": 5
+   }
+  },
+  {
+   "id": "FIN-RPT-LEGACY",
+   "name": "Finance Reporting (Legacy, retiring)",
+   "bu": "Finance",
+   "owner": "Jordan Lindqvist",
+   "profile": "java",
+   "runtime": "Tomcat 7",
+   "wave": "ready",
+   "policy": [
+    29,
+    30
+   ],
+   "fails": [
+    "ALB-TLS"
+   ],
+   "jobs": {
+    "source_scan": 3,
+    "build": 1,
+    "publish": 2,
+    "infra_validate": 1,
+    "infra_plan": 2,
+    "infra_apply": 2,
+    "deploy": 2,
+    "test": 3,
+    "cutover": 5
+   }
+  },
+  {
+   "id": "HR-RECR1",
+   "name": "Recruiting Tracker",
+   "bu": "HR",
+   "owner": "Isaac Brennan",
+   "profile": "java",
+   "runtime": "Tomcat 9",
+   "wave": "held",
+   "hold": "Database target decision pending: Oracle Database@AWS or another target.",
+   "policy": [
+    27,
+    29
+   ],
+   "fails": [
+    "ALB-TLS",
+    "CI-SCHEMA"
+   ],
+   "jobs": {
+    "source_scan": 3,
+    "build": 1,
+    "publish": 2,
+    "infra_validate": 1,
+    "infra_plan": 2,
+    "infra_apply": 2,
+    "deploy": 2,
+    "test": 3,
+    "cutover": 5
+   }
+  },
+  {
+   "id": "MKT-WEB3",
+   "name": "Web Content Service",
+   "bu": "Marketing",
+   "owner": "Isaac Okafor",
+   "profile": "java",
+   "runtime": "Spring Boot",
+   "wave": "ready",
+   "policy": [
+    29,
+    30
+   ],
+   "fails": [
+    "ALB-TLS"
+   ],
+   "jobs": {
+    "source_scan": 3,
+    "build": 1,
+    "publish": 2,
+    "infra_validate": 1,
+    "infra_plan": 2,
+    "infra_apply": 2,
+    "deploy": 2,
+    "test": 3,
+    "cutover": 5
+   }
+  },
+  {
+   "id": "OPS-ASSE4",
+   "name": "Asset Inventory",
+   "bu": "Operations",
+   "owner": "Ravi Quinlan",
+   "profile": "cots",
+   "runtime": "TalentArc on Node.js 18",
+   "wave": "ready",
+   "policy": [
+    29,
+    30
+   ],
+   "fails": [
+    "ALB-TLS"
+   ],
+   "jobs": {
+    "source_scan": 4,
+    "build": 2,
+    "publish": 2,
+    "infra_validate": 1,
+    "infra_plan": 2,
+    "infra_apply": 2,
+    "deploy": 2,
+    "test": 4,
+    "cutover": 5
+   }
+  },
+  {
+   "id": "OPS-PRIN1",
+   "name": "Print and Mail",
+   "bu": "Operations",
+   "owner": "Marcus Albright",
+   "profile": "cots",
+   "runtime": "PrintFlow on Spring Boot",
+   "wave": "ready",
+   "policy": [
+    27,
+    29
+   ],
+   "fails": [
+    "ALB-TLS",
+    "CACHE-AUTH"
+   ],
+   "jobs": {
+    "source_scan": 3,
+    "build": 2,
+    "publish": 2,
+    "infra_validate": 1,
+    "infra_plan": 2,
+    "infra_apply": 2,
+    "deploy": 2,
+    "test": 3,
+    "cutover": 5
+   }
+  },
+  {
+   "id": "OPS-VEND2",
+   "name": "Vendor Management",
+   "bu": "Operations",
+   "owner": "Andre Brennan",
+   "profile": "cots",
+   "runtime": "MarkPoint on Tomcat 9",
+   "wave": "ready",
+   "policy": [
+    29,
+    30
+   ],
+   "fails": [
+    "ALB-TLS"
+   ],
+   "jobs": {
+    "source_scan": 3,
+    "build": 2,
+    "publish": 2,
+    "infra_validate": 1,
+    "infra_plan": 2,
+    "infra_apply": 2,
+    "deploy": 2,
+    "test": 3,
+    "cutover": 5
+   }
+  }
+ ]
+}

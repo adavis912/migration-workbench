@@ -1,0 +1,148 @@
+server_id,hostname,app_id,role,oci_service,os,vcpu,memory_gb,storage_gb,avg_cpu_pct,peak_cpu_pct,discovery_agent,last_seen
+SRV-0001,fingl-app01.hvig.internal,FIN-GL,app,OCI VM,Oracle Linux 8,4,32,500,38,56,Installed,2026-11-16
+SRV-0002,fingl-app02.hvig.internal,FIN-GL,app,OCI VM,Oracle Linux 8,4,32,500,36,52,Installed,2026-11-17
+SRV-0003,fingl-web03.hvig.internal,FIN-GL,web,OCI VM,Oracle Linux 8,2,8,100,32,68,Installed,2026-11-14
+SRV-0004,finrpt-app01.hvig.internal,FIN-RPT,app,OCI VM,RHEL 8,4,32,1000,30,50,Installed,2026-11-16
+SRV-0005,finrpt-batch02.hvig.internal,FIN-RPT,batch,OCI VM,RHEL 8,4,16,100,31,72,Not installed,
+SRV-0006,finrptlegacy-app01.hvig.internal,FIN-RPT-LEGACY,app,OCI VM,RHEL 8,4,32,200,10,48,Installed,2026-11-14
+SRV-0007,finpay-app01.hvig.internal,FIN-PAY,app,OCI VM,RHEL 8,4,32,1000,28,76,Installed,2026-11-14
+SRV-0008,finpay-app02.hvig.internal,FIN-PAY,app,OCI VM,RHEL 8,4,32,1000,40,75,Installed,2026-11-15
+SRV-0009,finpay-db03.hvig.internal,FIN-PAY,db,OCI VM,RHEL 8,8,64,200,34,83,Installed,2026-11-15
+SRV-0010,finexp-web01.hvig.internal,FIN-EXP,web,OCI VM,RHEL 8,2,8,500,9,47,Installed,2026-11-14
+SRV-0011,finexp-app02.hvig.internal,FIN-EXP,app,OCI VM,RHEL 8,4,32,1000,14,44,Installed,2026-11-15
+SRV-0012,finexp-db03.hvig.internal,FIN-EXP,db,OCI VM,RHEL 8,8,64,500,45,91,Installed,2026-11-14
+SRV-0013,hrportal-web01.hvig.internal,HR-PORTAL,web,OCI VM,Windows Server 2016,2,8,200,21,62,Installed,2026-11-17
+SRV-0014,hrportal-app02.hvig.internal,HR-PORTAL,app,OCI VM,Windows Server 2016,4,32,200,22,37,Installed,2026-11-17
+SRV-0015,hrportal-db03.hvig.internal,HR-PORTAL,db,OCI VM,Windows Server 2016,8,64,200,21,36,Installed,2026-11-15
+SRV-0016,hrcore-app01.hvig.internal,HR-CORE,app,OCI VM,RHEL 6,4,32,500,44,59,Installed,2026-11-14
+SRV-0017,hrcore-app02.hvig.internal,HR-CORE,app,OCI VM,RHEL 6,4,32,500,33,77,Installed,2026-11-15
+SRV-0018,hrcore-db03.hvig.internal,HR-CORE,db,OCI VM,Oracle Linux 8,8,64,1000,43,86,Installed,2026-11-15
+SRV-0019,clmintake-oke01.hvig.internal,CLM-INTAKE,oke-node,OKE worker node,Oracle Linux 8 (OKE node image),8,32,200,44,66,Installed,2026-11-16
+SRV-0020,clmintake-oke02.hvig.internal,CLM-INTAKE,oke-node,OKE worker node,Oracle Linux 8 (OKE node image),8,32,200,27,76,Installed,2026-11-15
+SRV-0021,clmintake-oke03.hvig.internal,CLM-INTAKE,oke-node,OKE worker node,Oracle Linux 8 (OKE node image),8,32,100,13,52,Installed,2026-11-15
+SRV-0022,clmintake-db04.hvig.internal,CLM-INTAKE,db,OCI VM,RHEL 8,8,64,200,25,54,Installed,2026-11-15
+SRV-0023,clmintake-search05.hvig.internal,CLM-INTAKE,search,OCI VM,RHEL 8,8,32,200,11,47,Installed,2026-11-15
+SRV-0024,clmadj-oke01.hvig.internal,CLM-ADJ,oke-node,OKE worker node,Oracle Linux 8 (OKE node image),8,32,1000,22,66,Installed,2026-11-17
+SRV-0025,clmadj-oke02.hvig.internal,CLM-ADJ,oke-node,OKE worker node,Oracle Linux 8 (OKE node image),8,32,100,21,70,Installed,2026-11-14
+SRV-0026,clmadj-oke03.hvig.internal,CLM-ADJ,oke-node,OKE worker node,Oracle Linux 8 (OKE node image),8,32,1000,13,36,Installed,2026-11-15
+SRV-0027,clmadj-mq04.hvig.internal,CLM-ADJ,mq,OCI VM,RHEL 8,4,16,200,15,62,Installed,2026-11-17
+SRV-0028,clmadj-mq05.hvig.internal,CLM-ADJ,mq,OCI VM,RHEL 8,4,16,100,27,48,Installed,2026-11-14
+SRV-0029,clmadj-mq06.hvig.internal,CLM-ADJ,mq,OCI VM,RHEL 8,4,16,200,10,47,Installed,2026-11-15
+SRV-0030,poladmin-app01.hvig.internal,POL-ADMIN,app,OCI VM,Oracle Linux 7,4,32,1000,12,35,Installed,2026-11-16
+SRV-0031,poladmin-app02.hvig.internal,POL-ADMIN,app,OCI VM,Oracle Linux 7,4,32,500,33,82,Installed,2026-11-14
+SRV-0032,poladmin-app03.hvig.internal,POL-ADMIN,app,OCI VM,Oracle Linux 7,4,32,500,21,51,Installed,2026-11-14
+SRV-0033,polrating-app01.hvig.internal,POL-RATING,app,OCI VM,Oracle Linux 8,4,32,500,12,50,Installed,2026-11-17
+SRV-0034,polrating-app02.hvig.internal,POL-RATING,app,OCI VM,Oracle Linux 8,4,32,200,32,58,Installed,2026-11-15
+SRV-0035,slscrm-web01.hvig.internal,SLS-CRM,web,OCI VM,Windows Server 2016,2,8,100,18,37,Installed,2026-11-17
+SRV-0036,slscrm-app02.hvig.internal,SLS-CRM,app,OCI VM,Windows Server 2016,4,32,1000,40,71,Installed,2026-11-17
+SRV-0037,slscrm-app03.hvig.internal,SLS-CRM,app,OCI VM,Windows Server 2016,4,32,1000,35,50,Installed,2026-07-20
+SRV-0038,slscrm-db04.hvig.internal,SLS-CRM,db,OCI VM,Windows Server 2016,8,64,200,44,83,Installed,2026-11-17
+SRV-0039,slsquote-app01.hvig.internal,SLS-QUOTE,app,OCI VM,RHEL 8,4,32,1000,40,74,Installed,2026-11-16
+SRV-0040,slsquote-mq02.hvig.internal,SLS-QUOTE,mq,OCI VM,RHEL 8,4,16,100,13,35,Installed,2026-11-16
+SRV-0041,cscontact-web01.hvig.internal,CS-CONTACT,web,OCI VM,RHEL 8,2,8,500,29,46,Installed,2026-11-14
+SRV-0042,cscontact-app02.hvig.internal,CS-CONTACT,app,OCI VM,RHEL 8,4,32,1000,25,44,Installed,2026-11-14
+SRV-0043,cscontact-mq03.hvig.internal,CS-CONTACT,mq,OCI VM,RHEL 8,4,16,500,43,65,Installed,2026-11-15
+SRV-0044,docarchive-app01.hvig.internal,DOC-ARCHIVE,app,OCI VM,RHEL 8,4,32,200,21,68,Installed,2026-11-16
+SRV-0045,docarchive-db02.hvig.internal,DOC-ARCHIVE,db,OCI VM,RHEL 8,8,64,1000,36,69,Installed,2026-11-16
+SRV-0046,docarchive-db03.hvig.internal,DOC-ARCHIVE,db,OCI VM,RHEL 8,8,64,500,44,80,Installed,2026-11-15
+SRV-0047,docarchive-db04.hvig.internal,DOC-ARCHIVE,db,OCI VM,RHEL 8,8,64,100,36,70,Installed,2026-11-14
+SRV-0048,shrsso-web01.hvig.internal,SHR-SSO,web,OCI VM,RHEL 8,2,8,500,8,39,Installed,2026-11-16
+SRV-0049,shrsso-app02.hvig.internal,SHR-SSO,app,OCI VM,RHEL 8,4,32,500,23,57,Installed,2026-11-16
+SRV-0050,shrsso-app03.hvig.internal,SHR-SSO,app,OCI VM,RHEL 8,4,32,1000,38,77,Installed,2026-11-17
+SRV-0051,shrmq-mq01.hvig.internal,SHR-MQ,mq,OCI VM,RHEL 8,4,16,100,11,45,Installed,2026-11-15
+SRV-0052,shrmq-mq02.hvig.internal,SHR-MQ,mq,OCI VM,RHEL 8,4,16,1000,30,65,Installed,2026-11-14
+SRV-0053,shretl-etl01.hvig.internal,SHR-ETL,etl,OCI VM,RHEL 8,8,64,100,11,59,Installed,2026-11-15
+SRV-0054,shretl-etl02.hvig.internal,SHR-ETL,etl,OCI VM,RHEL 8,8,64,200,32,59,Installed,2026-11-16
+SRV-0055,shretl-etl03.hvig.internal,SHR-ETL,etl,OCI VM,RHEL 8,8,64,100,33,53,Installed,2026-11-17
+SRV-0056,finacco1-app01.hvig.internal,FIN-ACCO1,app,OCI VM,Windows Server 2016,4,32,100,35,80,Installed,2026-11-15
+SRV-0057,finacco1-db02.hvig.internal,FIN-ACCO1,db,OCI VM,Windows Server 2016,8,64,100,39,65,Installed,2026-11-16
+SRV-0058,finacco1-mq03.hvig.internal,FIN-ACCO1,mq,OCI VM,Windows Server 2016,4,16,100,11,31,Installed,2026-11-15
+SRV-0059,fintrea2-app01.hvig.internal,FIN-TREA2,app,OCI VM,Windows Server 2016,4,32,100,8,27,Installed,2026-11-16
+SRV-0060,fintrea2-app02.hvig.internal,FIN-TREA2,app,OCI VM,Windows Server 2016,4,32,500,15,49,Installed,2026-11-14
+SRV-0061,fintrea2-db03.hvig.internal,FIN-TREA2,db,OCI VM,Windows Server 2016,8,64,200,9,59,Installed,2026-11-16
+SRV-0062,finbudg3-app01.hvig.internal,FIN-BUDG3,app,OCI VM,RHEL 8,4,32,500,21,65,Installed,2026-11-16
+SRV-0063,finbudg3-app02.hvig.internal,FIN-BUDG3,app,OCI VM,RHEL 8,4,32,200,24,48,Installed,2026-11-17
+SRV-0064,fintax4-app01.hvig.internal,FIN-TAX4,app,OCI VM,RHEL 8,4,32,200,24,69,Installed,2026-11-16
+SRV-0065,fintax4-app02.hvig.internal,FIN-TAX4,app,OCI VM,RHEL 8,4,32,200,44,93,Installed,2026-11-15
+SRV-0066,fintax4-mq03.hvig.internal,FIN-TAX4,mq,OCI VM,RHEL 8,4,16,500,44,76,Installed,2026-11-14
+SRV-0067,hrrecr1-app01.hvig.internal,HR-RECR1,app,OCI VM,Oracle Linux 8,4,32,500,11,36,Installed,2026-11-17
+SRV-0068,hrrecr1-app02.hvig.internal,HR-RECR1,app,OCI VM,Oracle Linux 8,4,32,200,43,65,Installed,2026-11-16
+SRV-0069,hrrecr1-db03.hvig.internal,HR-RECR1,db,OCI VM,Oracle Linux 8,8,64,100,40,57,Installed,2026-11-17
+SRV-0070,hrlear2-web01.hvig.internal,HR-LEAR2,web,OCI VM,RHEL 8,2,8,200,33,80,Installed,2026-11-15
+SRV-0071,hrlear2-app02.hvig.internal,HR-LEAR2,app,OCI VM,RHEL 8,4,32,1000,17,39,Installed,2026-11-17
+SRV-0072,hrlear2-db03.hvig.internal,HR-LEAR2,db,OCI VM,RHEL 8,8,64,500,30,64,Installed,2026-11-17
+SRV-0073,hrlear2-mq04.hvig.internal,HR-LEAR2,mq,OCI VM,RHEL 8,4,16,500,13,53,Installed,2026-11-15
+SRV-0074,hrbene3-app01.hvig.internal,HR-BENE3,app,OCI VM,RHEL 8,4,32,500,16,54,Installed,2026-11-17
+SRV-0075,hrbene3-app02.hvig.internal,HR-BENE3,app,OCI VM,RHEL 8,4,32,100,8,37,Installed,2026-11-16
+SRV-0076,hrbene3-mq03.hvig.internal,HR-BENE3,mq,OCI VM,RHEL 8,4,16,1000,29,48,Installed,2026-11-16
+SRV-0077,clmfrau1-web01.hvig.internal,CLM-FRAU1,web,OCI VM,Oracle Linux 8,2,8,1000,21,70,Installed,2026-11-17
+SRV-0078,clmfrau1-app02.hvig.internal,CLM-FRAU1,app,OCI VM,Oracle Linux 8,4,32,500,24,63,Installed,2026-11-17
+SRV-0079,clmfrau1-mq03.hvig.internal,CLM-FRAU1,mq,OCI VM,Oracle Linux 8,4,16,200,36,59,Installed,2026-11-14
+SRV-0080,clmclai2-app01.hvig.internal,CLM-CLAI2,app,OCI VM,Oracle Linux 8,4,32,500,44,60,Installed,2026-11-16
+SRV-0081,clmclai2-app02.hvig.internal,CLM-CLAI2,app,OCI VM,Oracle Linux 8,4,32,100,21,63,Installed,2026-11-17
+SRV-0082,clmclai2-mq03.hvig.internal,CLM-CLAI2,mq,OCI VM,Oracle Linux 8,4,16,1000,13,55,Installed,2026-11-16
+SRV-0083,clmsubr3-web01.hvig.internal,CLM-SUBR3,web,OCI VM,Windows Server 2016,2,8,200,25,46,Installed,2026-11-16
+SRV-0084,clmsubr3-app02.hvig.internal,CLM-SUBR3,app,OCI VM,Windows Server 2016,4,32,500,14,45,Installed,2026-11-16
+SRV-0085,clmsubr3-app03.hvig.internal,CLM-SUBR3,app,OCI VM,Windows Server 2016,4,32,500,31,63,Installed,2026-11-16
+SRV-0086,clmsubr3-mq04.hvig.internal,CLM-SUBR3,mq,OCI VM,Windows Server 2016,4,16,1000,40,75,Installed,2026-11-15
+SRV-0087,clmrepa4-app01.hvig.internal,CLM-REPA4,app,OCI VM,Oracle Linux 8,4,32,1000,19,60,Installed,2026-11-14
+SRV-0088,polunde1-web01.hvig.internal,POL-UNDE1,web,OCI VM,RHEL 8,2,8,500,20,66,Installed,2026-11-16
+SRV-0089,polunde1-app02.hvig.internal,POL-UNDE1,app,OCI VM,RHEL 8,4,32,500,10,50,Installed,2026-11-14
+SRV-0090,polunde1-app03.hvig.internal,POL-UNDE1,app,OCI VM,RHEL 8,4,32,1000,11,53,Installed,2026-11-16
+SRV-0091,polunde1-mq04.hvig.internal,POL-UNDE1,mq,OCI VM,RHEL 8,4,16,100,29,49,Installed,2026-11-15
+SRV-0092,polpoli2-app01.hvig.internal,POL-POLI2,app,OCI VM,Windows Server 2016,4,32,500,9,42,Installed,2026-11-15
+SRV-0093,polpoli2-mq02.hvig.internal,POL-POLI2,mq,OCI VM,Windows Server 2016,4,16,500,29,79,Installed,2026-11-17
+SRV-0094,polagen3-web01.hvig.internal,POL-AGEN3,web,OCI VM,RHEL 8,2,8,100,41,59,Installed,2026-11-14
+SRV-0095,polagen3-app02.hvig.internal,POL-AGEN3,app,OCI VM,RHEL 8,4,32,200,36,51,Installed,2026-11-16
+SRV-0096,polagen3-app03.hvig.internal,POL-AGEN3,app,OCI VM,RHEL 8,4,32,200,12,39,Installed,2026-11-17
+SRV-0097,polagen3-mq04.hvig.internal,POL-AGEN3,mq,OCI VM,RHEL 8,4,16,500,29,68,Installed,2026-11-14
+SRV-0098,slslead1-app01.hvig.internal,SLS-LEAD1,app,OCI VM,RHEL 8,4,32,100,14,55,Installed,2026-11-14
+SRV-0099,slslead1-app02.hvig.internal,SLS-LEAD1,app,OCI VM,RHEL 8,4,32,500,44,81,Installed,2026-11-14
+SRV-0100,slslead1-mq03.hvig.internal,SLS-LEAD1,mq,OCI VM,RHEL 8,4,16,500,10,41,Installed,2026-11-15
+SRV-0101,slspart2-web01.hvig.internal,SLS-PART2,web,OCI VM,RHEL 6,2,8,100,45,72,Installed,2026-11-15
+SRV-0102,slspart2-app02.hvig.internal,SLS-PART2,app,OCI VM,RHEL 6,4,32,1000,28,65,Installed,2026-11-16
+SRV-0103,slspart2-app03.hvig.internal,SLS-PART2,app,OCI VM,RHEL 6,4,32,200,25,57,Installed,2026-11-16
+SRV-0104,slspart2-db04.hvig.internal,SLS-PART2,db,OCI VM,Oracle Linux 8,8,64,1000,16,31,Installed,2026-11-17
+SRV-0105,slssale3-web01.hvig.internal,SLS-SALE3,web,OCI VM,RHEL 8,2,8,200,29,60,Installed,2026-11-14
+SRV-0106,slssale3-app02.hvig.internal,SLS-SALE3,app,OCI VM,RHEL 8,4,32,200,9,40,Installed,2026-11-17
+SRV-0107,slssale3-app03.hvig.internal,SLS-SALE3,app,OCI VM,RHEL 8,4,32,1000,37,83,Installed,2026-11-14
+SRV-0108,slssale3-db04.hvig.internal,SLS-SALE3,db,OCI VM,Oracle Linux 8,8,64,100,41,68,Installed,2026-11-15
+SRV-0109,cscust1-web01.hvig.internal,CS-CUST1,web,OCI VM,RHEL 8,2,8,200,8,29,Installed,2026-11-15
+SRV-0110,cscust1-app02.hvig.internal,CS-CUST1,app,OCI VM,RHEL 8,4,32,500,20,38,Installed,2026-11-17
+SRV-0111,cscust1-app03.hvig.internal,CS-CUST1,app,OCI VM,RHEL 8,4,32,200,41,77,Installed,2026-11-15
+SRV-0112,cscust1-db04.hvig.internal,CS-CUST1,db,OCI VM,RHEL 8,8,64,1000,33,53,Installed,2026-11-17
+SRV-0113,cscust1-mq05.hvig.internal,CS-CUST1,mq,OCI VM,RHEL 8,4,16,200,42,73,Installed,2026-11-15
+SRV-0114,cssurv2-web01.hvig.internal,CS-SURV2,web,OCI VM,RHEL 8,2,8,1000,44,87,Installed,2026-11-14
+SRV-0115,cssurv2-app02.hvig.internal,CS-SURV2,app,OCI VM,RHEL 8,4,32,500,13,44,Installed,2026-11-14
+SRV-0116,cssurv2-app03.hvig.internal,CS-SURV2,app,OCI VM,RHEL 8,4,32,200,18,42,Installed,2026-11-17
+SRV-0117,cssurv2-db04.hvig.internal,CS-SURV2,db,OCI VM,RHEL 8,8,64,200,43,89,Installed,2026-11-14
+SRV-0118,csknow3-web01.hvig.internal,CS-KNOW3,web,OCI VM,RHEL 8,2,8,500,13,40,Installed,2026-11-16
+SRV-0119,csknow3-app02.hvig.internal,CS-KNOW3,app,OCI VM,RHEL 8,4,32,500,39,58,Installed,2026-11-15
+SRV-0120,csknow3-app03.hvig.internal,CS-KNOW3,app,OCI VM,RHEL 8,4,32,100,14,50,Installed,2026-11-15
+SRV-0121,csknow3-mq04.hvig.internal,CS-KNOW3,mq,OCI VM,RHEL 8,4,16,100,36,54,Installed,2026-11-14
+SRV-0122,mktcamp1-web01.hvig.internal,MKT-CAMP1,web,OCI VM,RHEL 8,2,8,200,18,37,Installed,2026-11-14
+SRV-0123,mktcamp1-app02.hvig.internal,MKT-CAMP1,app,OCI VM,RHEL 8,4,32,200,24,47,Installed,2026-11-16
+SRV-0124,mktcamp1-app03.hvig.internal,MKT-CAMP1,app,OCI VM,RHEL 8,4,32,1000,26,58,Installed,2026-11-17
+SRV-0125,mktcamp1-db04.hvig.internal,MKT-CAMP1,db,OCI VM,RHEL 8,8,64,200,27,55,Installed,2026-11-17
+SRV-0126,mktcamp1-mq05.hvig.internal,MKT-CAMP1,mq,OCI VM,RHEL 8,4,16,200,39,78,Installed,2026-11-17
+SRV-0127,mktemai2-web01.hvig.internal,MKT-EMAI2,web,OCI VM,Windows Server 2016,2,8,500,34,63,Installed,2026-11-17
+SRV-0128,mktemai2-app02.hvig.internal,MKT-EMAI2,app,OCI VM,Windows Server 2016,4,32,1000,45,89,Installed,2026-11-15
+SRV-0129,mktemai2-app03.hvig.internal,MKT-EMAI2,app,OCI VM,Windows Server 2016,4,32,1000,42,65,Installed,2026-11-16
+SRV-0130,mktemai2-db04.hvig.internal,MKT-EMAI2,db,OCI VM,Oracle Linux 8,8,64,500,8,49,Installed,2026-11-14
+SRV-0131,mktweb3-app01.hvig.internal,MKT-WEB3,app,OCI VM,RHEL 8,4,32,200,13,41,Installed,2026-11-16
+SRV-0132,mktweb3-app02.hvig.internal,MKT-WEB3,app,OCI VM,RHEL 8,4,32,1000,30,79,Installed,2026-11-14
+SRV-0133,opsprin1-web01.hvig.internal,OPS-PRIN1,web,OCI VM,RHEL 6,2,8,500,24,70,Installed,2026-11-16
+SRV-0134,opsprin1-app02.hvig.internal,OPS-PRIN1,app,OCI VM,RHEL 6,4,32,200,25,41,Installed,2026-11-17
+SRV-0135,opsprin1-app03.hvig.internal,OPS-PRIN1,app,OCI VM,RHEL 6,4,32,100,45,88,Installed,2026-11-16
+SRV-0136,opsvend2-web01.hvig.internal,OPS-VEND2,web,OCI VM,Windows Server 2016,2,8,100,14,40,Installed,2026-11-16
+SRV-0137,opsvend2-app02.hvig.internal,OPS-VEND2,app,OCI VM,Windows Server 2016,4,32,500,45,87,Installed,2026-11-17
+SRV-0138,opsvend2-db03.hvig.internal,OPS-VEND2,db,OCI VM,Windows Server 2016,8,64,500,26,64,Installed,2026-11-16
+SRV-0139,opsfaci3-app01.hvig.internal,OPS-FACI3,app,OCI VM,RHEL 6,4,32,1000,35,67,Installed,2026-11-14
+SRV-0140,opsfaci3-app02.hvig.internal,OPS-FACI3,app,OCI VM,RHEL 6,4,32,1000,12,32,Installed,2026-11-16
+SRV-0141,opsfaci3-db03.hvig.internal,OPS-FACI3,db,OCI VM,RHEL 6,8,64,100,39,86,Installed,2026-11-17
+SRV-0142,opsasse4-app01.hvig.internal,OPS-ASSE4,app,OCI VM,RHEL 6,4,32,500,19,56,Installed,2026-11-15
+SRV-0143,opsasse4-app02.hvig.internal,OPS-ASSE4,app,OCI VM,RHEL 6,4,32,500,42,81,Installed,2026-11-17
+SRV-0144,opsaudi5-web01.hvig.internal,OPS-AUDI5,web,OCI VM,Windows Server 2019,2,8,200,20,66,Installed,2026-11-14
+SRV-0145,opsaudi5-app02.hvig.internal,OPS-AUDI5,app,OCI VM,Windows Server 2019,4,32,1000,41,84,Installed,2026-11-17
+SRV-0146,opsaudi5-app03.hvig.internal,OPS-AUDI5,app,OCI VM,Windows Server 2019,4,32,500,23,51,Installed,2026-11-14
+SRV-0147,opsaudi5-db04.hvig.internal,OPS-AUDI5,db,OCI VM,Windows Server 2019,8,64,500,14,49,Installed,2026-11-17

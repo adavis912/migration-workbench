@@ -1,0 +1,2037 @@
+{
+ "generated_on": "2026-11-17",
+ "apps": {
+  "FIN-GL": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0001",
+     "hostname": "fingl-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0002",
+     "hostname": "fingl-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0003",
+     "hostname": "fingl-web03.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-FIN-GL",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "FIN-RPT": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0004",
+     "hostname": "finrpt-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0005",
+     "hostname": "finrpt-batch02.hvig.internal",
+     "role": "batch",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "FIN-RPT-LEGACY": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0006",
+     "hostname": "finrptlegacy-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "FIN-PAY": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0007",
+     "hostname": "finpay-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0008",
+     "hostname": "finpay-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0009",
+     "hostname": "finpay-db03.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for SQL Server",
+     "target_os": "n/a (managed)",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-FIN-PAY",
+     "target": "Amazon RDS for SQL Server"
+    }
+   ],
+   "cache": "",
+   "messaging": "IBM MQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "security_review_required_not_complete"
+   ]
+  },
+  "FIN-EXP": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0010",
+     "hostname": "finexp-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0011",
+     "hostname": "finexp-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0012",
+     "hostname": "finexp-db03.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for MySQL",
+     "target_os": "n/a (managed)",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-FIN-EXP",
+     "target": "Amazon RDS for MySQL"
+    }
+   ],
+   "cache": "Amazon ElastiCache for Valkey",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "HR-PORTAL": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0013",
+     "hostname": "hrportal-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0014",
+     "hostname": "hrportal-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0015",
+     "hostname": "hrportal-db03.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for SQL Server",
+     "target_os": "n/a (managed)",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-HR-PORTAL",
+     "target": "Amazon RDS for SQL Server"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "plaintext_secret_move_to_secrets_manager"
+   ]
+  },
+  "HR-CORE": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0016",
+     "hostname": "hrcore-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0017",
+     "hostname": "hrcore-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0018",
+     "hostname": "hrcore-db03.hvig.internal",
+     "role": "db",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD)",
+     "target_os": "Oracle Linux (unchanged) if self-managed",
+     "flags": [
+      "oracle_target_decision_needed"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-HR-CORE",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD - needs human decision)"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "oracle_target_decision_needed",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "CLM-INTAKE": {
+   "compute": "Amazon EKS",
+   "servers": [
+    {
+     "server_id": "SRV-0019",
+     "hostname": "clmintake-oke01.hvig.internal",
+     "role": "oke-node",
+     "target": "Amazon EKS",
+     "target_os": "EKS-managed node image",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0020",
+     "hostname": "clmintake-oke02.hvig.internal",
+     "role": "oke-node",
+     "target": "Amazon EKS",
+     "target_os": "EKS-managed node image",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0021",
+     "hostname": "clmintake-oke03.hvig.internal",
+     "role": "oke-node",
+     "target": "Amazon EKS",
+     "target_os": "EKS-managed node image",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0022",
+     "hostname": "clmintake-db04.hvig.internal",
+     "role": "db",
+     "target": "MongoDB on EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0023",
+     "hostname": "clmintake-search05.hvig.internal",
+     "role": "search",
+     "target": "Elasticsearch on EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-CLM-INTAKE",
+     "target": "MongoDB on EC2"
+    }
+   ],
+   "cache": "Elasticsearch on EC2",
+   "messaging": "Kafka on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "CLM-ADJ": {
+   "compute": "Amazon EKS",
+   "servers": [
+    {
+     "server_id": "SRV-0024",
+     "hostname": "clmadj-oke01.hvig.internal",
+     "role": "oke-node",
+     "target": "Amazon EKS",
+     "target_os": "EKS-managed node image",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0025",
+     "hostname": "clmadj-oke02.hvig.internal",
+     "role": "oke-node",
+     "target": "Amazon EKS",
+     "target_os": "EKS-managed node image",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0026",
+     "hostname": "clmadj-oke03.hvig.internal",
+     "role": "oke-node",
+     "target": "Amazon EKS",
+     "target_os": "EKS-managed node image",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0027",
+     "hostname": "clmadj-mq04.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0028",
+     "hostname": "clmadj-mq05.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0029",
+     "hostname": "clmadj-mq06.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-CLM-ADJ",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "Kafka on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "POL-ADMIN": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0030",
+     "hostname": "poladmin-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Oracle Linux 7",
+     "flags": [
+      "vendor_must_confirm_os",
+      "rule_conflict_cots_keep_os_vs_oel_app_to_rhel9"
+     ]
+    },
+    {
+     "server_id": "SRV-0031",
+     "hostname": "poladmin-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Oracle Linux 7",
+     "flags": [
+      "vendor_must_confirm_os",
+      "rule_conflict_cots_keep_os_vs_oel_app_to_rhel9"
+     ]
+    },
+    {
+     "server_id": "SRV-0032",
+     "hostname": "poladmin-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Oracle Linux 7",
+     "flags": [
+      "vendor_must_confirm_os",
+      "rule_conflict_cots_keep_os_vs_oel_app_to_rhel9"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-POL-ADMIN",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "rule_conflict_cots_keep_os_vs_oel_app_to_rhel9",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "POL-RATING": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0033",
+     "hostname": "polrating-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0034",
+     "hostname": "polrating-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "SLS-CRM": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0035",
+     "hostname": "slscrm-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0036",
+     "hostname": "slscrm-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0037",
+     "hostname": "slscrm-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0038",
+     "hostname": "slscrm-db04.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for SQL Server",
+     "target_os": "n/a (managed)",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-SLS-CRM",
+     "target": "Amazon RDS for SQL Server"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "SLS-QUOTE": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0039",
+     "hostname": "slsquote-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0040",
+     "hostname": "slsquote-mq02.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "RabbitMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "CS-CONTACT": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0041",
+     "hostname": "cscontact-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0042",
+     "hostname": "cscontact-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0043",
+     "hostname": "cscontact-mq03.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "ActiveMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "DOC-ARCHIVE": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0044",
+     "hostname": "docarchive-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0045",
+     "hostname": "docarchive-db02.hvig.internal",
+     "role": "db",
+     "target": "Cassandra on EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0046",
+     "hostname": "docarchive-db03.hvig.internal",
+     "role": "db",
+     "target": "Cassandra on EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0047",
+     "hostname": "docarchive-db04.hvig.internal",
+     "role": "db",
+     "target": "Cassandra on EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-DOC-ARCHIVE",
+     "target": "Cassandra on EC2"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "vendor_must_confirm_os"
+   ]
+  },
+  "SHR-SSO": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0048",
+     "hostname": "shrsso-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0049",
+     "hostname": "shrsso-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0050",
+     "hostname": "shrsso-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "vendor_must_confirm_os",
+    "security_review_required"
+   ]
+  },
+  "SHR-MQ": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0051",
+     "hostname": "shrmq-mq01.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0052",
+     "hostname": "shrmq-mq02.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "IBM MQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "SHR-ETL": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0053",
+     "hostname": "shretl-etl01.hvig.internal",
+     "role": "etl",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0054",
+     "hostname": "shretl-etl02.hvig.internal",
+     "role": "etl",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0055",
+     "hostname": "shretl-etl03.hvig.internal",
+     "role": "etl",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "vendor_must_confirm_os"
+   ]
+  },
+  "FIN-ACCO1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0056",
+     "hostname": "finacco1-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0057",
+     "hostname": "finacco1-db02.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for SQL Server",
+     "target_os": "n/a (managed)",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0058",
+     "hostname": "finacco1-mq03.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-FIN-ACCO1",
+     "target": "Amazon RDS for SQL Server"
+    }
+   ],
+   "cache": "",
+   "messaging": "WebLogic JMS on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "FIN-TREA2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0059",
+     "hostname": "fintrea2-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0060",
+     "hostname": "fintrea2-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0061",
+     "hostname": "fintrea2-db03.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for MySQL",
+     "target_os": "n/a (managed)",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-FIN-TREA2",
+     "target": "Amazon RDS for MySQL"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "security_review_required"
+   ]
+  },
+  "FIN-BUDG3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0062",
+     "hostname": "finbudg3-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0063",
+     "hostname": "finbudg3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-FIN-BUDG3",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "FIN-TAX4": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0064",
+     "hostname": "fintax4-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0065",
+     "hostname": "fintax4-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0066",
+     "hostname": "fintax4-mq03.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "WebLogic JMS on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "HR-RECR1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0067",
+     "hostname": "hrrecr1-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0068",
+     "hostname": "hrrecr1-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0069",
+     "hostname": "hrrecr1-db03.hvig.internal",
+     "role": "db",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD)",
+     "target_os": "Oracle Linux (unchanged) if self-managed",
+     "flags": [
+      "oracle_target_decision_needed"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-HR-RECR1",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD - needs human decision)"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "oracle_target_decision_needed"
+   ]
+  },
+  "HR-LEAR2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0070",
+     "hostname": "hrlear2-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0071",
+     "hostname": "hrlear2-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0072",
+     "hostname": "hrlear2-db03.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for MySQL",
+     "target_os": "n/a (managed)",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0073",
+     "hostname": "hrlear2-mq04.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-HR-LEAR2",
+     "target": "Amazon RDS for MySQL"
+    }
+   ],
+   "cache": "",
+   "messaging": "ActiveMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "HR-BENE3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0074",
+     "hostname": "hrbene3-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0075",
+     "hostname": "hrbene3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    },
+    {
+     "server_id": "SRV-0076",
+     "hostname": "hrbene3-mq03.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 8",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "ActiveMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "vendor_must_confirm_os"
+   ]
+  },
+  "CLM-FRAU1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0077",
+     "hostname": "clmfrau1-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0078",
+     "hostname": "clmfrau1-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0079",
+     "hostname": "clmfrau1-mq03.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "Amazon ElastiCache for Valkey",
+   "messaging": "Kafka on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "CLM-CLAI2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0080",
+     "hostname": "clmclai2-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0081",
+     "hostname": "clmclai2-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0082",
+     "hostname": "clmclai2-mq03.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "Kafka on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "CLM-SUBR3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0083",
+     "hostname": "clmsubr3-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0084",
+     "hostname": "clmsubr3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0085",
+     "hostname": "clmsubr3-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0086",
+     "hostname": "clmsubr3-mq04.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-CLM-SUBR3",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "ActiveMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "CLM-REPA4": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0087",
+     "hostname": "clmrepa4-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-CLM-REPA4",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "POL-UNDE1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0088",
+     "hostname": "polunde1-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0089",
+     "hostname": "polunde1-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0090",
+     "hostname": "polunde1-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0091",
+     "hostname": "polunde1-mq04.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-POL-UNDE1",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "WebLogic JMS on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "POL-POLI2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0092",
+     "hostname": "polpoli2-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0093",
+     "hostname": "polpoli2-mq02.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "ActiveMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "POL-AGEN3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0094",
+     "hostname": "polagen3-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0095",
+     "hostname": "polagen3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0096",
+     "hostname": "polagen3-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0097",
+     "hostname": "polagen3-mq04.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-POL-AGEN3",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "ActiveMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "SLS-LEAD1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0098",
+     "hostname": "slslead1-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0099",
+     "hostname": "slslead1-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0100",
+     "hostname": "slslead1-mq03.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-SLS-LEAD1",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "Amazon ElastiCache for Valkey",
+   "messaging": "RabbitMQ on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "SLS-PART2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0101",
+     "hostname": "slspart2-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0102",
+     "hostname": "slspart2-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0103",
+     "hostname": "slspart2-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0104",
+     "hostname": "slspart2-db04.hvig.internal",
+     "role": "db",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD)",
+     "target_os": "Oracle Linux (unchanged) if self-managed",
+     "flags": [
+      "oracle_target_decision_needed"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-SLS-PART2",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD - needs human decision)"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "oracle_target_decision_needed",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "SLS-SALE3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0105",
+     "hostname": "slssale3-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0106",
+     "hostname": "slssale3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0107",
+     "hostname": "slssale3-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0108",
+     "hostname": "slssale3-db04.hvig.internal",
+     "role": "db",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD)",
+     "target_os": "Oracle Linux (unchanged) if self-managed",
+     "flags": [
+      "oracle_target_decision_needed"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-SLS-SALE3",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD - needs human decision)"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "oracle_target_decision_needed",
+    "security_review_required"
+   ]
+  },
+  "CS-CUST1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0109",
+     "hostname": "cscust1-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0110",
+     "hostname": "cscust1-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0111",
+     "hostname": "cscust1-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0112",
+     "hostname": "cscust1-db04.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for MySQL",
+     "target_os": "n/a (managed)",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0113",
+     "hostname": "cscust1-mq05.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-CS-CUST1",
+     "target": "Amazon RDS for MySQL"
+    }
+   ],
+   "cache": "",
+   "messaging": "WebLogic JMS on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "CS-SURV2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0114",
+     "hostname": "cssurv2-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0115",
+     "hostname": "cssurv2-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0116",
+     "hostname": "cssurv2-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0117",
+     "hostname": "cssurv2-db04.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for SQL Server",
+     "target_os": "n/a (managed)",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-CS-SURV2",
+     "target": "Amazon RDS for SQL Server"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "CS-KNOW3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0118",
+     "hostname": "csknow3-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0119",
+     "hostname": "csknow3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0120",
+     "hostname": "csknow3-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0121",
+     "hostname": "csknow3-mq04.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-CS-KNOW3",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "Kafka on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "MKT-CAMP1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0122",
+     "hostname": "mktcamp1-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0123",
+     "hostname": "mktcamp1-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0124",
+     "hostname": "mktcamp1-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0125",
+     "hostname": "mktcamp1-db04.hvig.internal",
+     "role": "db",
+     "target": "MongoDB on EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0126",
+     "hostname": "mktcamp1-mq05.hvig.internal",
+     "role": "mq",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-MKT-CAMP1",
+     "target": "MongoDB on EC2"
+    }
+   ],
+   "cache": "",
+   "messaging": "WebLogic JMS on EC2",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": []
+  },
+  "MKT-EMAI2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0127",
+     "hostname": "mktemai2-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0128",
+     "hostname": "mktemai2-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0129",
+     "hostname": "mktemai2-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0130",
+     "hostname": "mktemai2-db04.hvig.internal",
+     "role": "db",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD)",
+     "target_os": "Oracle Linux (unchanged) if self-managed",
+     "flags": [
+      "oracle_target_decision_needed"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-MKT-EMAI2",
+     "target": "Oracle Database@AWS or Amazon RDS for Oracle (TBD - needs human decision)"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "oracle_target_decision_needed"
+   ]
+  },
+  "MKT-WEB3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0131",
+     "hostname": "mktweb3-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0132",
+     "hostname": "mktweb3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-MKT-WEB3",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  },
+  "OPS-PRIN1": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0133",
+     "hostname": "opsprin1-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0134",
+     "hostname": "opsprin1-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0135",
+     "hostname": "opsprin1-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-OPS-PRIN1",
+     "target": "Oracle Database@AWS"
+    }
+   ],
+   "cache": "Amazon ElastiCache for Valkey",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "OPS-VEND2": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0136",
+     "hostname": "opsvend2-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0137",
+     "hostname": "opsvend2-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0138",
+     "hostname": "opsvend2-db03.hvig.internal",
+     "role": "db",
+     "target": "MongoDB on EC2",
+     "target_os": "Windows Server 2016",
+     "flags": [
+      "vendor_must_confirm_os"
+     ]
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-OPS-VEND2",
+     "target": "MongoDB on EC2"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "OPS-FACI3": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0139",
+     "hostname": "opsfaci3-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0140",
+     "hostname": "opsfaci3-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0141",
+     "hostname": "opsfaci3-db03.hvig.internal",
+     "role": "db",
+     "target": "Amazon RDS for MySQL",
+     "target_os": "n/a (managed)",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-OPS-FACI3",
+     "target": "Amazon RDS for MySQL"
+    }
+   ],
+   "cache": "Amazon ElastiCache for Valkey",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "OPS-ASSE4": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0142",
+     "hostname": "opsasse4-app01.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    },
+    {
+     "server_id": "SRV-0143",
+     "hostname": "opsasse4-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "RHEL 6",
+     "flags": [
+      "vendor_must_confirm_os",
+      "end_of_life_os_carried_over"
+     ]
+    }
+   ],
+   "databases": [],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "end_of_life_os_carried_over",
+    "vendor_must_confirm_os"
+   ]
+  },
+  "OPS-AUDI5": {
+   "compute": "Amazon EC2",
+   "servers": [
+    {
+     "server_id": "SRV-0144",
+     "hostname": "opsaudi5-web01.hvig.internal",
+     "role": "web",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0145",
+     "hostname": "opsaudi5-app02.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0146",
+     "hostname": "opsaudi5-app03.hvig.internal",
+     "role": "app",
+     "target": "Amazon EC2",
+     "target_os": "Windows Server 2022",
+     "flags": []
+    },
+    {
+     "server_id": "SRV-0147",
+     "hostname": "opsaudi5-db04.hvig.internal",
+     "role": "db",
+     "target": "MongoDB on EC2",
+     "target_os": "RHEL 9",
+     "flags": []
+    }
+   ],
+   "databases": [
+    {
+     "db_id": "DB-OPS-AUDI5",
+     "target": "MongoDB on EC2"
+    }
+   ],
+   "cache": "",
+   "messaging": "",
+   "secrets": "AWS Secrets Manager",
+   "cicd": "GitLab CI/CD + Terraform + Kiro",
+   "flags": [
+    "stale_record_over_90_days"
+   ]
+  }
+ }
+}

@@ -1,0 +1,12 @@
+pipeline {
+  agent { label 'oci-build' }
+  stages {
+    stage('Build') { steps { sh 'mvn -B -DskipTests package' } }
+    stage('Deploy') {
+      steps {
+        sh 'scp target/fraud-scoring.war tomcat@clmfrau1-app02.hvig.internal:/opt/tomcat/webapps/'
+        echo 'Restart Tomcat by hand during the Sunday window'
+      }
+    }
+  }
+}

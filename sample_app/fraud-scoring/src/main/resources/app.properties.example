@@ -1,0 +1,8 @@
+# Copied to /opt/fraud/app.properties on each VM by hand. Real values are kept on the servers.
+kafka.bootstrap=clmfrau1-mq03.hvig.internal:9092
+kafka.topic=claims.intake
+redis.host=clmfrau1-app02.hvig.internal
+redis.port=6379
+redis.password=CHANGE_ME
+rule.highAmount=amount > 25000
+rule.lateReport=(reported - loss) / 86400000 > 30

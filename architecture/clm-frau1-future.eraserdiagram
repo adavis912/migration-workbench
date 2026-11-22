@@ -1,0 +1,42 @@
+cloud-architecture-diagram
+title CLM-FRAU1 Fraud Scoring - future state (AWS us-east-1)
+direction right
+
+Claims users [icon: users, label: "Claims users (on-premises / OCI)"]
+GitLab [icon: gitlab, label: "GitLab CI/CD\nscan > build > publish > plan/apply > deploy > test > cutover"]
+
+Route 53 [icon: aws-route-53, label: "Route 53 private zone\nweighted: legacy 100-w / AWS w\n5% > 25% > 100%"]
+Legacy [icon: oracle, label: "Legacy OCI endpoint\n(until cutover)"]
+
+AWS us-east-1 [icon: aws] {
+  IAM OIDC [icon: aws-iam, label: "GitLab OIDC role\n(no stored keys)"]
+  VPC [icon: aws-vpc, label: "VPC - private subnets"] {
+    ALB [icon: aws-elastic-load-balancing, label: "Internal ALB\nHTTPS 443 (ACM, TLS 1.2+)\n80 redirects only"]
+    Web EC2 [icon: aws-ec2, label: "web01 - m7i.large\nRHEL 9, TLS on 8443"]
+    App EC2 [icon: aws-ec2, label: "app02 - r7i.xlarge\nTomcat 9, RHEL 9"]
+    MQ EC2 [icon: aws-ec2, label: "mq03 - m7i.xlarge\nKafka, RHEL 9"]
+    Valkey [icon: aws-elasticache, label: "ElastiCache for Valkey 8\nMulti-AZ, TLS, IAM auth"]
+  }
+  Secrets Manager [icon: aws-secrets-manager, label: "Secrets Manager\n(migrated from OCI Vault)"]
+  KMS [icon: aws-kms, label: "Customer-managed KMS key\n(EBS, cache, secrets)"]
+  Artifacts [icon: aws-s3, label: "S3 artifact bucket"]
+  ALB logs [icon: aws-s3, label: "S3 access-log bucket"]
+  CloudWatch [icon: aws-cloudwatch, label: "UnHealthyHostCount alarm\n> auto-rollback"]
+  SSM [icon: aws-systems-manager, label: "Systems Manager\n(deploy + admin, no SSH)"]
+}
+
+Claims users > Route 53
+Route 53 > ALB: AWS weight
+Route 53 > Legacy: legacy weight
+ALB > Web EC2: HTTPS 8443
+Web EC2 > App EC2: 8080
+App EC2 > MQ EC2: 9092
+App EC2 > Valkey: 6379 TLS
+App EC2 --> Secrets Manager
+ALB --> ALB logs
+ALB --> CloudWatch
+CloudWatch --> Route 53: health check
+GitLab > IAM OIDC: assume role
+GitLab --> Artifacts: publish (Trivy-scanned)
+SSM --> App EC2: deploy from S3
+SSM --> Web EC2

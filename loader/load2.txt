@@ -1,0 +1,16 @@
+S3: uploaded 276 files (chunks + metadata), removed 0 stale
+DynamoDB: wrote 319 items, removed 0 stale
+Bedrock: syncing knowledge base
+  ingestion KX0W4YFQTZ: STARTING
+  ingestion KX0W4YFQTZ: COMPLETE
+{
+ "numberOfDocumentsScanned": 138,
+ "numberOfMetadataDocumentsScanned": 138,
+ "numberOfNewDocumentsIndexed": 0,
+ "numberOfModifiedDocumentsIndexed": 1,
+ "numberOfMetadataDocumentsModified": 0,
+ "numberOfDocumentsDeleted": 0,
+ "numberOfDocumentsFailed": 0,
+ "numberOfDocumentsSkipped": 0
+}
+Load complete.

@@ -1,0 +1,18 @@
+S3: uploaded 276 files (chunks + metadata), removed 0 stale
+DynamoDB: wrote 323 items, removed 0 stale
+Bedrock: syncing knowledge base
+  ingestion TVXMPBAUWV: STARTING
+  ingestion TVXMPBAUWV: IN_PROGRESS
+  ingestion TVXMPBAUWV: IN_PROGRESS
+  ingestion TVXMPBAUWV: COMPLETE
+{
+ "numberOfDocumentsScanned": 138,
+ "numberOfMetadataDocumentsScanned": 138,
+ "numberOfNewDocumentsIndexed": 0,
+ "numberOfModifiedDocumentsIndexed": 12,
+ "numberOfMetadataDocumentsModified": 0,
+ "numberOfDocumentsDeleted": 0,
+ "numberOfDocumentsFailed": 0,
+ "numberOfDocumentsSkipped": 0
+}
+Load complete.

@@ -1,0 +1,160 @@
+{
+ "tools": [
+  "search_apps",
+  "list_apps",
+  "get_app",
+  "get_dependencies",
+  "get_move_groups"
+ ],
+ "threshold_calibration": {
+  "in_domain_top1": {
+   "Which application runs a nightly batch job that re": [
+    "FIN-RPT",
+    0.748
+   ],
+   "Which systems store card numbers or are in PCI sco": [
+    "FIN-PAY",
+    0.683
+   ],
+   "Is there a renewal season change freeze for policy": [
+    "POL-ADMIN",
+    0.702
+   ],
+   "Which vendor product has not been certified on a n": [
+    "POL-ADMIN",
+    0.659
+   ],
+   "Which application's CMDB server count does not mat": [
+    "CLM-ADJ",
+    0.662
+   ],
+   "Which application shares the Policy Administration": [
+    "POL-RATING",
+    0.746
+   ]
+  },
+  "off_topic_top1": {
+   "What is the maximum number of connections for Auro": 0.576,
+   "How do I configure Amazon Cognito user pools for s": 0.617,
+   "What were the quarterly earnings for the company l": 0.563,
+   "How do I convert a COBOL program to Java?": 0.6,
+   "Which Kubernetes ingress controller should I use o": 0.61,
+   "What is the best recipe for sourdough bread?": 0.553
+  },
+  "lowest_in_domain": 0.659,
+  "highest_off_topic": 0.617,
+  "suggested_min_score": 0.638
+ },
+ "list_restricted": [
+  "FIN-PAY",
+  "FIN-TREA2",
+  "SHR-SSO",
+  "SLS-SALE3"
+ ],
+ "get_app_CLM-ADJ": {
+  "servers_found": 6,
+  "servers_active": 6,
+  "vcpu": 36,
+  "memory_gb": 144,
+  "cmdb_server_count": 8
+ },
+ "deps_FIN-RPT": {
+  "apps": [
+   "FIN-GL",
+   "FIN-PAY",
+   "FIN-RPT",
+   "SHR-ETL"
+  ],
+  "needs_owner_confirmation": [
+   "FIN-RPT -> FIN-GL (unconfirmed (owner note only))"
+  ]
+ },
+ "move_groups_match_answer_key": true,
+ "finance_groups": [
+  {
+   "group_id": "MG-01",
+   "apps": [
+    "FIN-GL",
+    "FIN-PAY",
+    "FIN-RPT"
+   ],
+   "active_servers": 8,
+   "freeze_windows": [
+    {
+     "app_id": "FIN-GL",
+     "start": "2026-12-20",
+     "end": "2027-01-10"
+    }
+   ],
+   "security_reviews": [
+    {
+     "app_id": "FIN-PAY",
+     "status": "Required - no completion date"
+    }
+   ]
+  },
+  {
+   "group_id": "MG-02",
+   "apps": [
+    "CLM-SUBR3",
+    "FIN-ACCO1"
+   ],
+   "active_servers": 7,
+   "freeze_windows": [],
+   "security_reviews": []
+  },
+  {
+   "group_id": "MG-03",
+   "apps": [
+    "FIN-BUDG3"
+   ],
+   "active_servers": 2,
+   "freeze_windows": [],
+   "security_reviews": []
+  },
+  {
+   "group_id": "MG-04",
+   "apps": [
+    "FIN-EXP"
+   ],
+   "active_servers": 3,
+   "freeze_windows": [],
+   "security_reviews": []
+  },
+  {
+   "group_id": "MG-05",
+   "apps": [
+    "FIN-RPT-LEGACY"
+   ],
+   "active_servers": 1,
+   "freeze_windows": [],
+   "security_reviews": []
+  },
+  {
+   "group_id": "MG-06",
+   "apps": [
+    "FIN-TAX4"
+   ],
+   "active_servers": 3,
+   "freeze_windows": [],
+   "security_reviews": []
+  },
+  {
+   "group_id": "MG-07",
+   "apps": [
+    "FIN-TREA2"
+   ],
+   "active_servers": 3,
+   "freeze_windows": [],
+   "security_reviews": [
+    {
+     "app_id": "FIN-TREA2",
+     "status": "Complete"
+    }
+   ]
+  }
+ ],
+ "bad_input": {
+  "error": "Error executing tool get_app: invalid app_id 'FIN-GL; DROP TABLE'; expected something like 'FIN-GL'"
+ }
+}

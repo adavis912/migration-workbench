@@ -1,0 +1,62 @@
+[
+ {
+  "test": "Note-only dependency",
+  "passed": true,
+  "detail": "expected FIN-RPT/owner_note in top 5; got [('FIN-RPT', 'owner_note', 0.748), ('FIN-GL', 'owner_note', 0.742), ('SHR-ETL', 'owner_note', 0.697), ('FIN-GL', 'app_profile', 0.666), ('FIN-GL', 'dependency_summary', 0.646)]"
+ },
+ {
+  "test": "PCI by meaning",
+  "passed": true,
+  "detail": "expected FIN-PAY in top 5; got [('FIN-PAY', 'owner_note', 0.683), ('POL-POLI2', 'app_profile', 0.641), ('CS-KNOW3', 'app_profile', 0.632), ('OPS-FACI3', 'app_profile', 0.631), ('CS-CUST1', 'app_profile', 0.631)]"
+ },
+ {
+  "test": "Freeze window",
+  "passed": true,
+  "detail": "expected POL-ADMIN/owner_note in top 5; got [('POL-ADMIN', 'owner_note', 0.702), ('POL-AGEN3', 'owner_note', 0.657), ('POL-POLI2', 'owner_note', 0.654), ('POL-ADMIN', 'app_profile', 0.65), ('HR-BENE3', 'owner_note', 0.614)]"
+ },
+ {
+  "test": "Vendor OS certification",
+  "passed": true,
+  "detail": "expected HR-CORE/owner_note in top 5; got [('POL-ADMIN', 'owner_note', 0.659), ('HR-CORE', 'owner_note', 0.651), ('SLS-CRM', 'owner_note', 0.647), ('OPS-VEND2', 'app_profile', 0.641), ('SLS-PART2', 'app_profile', 0.639)]"
+ },
+ {
+  "test": "Shared database",
+  "passed": false,
+  "detail": "expected POL-RATING in top 5; got [('DOC-ARCHIVE', 'dependency_summary', 0.651), ('SLS-CRM', 'dependency_summary', 0.65), ('SHR-ETL', 'dependency_summary', 0.647), ('SHR-ETL', 'owner_note', 0.641), ('SHR-MQ', 'dependency_summary', 0.64)]"
+ },
+ {
+  "test": "Server count conflict",
+  "passed": true,
+  "detail": "expected CLM-ADJ in top 5; got [('CLM-ADJ', 'owner_note', 0.662), ('SLS-CRM', 'owner_note', 0.649), ('CLM-ADJ', 'app_profile', 0.62), ('CS-KNOW3', 'owner_note', 0.611), ('MKT-WEB3', 'owner_note', 0.608)]"
+ },
+ {
+  "test": "Restricted filter",
+  "passed": true,
+  "detail": "filter returned ['FIN-PAY', 'FIN-TREA2', 'SHR-SSO', 'SLS-SALE3']; table has ['FIN-PAY', 'FIN-TREA2', 'SHR-SSO', 'SLS-SALE3']"
+ },
+ {
+  "test": "Secret redacted",
+  "passed": true,
+  "detail": "no plaintext password in any retrieved text; redaction marker present"
+ },
+ {
+  "test": "Injection flagged",
+  "passed": true,
+  "detail": "SLS-QUOTE note carries suspected_injection=true and the warning banner"
+ },
+ {
+  "test": "Record counts",
+  "passed": true,
+  "detail": "profiles 46, servers 147, databases 32 (expected 46, 147, 32)"
+ },
+ {
+  "test": "Exact profile lookup",
+  "passed": true,
+  "detail": "FIN-PAY pci=Y, flags=['security_review_required']"
+ },
+ {
+  "test": "Move groups match answer key",
+  "passed": true,
+  "detail": "all groups match"
+ }
+]

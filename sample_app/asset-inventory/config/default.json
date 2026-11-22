@@ -1,0 +1,5 @@
+{
+  "talentarc": { "baseUrl": "https://talentarc.hvig.internal/api/v2", "apiUser": "sync", "apiKey": "CHANGE_ME" },
+  "sftp": { "host": "sftp.hvig.internal", "user": "assets", "password": "CHANGE_ME", "dir": "/inbound/assets" },
+  "schedule": "0 * * * *"
+}

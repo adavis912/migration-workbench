@@ -1,0 +1,465 @@
+PASS compliant change sets pass all policies for 46 apps {}
+PASS bad Oracle-on-RDS change set rejected: ['NO-SECRETS', 'RDS-SAFE', 'SPEC-DB']
+PASS pipeline without Checkov, with a non-blocking scanner and an automatic 25% cutover rejected: ['CI-GATES-BLOCK', 'CI-SOURCE-GATES', 'CI-WEIGHTED-CUTOVER']
+PASS GitLab schema defects rejected (unquoted colon, later-stage need): 2 CI-SCHEMA findings
+PASS pilot scan findings caught offline: 4 ALB-TLS + CACHE-AUTH; remediated version passes []
+PASS build profiles: COTS -> cots, Java runtimes -> java, Node.js -> nodejs
+PASS builder blocked from changing stage
+PASS illegal transition planned->ready refused
+╭───────────────────────────── 🌊 Flow Execution ──────────────────────────────╮
+│                                                                              │
+│  Starting Flow Execution                                                     │
+│  Name: _MigrationFlow                                                        │
+│  ID: 54a657ae-d3f6-40f4-9d2d-b6f6138b443f                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────────── 🌊 Flow Started ───────────────────────────────╮
+│                                                                              │
+│  Flow Started                                                                │
+│  Name: _MigrationFlow                                                        │
+│  ID: 54a657ae-d3f6-40f4-9d2d-b6f6138b443f                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Wave 1: 4 move groups, 5 apps: CLM-ADJ, CLM-FRAU1, CLM-INTAKE, CS-SURV2, FIN-RPT-LEGACY
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: request_approval                                                    │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+    Gate 1: waiting for the migration lead. Review /tmp/tmp8fk6rdug/run/approval_request_wave-1.md, then run:
+  python flow.py approve --wave 1 --approver "<name>" --plan /tmp/tmp8fk6rdug/wave_plan.json
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: request_approval                                                    │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────────── ✅ Flow Completion ─────────────────────────────╮
+│                                                                              │
+│  Flow Execution Completed                                                    │
+│  Name: _MigrationFlow                                                        │
+│  ID: 54a657ae-d3f6-40f4-9d2d-b6f6138b443f                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+PASS no build before gate 1
+╭───────────────────────────── 🌊 Flow Execution ──────────────────────────────╮
+│                                                                              │
+│  Starting Flow Execution                                                     │
+│  Name: _MigrationFlow                                                        │
+│  ID: c765844b-1df0-4acb-aad0-a7dcfed45568                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────────── 🌊 Flow Started ───────────────────────────────╮
+│                                                                              │
+│  Flow Started                                                                │
+│  Name: _MigrationFlow                                                        │
+│  ID: c765844b-1df0-4acb-aad0-a7dcfed45568                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Wave 1: 4 move groups, 5 apps: CLM-ADJ, CLM-FRAU1, CLM-INTAKE, CS-SURV2, FIN-RPT-LEGACY
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Gate 1: wave 1 approved by Test Lead at 2026-11-17T12:00:00
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: build                                                               │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Gate 1b: 0 of 5 app owners approved; waiting on CLM-ADJ, CLM-FRAU1, CLM-INTAKE, CS-SURV2, FIN-RPT-LEGACY (requests: /tmp/tmp8fk6rdug/run/owner_approval_requests_wave-1.md)
+    Resuming: 5 app(s) already past build (CLM-ADJ, CLM-FRAU1, CLM-INTAKE, CS-SURV2, FIN-RPT-LEGACY)
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: validate                                                            │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: build                                                               │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: decide                                                              │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: validate                                                            │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Go/no-go summary: /tmp/tmp8fk6rdug/run/go_no_go_wave-1.md. Gate 2 (cutover) needs a person; not executed in dry-run.
+
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: decide                                                              │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────────── ✅ Flow Completion ─────────────────────────────╮
+│                                                                              │
+│  Flow Execution Completed                                                    │
+│  Name: _MigrationFlow                                                        │
+│  ID: c765844b-1df0-4acb-aad0-a7dcfed45568                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+PASS lead approval alone builds nothing: every app held awaiting its owner
+╭───────────────────────────── 🌊 Flow Execution ──────────────────────────────╮
+│                                                                              │
+│  Starting Flow Execution                                                     │
+│  Name: _MigrationFlow                                                        │
+│  ID: 42ce3d5a-62d2-4bbb-b072-9fa171a71f7a                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────────── 🌊 Flow Started ───────────────────────────────╮
+│                                                                              │
+│  Flow Started                                                                │
+│  Name: _MigrationFlow                                                        │
+│  ID: 42ce3d5a-62d2-4bbb-b072-9fa171a71f7a                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Wave 1: 4 move groups, 5 apps: CLM-ADJ, CLM-FRAU1, CLM-INTAKE, CS-SURV2, FIN-RPT-LEGACY
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Gate 1: wave 1 approved by Test Lead at 2026-11-17T12:00:00╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: build                                                               │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Gate 1b: 4 of 5 app owners approved; waiting on CLM-INTAKE (requests: /tmp/tmp8fk6rdug/run/owner_approval_requests_wave-1.md)
+    Resuming: 2 app(s) already past build (CLM-ADJ, CLM-INTAKE)
+      [FIN-RPT-LEGACY] builder attempt 1: terraform validate passed
+      [CS-SURV2] builder attempt 1: terraform validate FAILED
+      [CLM-FRAU1] builder attempt 1: terraform validate passed
+      [CS-SURV2] builder attempt 2: terraform validate passed
+      [FIN-RPT-LEGACY] reviewer: policies passed; 0 high / 1 other finding(s) -> approve      [CS-SURV2] reviewer: policies passed; 0 high / 1 other finding(s) -> approve
+
+      [CLM-FRAU1] reviewer: 2 policy failure(s): SG-NO-ADMIN-PORTS, SG-NO-WORLD
+      [CLM-FRAU1] builder attempt 1: terraform validate passed
+      [CLM-FRAU1] reviewer: policies passed; 0 high / 1 other finding(s) -> approve
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: build                                                               │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: validate                                                            │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: decide                                                              │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: validate                                                            │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+    Go/no-go summary: /tmp/tmp8fk6rdug/run/go_no_go_wave-1.md. Gate 2 (cutover) needs a person; not executed in dry-run.
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: decide                                                              │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────────── ✅ Flow Completion ─────────────────────────────╮
+│                                                                              │
+│  Flow Execution Completed                                                    │
+│  Name: _MigrationFlow                                                        │
+│  ID: 42ce3d5a-62d2-4bbb-b072-9fa171a71f7a                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+PASS CLM-ADJ not built while move-group partner CLM-INTAKE's owner has not approved
+╭───────────────────────────── 🌊 Flow Execution ──────────────────────────────╮
+│                                                                              │
+│  Starting Flow Execution                                                     │
+│  Name: _MigrationFlow                                                        │
+│  ID: dddacce9-2761-4c63-ad0a-82c358d2fe6c                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────────── 🌊 Flow Started ───────────────────────────────╮
+│                                                                              │
+│  Flow Started                                                                │
+│  Name: _MigrationFlow                                                        │
+│  ID: dddacce9-2761-4c63-ad0a-82c358d2fe6c                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Wave 1: 4 move groups, 5 apps: CLM-ADJ, CLM-FRAU1, CLM-INTAKE, CS-SURV2, FIN-RPT-LEGACY
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: load_wave                                                           │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Gate 1: wave 1 approved by Test Lead at 2026-11-17T12:00:00
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: gate                                                                │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: build                                                               │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Gate 1b: 5 of 5 app owners approved
+    Resuming: 3 app(s) already past build (CLM-FRAU1, CS-SURV2, FIN-RPT-LEGACY)
+      [CLM-ADJ] builder attempt 1: terraform validate passed
+      [CLM-INTAKE] builder attempt 1: terraform validate passed
+      [CLM-ADJ] reviewer: policies passed; 0 high / 1 other finding(s) -> approve
+      [CLM-INTAKE] reviewer: policies passed; 0 high / 1 other finding(s) -> approve
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: build                                                               │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: validate                                                            │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────── 🔄 Flow Method Running ───────────────────────────╮
+│                                                                              │
+│  Method: decide                                                              │
+│  Status: Running                                                             │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: validate                                                            │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    Go/no-go summary: /tmp/tmp8fk6rdug/run/go_no_go_wave-1.md. Gate 2 (cutover) needs a person; not executed in dry-run.
+╭────────────────────────── ✅ Flow Method Completed ──────────────────────────╮
+│                                                                              │
+│  Method: decide                                                              │
+│  Status: Completed                                                           │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────────── ✅ Flow Completion ─────────────────────────────╮
+│                                                                              │
+│  Flow Execution Completed                                                    │
+│  Name: _MigrationFlow                                                        │
+│  ID: dddacce9-2761-4c63-ad0a-82c358d2fe6c                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+PASS flow reaches go/no-go after lead + owner approvals
+PASS CLM-FRAU1 rejected (SSH from anywhere), fixed, then ready
+PASS CS-SURV2 validate failure retried, then ready
+PASS move group MG-02: CLM-ADJ held (security review) holds CLM-INTAKE too
+PASS 43 messages valid against the contract
+PASS delegated owner approval is recorded as delegated
+PASS last stage change on every record made by the orchestrator
+# Go/no-go: wave 1 (2026-12-07 to 2026-12-20)
+
+Mode: DRY-RUN - code generated, validated and reviewed; nothing deployed. Wave approved by Test Lead at 2026-11-17T12:00:00. Ready: 3 of 5.
+
+- Fake summary.
+
+| App | Owner | Owner approval build / cutover | Stage | Builder attempts | Review cycles | Policies passed | Findings high/other | Hold reason or cutover conditions |
+|---|---|---|---|---|---|---|---|---|
+| CLM-ADJ | Owen Ramos | approve / pending | held | 1 | 1 | 31/31 | 0/1 | security review not complete |
+| CLM-FRAU1 | Sofia Haddad | approve / pending | ready | 1 | 2 | 31/31 | 0/1 | - |
+| CLM-INTAKE | Aisha Pryor | approve (delegated) / pending | held | 1 | 1 | 31/31 | 0/1 | move group MG-02 partner(s) not ready: CLM-ADJ |
+| CS-SURV2 | Owen Quinlan | approve / pending | ready | 2 | 1 | 31/31 | 0/1 | - |
+| FIN-RPT-LEGACY | Jordan Lindqvist | approve / pending | ready | 1 | 1 | 31/31 | 0/1 | - |
+
+Generated code: `/tmp/tmp8fk6rdug/run/apps/<app_id>/`. Records: `/tmp/tmp8fk6rdug/run/records/`. Messages: `/tmp/tmp8fk6rdug/run/messages.jsonl`.
+Claude usage: 21 calls, 0 input / 0 output tokens (about $0 at an assumed $3/$15 per million tokens).
+
+Gate 2 (cutover) needs, per application, the owner's cutover approval and the migration lead's go. Ready means ready for gate 2, not approved to move.
+
+18/18 passed

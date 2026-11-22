@@ -1,0 +1,1767 @@
+[
+ {
+  "node": "N1",
+  "parent": "N0",
+  "wave": 1,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-13",
+   "MG-15",
+   "MG-21",
+   "MG-24",
+   "MG-27",
+   "MG-28",
+   "MG-17",
+   "MG-22"
+  ],
+  "source": "claude",
+  "reason": "All are tier 3 groups with no readiness issues and no freeze conflicts, using 8 apps and 25 servers, well inside capacity.",
+  "violations": [],
+  "score": 70.22,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 2.5,
+   "readiness": 20.0,
+   "wave_balance": 11.72
+  },
+  "business_fit": 11.0
+ },
+ {
+  "node": "N2",
+  "parent": "N0",
+  "wave": 1,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-13",
+   "MG-15",
+   "MG-21",
+   "MG-24",
+   "MG-27",
+   "MG-28"
+  ],
+  "source": "claude",
+  "reason": "These groups use no shared services, so they create no temporary hybrid links, and they have no readiness issues (6 apps, 18 servers).",
+  "violations": [],
+  "score": 87.44,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 20,
+   "readiness": 20.0,
+   "wave_balance": 8.44
+  },
+  "business_fit": 14.0
+ },
+ {
+  "node": "N3",
+  "parent": "N0",
+  "wave": 1,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-24",
+   "MG-27",
+   "MG-28",
+   "MG-26",
+   "MG-17",
+   "MG-19",
+   "MG-20"
+  ],
+  "source": "claude",
+  "reason": "The wave is limited to the Operations and Finance business units, with no readiness issues or freezes, and uses 7 apps and 20 servers.",
+  "violations": [],
+  "score": 68.52,
+  "computed": {
+   "risk_sequencing": 19.64,
+   "dependency_cohesion": 2.5,
+   "readiness": 20.0,
+   "wave_balance": 9.38
+  },
+  "business_fit": 17.0
+ },
+ {
+  "node": "N4",
+  "parent": "N2",
+  "wave": 2,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-08",
+   "MG-17",
+   "MG-22",
+   "MG-05",
+   "MG-10"
+  ],
+  "source": "claude",
+  "reason": "Takes the clean tier-3 groups first (MG-04, MG-08, MG-17, MG-22), then fills to 10 apps and 33 servers with clean tier-2 groups (MG-05, MG-10). It skips groups with readiness issues, the HR-CORE freeze group (MG-09), and the shared services, whose consumers have not all moved.",
+  "violations": [],
+  "score": 73.48,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 5.0,
+   "readiness": 20.0,
+   "wave_balance": 11.48
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N5",
+  "parent": "N2",
+  "wave": 2,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-18",
+   "MG-23",
+   "MG-22",
+   "MG-26",
+   "MG-11",
+   "MG-25"
+  ],
+  "source": "claude",
+  "reason": "Picks groups with zero or one shared-service dependency (MG-18 and MG-23 have none, the rest use only MG-30 or MG-31), which keeps hybrid links to a minimum. The wave totals 7 apps and 19 servers, and MG-22, MG-26 and MG-11 are all MG-31 consumers placed together.",
+  "violations": [],
+  "score": 65.09,
+  "computed": {
+   "risk_sequencing": 24.04,
+   "dependency_cohesion": 5.0,
+   "readiness": 15.38,
+   "wave_balance": 8.67
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N6",
+  "parent": "N2",
+  "wave": 2,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-16",
+   "MG-17",
+   "MG-18",
+   "MG-19",
+   "MG-20",
+   "MG-05"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to the Finance and Claims business units, which together own all six groups (MG-05 is Claims and Finance). It uses 7 apps and 19 servers, within capacity, and has no freeze conflicts.",
+  "violations": [],
+  "score": 67.59,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 5.0,
+   "readiness": 16.92,
+   "wave_balance": 8.67
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N7",
+  "parent": "N1",
+  "wave": 2,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-08",
+   "MG-16",
+   "MG-18",
+   "MG-23",
+   "MG-29",
+   "MG-03"
+  ],
+  "source": "claude",
+  "reason": "All are tier 3, led by the issue-free MG-04 and MG-08 and followed by the stale-only tier-3 groups, for 10 apps and 28 servers. This excludes the shared-service groups (their consumers haven't all moved), MG-09 (freeze overlaps the wave) and the groups with suspected_injection or unconfirmed links.",
+  "violations": [],
+  "score": 65.8,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 4.55,
+   "readiness": 13.33,
+   "wave_balance": 12.42
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N8",
+  "parent": "N1",
+  "wave": 2,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-18",
+   "MG-23",
+   "MG-26",
+   "MG-11",
+   "MG-19",
+   "MG-20",
+   "MG-33",
+   "MG-16"
+  ],
+  "source": "claude",
+  "reason": "These groups have no shared-service dependency or only one, and MG-19, MG-20, MG-33 and MG-16 all depend on MG-32 alone so they move together. The wave is 9 apps and 23 servers, within capacity.",
+  "violations": [],
+  "score": 66.86,
+  "computed": {
+   "risk_sequencing": 24.26,
+   "dependency_cohesion": 4.38,
+   "readiness": 16.47,
+   "wave_balance": 11.25
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N9",
+  "parent": "N1",
+  "wave": 2,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-16",
+   "MG-18",
+   "MG-19",
+   "MG-20",
+   "MG-05"
+  ],
+  "source": "claude",
+  "reason": "The wave involves only Finance and Claims, with the four Finance groups plus MG-05 (Claims and Finance), for 6 apps and 16 servers. It stays within capacity and avoids freeze conflicts.",
+  "violations": [],
+  "score": 66.42,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 4.17,
+   "readiness": 17.14,
+   "wave_balance": 9.61
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N10",
+  "parent": "N3",
+  "wave": 2,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-08",
+   "MG-13",
+   "MG-15",
+   "MG-21",
+   "MG-22"
+  ],
+  "source": "claude",
+  "reason": "All tier-3 groups with no readiness issues (8 apps, 26 servers), so none of the stale or injection-flagged groups are included and no freeze windows are hit.",
+  "violations": [],
+  "score": 70.67,
+  "computed": {
+   "risk_sequencing": 22.5,
+   "dependency_cohesion": 3.89,
+   "readiness": 20.0,
+   "wave_balance": 10.78
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N11",
+  "parent": "N3",
+  "wave": 2,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-13",
+   "MG-15",
+   "MG-21",
+   "MG-23",
+   "MG-18",
+   "MG-22",
+   "MG-25",
+   "MG-11"
+  ],
+  "source": "claude",
+  "reason": "Groups with no shared-service dependencies or only one (MG-22 and MG-11 both use MG-31, MG-25 uses MG-30) keep temporary hybrid links to a minimum, at 9 apps and 26 servers.",
+  "violations": [],
+  "score": 65.98,
+  "computed": {
+   "risk_sequencing": 21.88,
+   "dependency_cohesion": 3.57,
+   "readiness": 16.25,
+   "wave_balance": 10.78
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N12",
+  "parent": "N3",
+  "wave": 2,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-05",
+   "MG-13",
+   "MG-16",
+   "MG-18"
+  ],
+  "source": "claude",
+  "reason": "The wave covers only Claims and Finance, so those two owners handle one migration window (5 apps, 13 servers), and it leaves out groups with injection or conflict flags.",
+  "violations": [],
+  "score": 63.11,
+  "computed": {
+   "risk_sequencing": 21.88,
+   "dependency_cohesion": 3.33,
+   "readiness": 16.67,
+   "wave_balance": 7.73
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N13",
+  "parent": "N4",
+  "wave": 3,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-03",
+   "MG-07",
+   "MG-16",
+   "MG-18",
+   "MG-23",
+   "MG-29",
+   "MG-19",
+   "MG-20"
+  ],
+  "source": "claude",
+  "reason": "Takes all six tier-3 groups first, then fills the remaining capacity with the two tier-2 groups that have no readiness issues, for 10 apps and 29 servers with no freeze conflicts.",
+  "violations": [],
+  "score": 68.69,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.32,
+   "readiness": 13.85,
+   "wave_balance": 12.19
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N14",
+  "parent": "N4",
+  "wave": 3,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-18",
+   "MG-23",
+   "MG-16",
+   "MG-19",
+   "MG-20",
+   "MG-33",
+   "MG-11",
+   "MG-26"
+  ],
+  "source": "claude",
+  "reason": "Takes the groups with zero or one shared-service dependency, clustering the MG-32 consumers together and the MG-31 consumers (MG-11, MG-26) together, for 9 apps and 23 servers.",
+  "violations": [],
+  "score": 71.25,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.07,
+   "readiness": 17.6,
+   "wave_balance": 11.25
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N15",
+  "parent": "N4",
+  "wave": 3,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-16",
+   "MG-18",
+   "MG-19",
+   "MG-20",
+   "MG-25",
+   "MG-26"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to two business units, Finance (4 groups) and Operations (2 groups), for 6 apps and 16 servers with no freeze conflicts.",
+  "violations": [],
+  "score": 69.72,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 5.96,
+   "readiness": 17.27,
+   "wave_balance": 10.16
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N16",
+  "parent": "N10",
+  "wave": 3,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-03",
+   "MG-07",
+   "MG-16",
+   "MG-18",
+   "MG-23",
+   "MG-29",
+   "MG-05"
+  ],
+  "source": "claude",
+  "reason": "Takes all movable tier-3 groups plus the clean tier-2 MG-05, using 10 apps and 30 servers. It leaves out MG-09 (freeze overlaps the wave), the shared services (their consumers have not all moved), and the groups flagged with suspected_injection or a CMDB conflict.",
+  "violations": [],
+  "score": 66.9,
+  "computed": {
+   "risk_sequencing": 23.5,
+   "dependency_cohesion": 5.59,
+   "readiness": 13.6,
+   "wave_balance": 11.88
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N17",
+  "parent": "N10",
+  "wave": 3,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-18",
+   "MG-23",
+   "MG-05",
+   "MG-10",
+   "MG-16",
+   "MG-33",
+   "MG-25"
+  ],
+  "source": "claude",
+  "reason": "Starts with groups that have no shared-service dependency (MG-18, MG-23). It then adds groups that depend only on MG-32 (MG-05, MG-10, MG-16, MG-33) or only on MG-30 (MG-25), using 9 apps and 27 servers.",
+  "violations": [],
+  "score": 69.03,
+  "computed": {
+   "risk_sequencing": 23.44,
+   "dependency_cohesion": 5.18,
+   "readiness": 16.67,
+   "wave_balance": 11.41
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N18",
+  "parent": "N10",
+  "wave": 3,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-10",
+   "MG-23",
+   "MG-29",
+   "MG-11"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to the Policy and Marketing business units, using 6 apps and 18 servers. MG-11's freeze (2027-03-25 onward) does not touch this wave.",
+  "violations": [],
+  "score": 68.64,
+  "computed": {
+   "risk_sequencing": 23.21,
+   "dependency_cohesion": 5.0,
+   "readiness": 18.1,
+   "wave_balance": 10.0
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N19",
+  "parent": "N6",
+  "wave": 3,
+  "strategy": "risk_first",
+  "groups": [],
+  "source": "claude",
+  "reason": "",
+  "violations": [
+   "empty wave"
+  ],
+  "pruned": true
+ },
+ {
+  "node": "N20",
+  "parent": "N6",
+  "wave": 3,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-22",
+   "MG-04",
+   "MG-08",
+   "MG-23",
+   "MG-29",
+   "MG-03",
+   "MG-26"
+  ],
+  "source": "fallback",
+  "reason": "deterministic packing after the proposal failed validation",
+  "violations": [],
+  "score": 68.56,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.67,
+   "readiness": 14.78,
+   "wave_balance": 10.78
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N21",
+  "parent": "N6",
+  "wave": 3,
+  "strategy": "dependency_first",
+  "groups": [],
+  "source": "claude",
+  "reason": "",
+  "violations": [
+   "empty wave"
+  ],
+  "pruned": true
+ },
+ {
+  "node": "N22",
+  "parent": "N6",
+  "wave": 3,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-23",
+   "MG-08",
+   "MG-10",
+   "MG-11",
+   "MG-22",
+   "MG-33",
+   "MG-26"
+  ],
+  "source": "fallback",
+  "reason": "deterministic packing after the proposal failed validation",
+  "violations": [],
+  "score": 70.86,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.36,
+   "readiness": 17.39,
+   "wave_balance": 10.78
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N23",
+  "parent": "N6",
+  "wave": 3,
+  "strategy": "business_aligned",
+  "groups": [],
+  "source": "claude",
+  "reason": "",
+  "violations": [
+   "empty wave"
+  ],
+  "pruned": true
+ },
+ {
+  "node": "N24",
+  "parent": "N6",
+  "wave": 3,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-02",
+   "MG-03"
+  ],
+  "source": "fallback",
+  "reason": "deterministic packing after the proposal failed validation",
+  "violations": [],
+  "score": 63.97,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.11,
+   "readiness": 12.94,
+   "wave_balance": 8.59
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N25",
+  "parent": "N8",
+  "wave": 3,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-08",
+   "MG-03",
+   "MG-07",
+   "MG-29"
+  ],
+  "source": "claude",
+  "reason": "Takes the tier-3 groups, clean ones first (MG-04, MG-08) then stale ones, for 9 apps and 30 servers. MG-09 is excluded by its freeze window, shared-service groups MG-30/31/32 are not yet movable, and groups flagged suspected_injection are skipped.",
+  "violations": [],
+  "score": 67.0,
+  "computed": {
+   "risk_sequencing": 24.52,
+   "dependency_cohesion": 6.11,
+   "readiness": 13.85,
+   "wave_balance": 12.19
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N26",
+  "parent": "N8",
+  "wave": 3,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-05",
+   "MG-08",
+   "MG-10",
+   "MG-25",
+   "MG-14"
+  ],
+  "source": "claude",
+  "reason": "Picks groups with only one or two shared-service dependencies, mostly MG-32 and MG-30 consumers, to limit hybrid links, for 8 apps and 30 servers within capacity.",
+  "violations": [],
+  "score": 68.73,
+  "computed": {
+   "risk_sequencing": 24.5,
+   "dependency_cohesion": 5.71,
+   "readiness": 16.0,
+   "wave_balance": 12.19
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N27",
+  "parent": "N8",
+  "wave": 3,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-07",
+   "MG-14"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to Customer Service and Sales, so owners handle one migration window (3 apps, 12 servers). MG-06 and MG-12 are left out because of readiness flags.",
+  "violations": [],
+  "score": 63.51,
+  "computed": {
+   "risk_sequencing": 24.38,
+   "dependency_cohesion": 5.42,
+   "readiness": 14.0,
+   "wave_balance": 9.38
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N28",
+  "parent": "N9",
+  "wave": 3,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-08",
+   "MG-07",
+   "MG-03",
+   "MG-23",
+   "MG-29"
+  ],
+  "source": "claude",
+  "reason": "Takes the tier-3 groups, clean ones (MG-04, MG-08) first, then the stale tier-3 groups, for 10 apps and 32 servers. It leaves out MG-09 (HR-CORE freeze overlaps the wave), the groups flagged suspected_injection or with CMDB conflicts, and the shared services, which still have unmoved consumers.",
+  "violations": [],
+  "score": 66.32,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.25,
+   "readiness": 13.33,
+   "wave_balance": 11.41
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N29",
+  "parent": "N9",
+  "wave": 3,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-23",
+   "MG-26",
+   "MG-25",
+   "MG-33",
+   "MG-08",
+   "MG-10",
+   "MG-11"
+  ],
+  "source": "claude",
+  "reason": "Picks groups with zero or one shared-service dependency and keeps same-service consumers together (MG-08, MG-10 and MG-33 on SSO; MG-26 and MG-11 on MQ), for 10 apps and 32 servers within capacity.",
+  "violations": [],
+  "score": 69.24,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 5.83,
+   "readiness": 16.67,
+   "wave_balance": 11.41
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N30",
+  "parent": "N9",
+  "wave": 3,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-11",
+   "MG-29",
+   "MG-25",
+   "MG-26"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to two business units, Policy and Operations, with no freeze conflicts, for 5 apps and 16 servers.",
+  "violations": [],
+  "score": 65.71,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 5.68,
+   "readiness": 15.79,
+   "wave_balance": 8.91
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N31",
+  "parent": "N14",
+  "wave": 4,
+  "strategy": "risk_first",
+  "groups": [],
+  "source": "claude",
+  "reason": "",
+  "violations": [
+   "empty wave"
+  ],
+  "pruned": true
+ },
+ {
+  "node": "N32",
+  "parent": "N14",
+  "wave": 4,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-29",
+   "MG-03",
+   "MG-07",
+   "MG-25",
+   "MG-14",
+   "MG-12",
+   "MG-31"
+  ],
+  "source": "fallback",
+  "reason": "deterministic packing after the proposal failed validation",
+  "violations": [],
+  "score": 70.47,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.38,
+   "readiness": 13.14,
+   "wave_balance": 11.95
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N33",
+  "parent": "N14",
+  "wave": 4,
+  "strategy": "dependency_first",
+  "groups": [],
+  "source": "claude",
+  "reason": "",
+  "violations": [
+   "empty wave"
+  ],
+  "pruned": true
+ },
+ {
+  "node": "N34",
+  "parent": "N14",
+  "wave": 4,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-31",
+   "MG-09",
+   "MG-25",
+   "MG-06",
+   "MG-12",
+   "MG-14",
+   "MG-29"
+  ],
+  "source": "fallback",
+  "reason": "deterministic packing after the proposal failed validation",
+  "violations": [],
+  "score": 71.1,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.32,
+   "readiness": 13.71,
+   "wave_balance": 12.07
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N35",
+  "parent": "N14",
+  "wave": 4,
+  "strategy": "business_aligned",
+  "groups": [],
+  "source": "claude",
+  "reason": "",
+  "violations": [
+   "empty wave"
+  ],
+  "pruned": true
+ },
+ {
+  "node": "N36",
+  "parent": "N14",
+  "wave": 4,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-02",
+   "MG-03",
+   "MG-09"
+  ],
+  "source": "fallback",
+  "reason": "deterministic packing after the proposal failed validation",
+  "violations": [],
+  "score": 69.2,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 7.11,
+   "readiness": 14.84,
+   "wave_balance": 11.25
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N37",
+  "parent": "N22",
+  "wave": 4,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-03",
+   "MG-07",
+   "MG-29",
+   "MG-14",
+   "MG-25"
+  ],
+  "source": "claude",
+  "reason": "Starts with the tier-3 groups (the issue-free MG-04 first, then the stale ones), adds two tier-2 groups with only a stale flag, and holds back the tier-1 groups and the groups with suspected_injection flags; totals 9 apps and 32 servers.",
+  "violations": [],
+  "score": 69.85,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 8.26,
+   "readiness": 13.75,
+   "wave_balance": 11.84
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N38",
+  "parent": "N22",
+  "wave": 4,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-25",
+   "MG-09",
+   "MG-14",
+   "MG-29",
+   "MG-07",
+   "MG-03"
+  ],
+  "source": "claude",
+  "reason": "Picks groups with one or two shared-service dependencies, and keeps consumers of MG-30 and MG-32 together so their hybrid links close together; MG-09's freeze ended 2027-01-15, and the total is 9 apps and 33 servers.",
+  "violations": [],
+  "score": 68.94,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 8.1,
+   "readiness": 13.12,
+   "wave_balance": 11.72
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N39",
+  "parent": "N22",
+  "wave": 4,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-03",
+   "MG-09"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to the Claims and HR business units with 4 apps and 13 servers, and leaves out MG-02 because of its unresolved CMDB conflict.",
+  "violations": [],
+  "score": 68.31,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 7.14,
+   "readiness": 15.56,
+   "wave_balance": 9.61
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N40",
+  "parent": "N15",
+  "wave": 4,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-23",
+   "MG-29",
+   "MG-03",
+   "MG-07",
+   "MG-33",
+   "MG-14"
+  ],
+  "source": "claude",
+  "reason": "Takes the tier-3 groups first (MG-23, MG-29, MG-03, MG-07), then the clean tier-2 MG-33 and stale tier-2 MG-14, while leaving out tier-1 groups, groups flagged suspected_injection or possibly_decommissioned_server, and shared services whose consumers have not moved; totals 8 apps and 29 servers.",
+  "violations": [],
+  "score": 67.96,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 7.61,
+   "readiness": 13.33,
+   "wave_balance": 11.02
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N41",
+  "parent": "N15",
+  "wave": 4,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-23",
+   "MG-33",
+   "MG-11",
+   "MG-09"
+  ],
+  "source": "claude",
+  "reason": "Picks groups with zero or one shared-service dependency (MG-23 has none), and moving MG-11 (the only consumer of MG-31) clears the way to move the messaging hub in a later wave; totals 6 apps and 17 servers.",
+  "violations": [],
+  "score": 68.76,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.72,
+   "readiness": 16.43,
+   "wave_balance": 9.61
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N42",
+  "parent": "N15",
+  "wave": 4,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-09",
+   "MG-11",
+   "MG-29"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to two business units (HR and Policy) so their owners handle one migration window; the HR-CORE freeze ended 2027-01-15 and the POL-ADMIN freeze starts 2027-03-25, so neither conflicts; totals 5 apps and 15 servers.",
+  "violations": [],
+  "score": 68.59,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.91,
+   "readiness": 16.3,
+   "wave_balance": 9.38
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N43",
+  "parent": "N29",
+  "wave": 4,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-07",
+   "MG-03",
+   "MG-29",
+   "MG-14"
+  ],
+  "source": "claude",
+  "reason": "Tier 3 groups go first, starting with MG-04, which has no readiness issues, followed by the stale tier 3 groups MG-07, MG-03 and MG-29, then tier 2 MG-14. Tier 1 and the groups with injection or discovery flags wait; the total is 8 apps and 28 servers, within capacity.",
+  "violations": [],
+  "score": 68.67,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 7.83,
+   "readiness": 13.75,
+   "wave_balance": 11.84
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N44",
+  "parent": "N29",
+  "wave": 4,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-09",
+   "MG-14",
+   "MG-29",
+   "MG-03",
+   "MG-07",
+   "MG-04"
+  ],
+  "source": "claude",
+  "reason": "This wave moves consumers of MG-30 and MG-32 together, starting with MG-09, which depends only on MG-32 and whose freeze ended 2027-01-15. That keeps hybrid links to a minimum and brings the shared-service moves closer; the total is 10 apps and 34 servers, with no shared-service group included because their consumers have not all moved.",
+  "violations": [],
+  "score": 68.77,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 7.92,
+   "readiness": 13.53,
+   "wave_balance": 12.07
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N45",
+  "parent": "N29",
+  "wave": 4,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-03",
+   "MG-09"
+  ],
+  "source": "claude",
+  "reason": "The wave covers only Claims and HR, with 4 apps and 13 servers, so just those two owners handle a window; MG-09's freeze ended 2027-01-15, before the wave starts.",
+  "violations": [],
+  "score": 67.0,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 6.67,
+   "readiness": 15.0,
+   "wave_balance": 10.08
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N46",
+  "parent": "N17",
+  "wave": 4,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-07",
+   "MG-03",
+   "MG-29",
+   "MG-14",
+   "MG-09"
+  ],
+  "source": "claude",
+  "reason": "Takes the tier-3 groups first (MG-07, MG-03, MG-29), then tier-2 MG-14, and adds MG-09 as a clean group with no readiness issues whose freeze ended 2027-01-15; the wave totals 8 apps and 29 servers, within capacity.",
+  "violations": [],
+  "score": 67.72,
+  "computed": {
+   "risk_sequencing": 23.83,
+   "dependency_cohesion": 7.07,
+   "readiness": 13.12,
+   "wave_balance": 11.95
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N47",
+  "parent": "N17",
+  "wave": 4,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-11",
+   "MG-09",
+   "MG-12",
+   "MG-06"
+  ],
+  "source": "claude",
+  "reason": "Each of these groups depends on only one shared service (MG-31, MG-32, MG-30, MG-32), which keeps hybrid links low and puts the MG-32 consumers MG-09 and MG-06 in the same wave; the wave totals 8 apps and 23 servers.",
+  "violations": [],
+  "score": 67.46,
+  "computed": {
+   "risk_sequencing": 23.83,
+   "dependency_cohesion": 6.25,
+   "readiness": 14.38,
+   "wave_balance": 11.25
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N48",
+  "parent": "N17",
+  "wave": 4,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-07",
+   "MG-14",
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to the Customer Service and Sales business units so those two owners handle a single window; the wave totals 7 apps and 24 servers with no freeze conflicts.",
+  "violations": [],
+  "score": 66.44,
+  "computed": {
+   "risk_sequencing": 23.79,
+   "dependency_cohesion": 6.63,
+   "readiness": 12.9,
+   "wave_balance": 11.37
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N49",
+  "parent": "N34",
+  "wave": 5,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-07",
+   "MG-03"
+  ],
+  "source": "claude",
+  "reason": "These are the tier-3 groups with only a stale readiness issue, while tier-1 MG-02 with its CMDB conflict and unconfirmed links is deferred; MG-30 and MG-32 cannot move until all their consumers have.",
+  "violations": [],
+  "score": 68.89,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.81,
+   "readiness": 12.31,
+   "wave_balance": 10.97
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N50",
+  "parent": "N34",
+  "wave": 5,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-02",
+   "MG-03",
+   "MG-07"
+  ],
+  "source": "claude",
+  "reason": "All three remaining consumers of MG-30 and MG-32 move together (25 servers, 6 apps, within capacity), so both shared services can move in the next wave and hybrid links are short-lived.",
+  "violations": [],
+  "score": 69.51,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.0,
+   "readiness": 11.71,
+   "wave_balance": 12.0
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N51",
+  "parent": "N34",
+  "wave": 5,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-02",
+   "MG-03"
+  ],
+  "source": "claude",
+  "reason": "Together these cover only the Claims and HR business units (18 servers, 4 apps), keeping the wave to two owners' windows, while MG-07 (Customer Service and Sales) is left for a later wave.",
+  "violations": [],
+  "score": 69.26,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.81,
+   "readiness": 12.31,
+   "wave_balance": 11.34
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N52",
+  "parent": "N32",
+  "wave": 5,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-09"
+  ],
+  "source": "claude",
+  "reason": "MG-09 is the only remaining consumer group with no readiness issues and its HR-CORE freeze ended 2027-01-15; MG-30 and MG-32 cannot move before their consumers, and MG-02 and MG-06 still have open readiness issues.",
+  "violations": [],
+  "score": 68.39,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.5,
+   "readiness": 12.97,
+   "wave_balance": 10.12
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N53",
+  "parent": "N32",
+  "wave": 5,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-02",
+   "MG-06",
+   "MG-09"
+  ],
+  "source": "claude",
+  "reason": "Moving all three consumers of MG-32 together (MG-02 also uses MG-30) keeps hybrid links short and lets both shared services move in the next wave, at 24 servers and 6 apps, within capacity.",
+  "violations": [],
+  "score": 69.14,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.82,
+   "readiness": 11.71,
+   "wave_balance": 11.81
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N54",
+  "parent": "N32",
+  "wave": 5,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-09",
+   "MG-02"
+  ],
+  "source": "claude",
+  "reason": "This limits the wave to two business units (HR and Claims), with no freeze conflict for MG-09, and keeps the shared services for a later wave after their consumers have moved.",
+  "violations": [],
+  "score": 68.99,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.72,
+   "readiness": 12.31,
+   "wave_balance": 11.16
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N55",
+  "parent": "N36",
+  "wave": 5,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-07",
+   "MG-29",
+   "MG-14",
+   "MG-25"
+  ],
+  "source": "claude",
+  "reason": "Tier 3 groups go first, then tier 2 groups whose only readiness issue is staleness, while MG-06 and MG-12 (suspected injection, unconfirmed links) and the shared services wait; the wave uses 5 apps and 20 servers.",
+  "violations": [],
+  "score": 68.02,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 8.56,
+   "readiness": 12.78,
+   "wave_balance": 10.88
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N56",
+  "parent": "N36",
+  "wave": 5,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-31",
+   "MG-25",
+   "MG-14",
+   "MG-07",
+   "MG-29"
+  ],
+  "source": "claude",
+  "reason": "MG-31 has no remaining consumers and can move now, and moving the stale consumers of MG-30 and MG-32 together shortens the time until those shared services can move; the wave uses 6 apps and 22 servers.",
+  "violations": [],
+  "score": 69.54,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.71,
+   "readiness": 12.97,
+   "wave_balance": 11.06
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N57",
+  "parent": "N36",
+  "wave": 5,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-07",
+   "MG-14"
+  ],
+  "source": "claude",
+  "reason": "Both groups sit within Customer Service and Sales, so those two owners handle a single window, and I left out MG-06 and MG-12 because of their readiness issues; the wave uses 3 apps and 12 servers.",
+  "violations": [],
+  "score": 67.49,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 8.04,
+   "readiness": 13.53,
+   "wave_balance": 10.12
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N58",
+  "parent": "N37",
+  "wave": 5,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-09",
+   "MG-31"
+  ],
+  "source": "claude",
+  "reason": "These are the only two groups with no readiness issues that can move now; MG-09's HR-CORE freeze ended 2027-01-15, MG-31 has no unmoved consumers, and MG-30 and MG-32 are held back because their consumers have not yet moved.",
+  "violations": [],
+  "score": 69.42,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.69,
+   "readiness": 13.71,
+   "wave_balance": 10.22
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N59",
+  "parent": "N37",
+  "wave": 5,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-31",
+   "MG-09",
+   "MG-06"
+  ],
+  "source": "claude",
+  "reason": "MG-31 adds no hybrid links, and MG-09 and MG-06 both depend only on MG-32, so moving them together keeps those consumers in the same wave and brings MG-32's release closer.",
+  "violations": [],
+  "score": 69.45,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.8,
+   "readiness": 12.97,
+   "wave_balance": 10.88
+  },
+  "business_fit": 10.0
+ },
+ {
+  "node": "N60",
+  "parent": "N37",
+  "wave": 5,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-09",
+   "MG-06"
+  ],
+  "source": "claude",
+  "reason": "This limits the wave to two business units (HR and Customer Service) with a single shared-service dependency (MG-32), and it stays within capacity at 4 apps and 13 servers.",
+  "violations": [],
+  "score": 67.87,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 8.6,
+   "readiness": 12.78,
+   "wave_balance": 10.69
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N61",
+  "parent": "N38",
+  "wave": 5,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-04",
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "MG-04 is tier 3 with no readiness issues, followed by the tier 2 groups (MG-06, MG-12), while the tier 1 MG-02 with its CMDB conflict waits; shared services stay out because their consumers have not all moved (6 apps, 17 servers).",
+  "violations": [],
+  "score": 67.82,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 8.94,
+   "readiness": 12.11,
+   "wave_balance": 10.97
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N62",
+  "parent": "N38",
+  "wave": 5,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-02",
+   "MG-04",
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "Moving all four consumer groups together keeps consumers of MG-30, MG-31 and MG-32 in the same wave and unblocks the shared services for wave 6, minimising temporary hybrid links (8 apps, 28 servers).",
+  "violations": [],
+  "score": 68.5,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.2,
+   "readiness": 11.5,
+   "wave_balance": 12.0
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N63",
+  "parent": "N38",
+  "wave": 5,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-02",
+   "MG-04",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "These three groups involve only the Claims and Sales business units, so their owners handle one migration window, and the wave fits capacity (6 apps, 21 servers).",
+  "violations": [],
+  "score": 68.32,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 9.07,
+   "readiness": 12.11,
+   "wave_balance": 11.34
+  },
+  "business_fit": 10.0,
+  "pruned": true,
+  "pruned_reason": "outside beam"
+ },
+ {
+  "node": "N64",
+  "parent": "N56",
+  "wave": 6,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "MG-30 and MG-32 are shared services whose consumers (MG-12 and MG-06) have not yet moved, so the only eligible groups are these two tier-2 consumers, which fit within 12 of 40 servers and 4 of 10 apps with no freeze conflicts.",
+  "violations": [],
+  "score": 67.46,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.09,
+   "readiness": 11.71,
+   "wave_balance": 10.16
+  },
+  "business_fit": 9.0
+ },
+ {
+  "node": "N65",
+  "parent": "N56",
+  "wave": 6,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "Moving both consumers now lets their shared services MG-32 and MG-30 move in wave 7 with no consumer left behind, which keeps temporary hybrid links to a minimum.",
+  "violations": []
+ },
+ {
+  "node": "N66",
+  "parent": "N56",
+  "wave": 6,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "These two groups cover only two business units (Customer Service and Sales), which keeps the wave to a single migration window per owner, and the shared-service groups follow once their consumers have moved.",
+  "violations": []
+ },
+ {
+  "node": "N67",
+  "parent": "N50",
+  "wave": 6,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-30",
+   "MG-32"
+  ],
+  "source": "claude",
+  "reason": "Only two groups remain, both with no readiness issues or freezes and all consumers already moved, so the lower-tier-risk MG-30 (tier 2) and MG-32 (tier 1) fit in 2 apps and 6 servers, within capacity.",
+  "violations": [],
+  "score": 71.85,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 14.29,
+   "readiness": 12.09,
+   "wave_balance": 10.47
+  },
+  "business_fit": 6.0
+ },
+ {
+  "node": "N68",
+  "parent": "N50",
+  "wave": 6,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-30",
+   "MG-32"
+  ],
+  "source": "claude",
+  "reason": "Both shared-service groups have all consumers already migrated and no shared-service dependencies of their own, so moving them now removes the last temporary hybrid links.",
+  "violations": []
+ },
+ {
+  "node": "N69",
+  "parent": "N50",
+  "wave": 6,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-30",
+   "MG-32"
+  ],
+  "source": "claude",
+  "reason": "Both groups belong to the single Shared Services business unit, so its owners handle one migration window, and no owner timing constraints or freezes apply.",
+  "violations": []
+ },
+ {
+  "node": "N70",
+  "parent": "N58",
+  "wave": 6,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "Both are tier 2 (lower risk than tier 1 MG-02, which is deferred), and the shared-service groups MG-30 and MG-32 stay out because their consumers have not yet moved.",
+  "violations": [],
+  "score": 67.36,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.1,
+   "readiness": 12.31,
+   "wave_balance": 9.45
+  },
+  "business_fit": 9.0
+ },
+ {
+  "node": "N71",
+  "parent": "N58",
+  "wave": 6,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-02",
+   "MG-06",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "Moving all remaining consumers of MG-30 and MG-32 together (23 servers, 6 apps, within capacity) keeps hybrid links to a minimum and lets both shared services move in the next wave.",
+  "violations": [],
+  "score": 67.3,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.45,
+   "readiness": 11.71,
+   "wave_balance": 10.31
+  },
+  "business_fit": 5.0
+ },
+ {
+  "node": "N72",
+  "parent": "N58",
+  "wave": 6,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-02",
+   "MG-06"
+  ],
+  "source": "claude",
+  "reason": "Limits the wave to two business units (Claims and Customer Service), which share the MG-32 dependency, and leaves Sales (MG-12) for a single later window.",
+  "violations": [],
+  "score": 68.01,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.28,
+   "readiness": 12.31,
+   "wave_balance": 9.92
+  },
+  "business_fit": 9.0
+ },
+ {
+  "node": "N73",
+  "parent": "N59",
+  "wave": 6,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "MG-12 is tier 2 and MG-02 is tier 1, so it is the lower-risk consumer group; the shared services MG-30 and MG-32 cannot move until their consumers have.",
+  "violations": [],
+  "score": 67.76,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.0,
+   "readiness": 12.31,
+   "wave_balance": 9.45
+  },
+  "business_fit": 12.0
+ },
+ {
+  "node": "N74",
+  "parent": "N59",
+  "wave": 6,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-02",
+   "MG-12"
+  ],
+  "source": "claude",
+  "reason": "Moving both remaining consumer groups together (16 servers, 4 apps, within capacity) lets MG-30 and MG-32 move in wave 7 and keeps the time on hybrid links to the shared services short.",
+  "violations": [],
+  "score": 67.88,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.36,
+   "readiness": 11.71,
+   "wave_balance": 10.31
+  },
+  "business_fit": 9.0
+ },
+ {
+  "node": "N75",
+  "parent": "N59",
+  "wave": 6,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-02"
+  ],
+  "source": "claude",
+  "reason": "A Claims-only wave gives one business owner a single migration window, and it also moves a consumer of both MG-30 and MG-32.",
+  "violations": [],
+  "score": 68.59,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.19,
+   "readiness": 12.31,
+   "wave_balance": 9.92
+  },
+  "business_fit": 13.0
+ },
+ {
+  "node": "N76",
+  "parent": "N51",
+  "wave": 6,
+  "strategy": "risk_first",
+  "groups": [
+   "MG-07"
+  ],
+  "source": "claude",
+  "reason": "MG-07 is the only eligible group: it is tier 3, and the tier 2 and tier 1 shared services MG-30 and MG-32 cannot move until their consumer MG-07 has moved.",
+  "violations": [],
+  "score": 68.56,
+  "computed": {
+   "risk_sequencing": 25.0,
+   "dependency_cohesion": 10.18,
+   "readiness": 11.71,
+   "wave_balance": 10.0
+  },
+  "business_fit": 16.0
+ },
+ {
+  "node": "N77",
+  "parent": "N51",
+  "wave": 6,
+  "strategy": "dependency_first",
+  "groups": [
+   "MG-07"
+  ],
+  "source": "claude",
+  "reason": "Moving consumer MG-07 now unblocks shared services MG-30 and MG-32 for wave 7, which keeps the temporary hybrid links short.",
+  "violations": []
+ },
+ {
+  "node": "N78",
+  "parent": "N51",
+  "wave": 6,
+  "strategy": "business_aligned",
+  "groups": [
+   "MG-07"
+  ],
+  "source": "claude",
+  "reason": "MG-07 covers only two business units (Customer Service and Sales), while the Shared Services groups are not yet eligible to move.",
+  "violations": []
+ }
+]

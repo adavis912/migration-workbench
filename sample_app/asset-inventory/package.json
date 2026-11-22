@@ -1,0 +1,12 @@
+{
+  "name": "asset-inventory-sync",
+  "version": "1.4.2",
+  "private": true,
+  "engines": { "node": "18.x" },
+  "scripts": { "start": "node src/sync.js", "test": "node -e \"require('./src/talentarc-client')\"" },
+  "dependencies": {
+    "axios": "0.21.1",
+    "node-cron": "3.0.0",
+    "ssh2-sftp-client": "7.2.1"
+  }
+}

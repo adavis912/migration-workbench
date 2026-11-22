@@ -1,0 +1,6 @@
+<Context>
+  <Resource name="jdbc/recruit" auth="Container" type="javax.sql.DataSource"
+            driverClassName="oracle.jdbc.OracleDriver"
+            url="jdbc:oracle:thin:@hrrecr1-db.hvig.internal:1521/RECRUIT"
+            username="recruit_app" password="CHANGE_ME" maxTotal="20"/>
+</Context>

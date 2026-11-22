@@ -1,0 +1,97 @@
+{
+ "status": "complete",
+ "evaluations": 78,
+ "llm_calls": 31,
+ "plans": [
+  {
+   "waves": [
+    [
+     "MG-13",
+     "MG-15",
+     "MG-21",
+     "MG-24",
+     "MG-27",
+     "MG-28"
+    ],
+    [
+     "MG-04",
+     "MG-08",
+     "MG-17",
+     "MG-22",
+     "MG-05",
+     "MG-10"
+    ],
+    [
+     "MG-18",
+     "MG-23",
+     "MG-16",
+     "MG-19",
+     "MG-20",
+     "MG-33",
+     "MG-11",
+     "MG-26"
+    ],
+    [
+     "MG-31",
+     "MG-09",
+     "MG-25",
+     "MG-06",
+     "MG-12",
+     "MG-14",
+     "MG-29"
+    ],
+    [
+     "MG-02",
+     "MG-03",
+     "MG-07"
+    ],
+    [
+     "MG-30",
+     "MG-32"
+    ]
+   ],
+   "strategies": [
+    "dependency_first",
+    "risk_first",
+    "dependency_first",
+    "dependency_first",
+    "dependency_first",
+    "risk_first"
+   ],
+   "score": 71.85,
+   "computed": {
+    "risk_sequencing": 25.0,
+    "dependency_cohesion": 14.29,
+    "readiness": 12.09,
+    "wave_balance": 10.47
+   },
+   "bf": [
+    14.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    6.0
+   ],
+   "bf_notes": [
+    "Four business units (Claims, Customer Service, HR, Operations) is moderate coordination. HR-RECR1 and OPS-ASSE4 tolerate a full weekend, and the Sunday 01:00-05:00 windows of CLM-FRAU1 and CS-SURV2 fit inside the Saturday-night windows of OPS-ASSE4 and OPS-PRIN1. The wave avoids the month-end blackout for CLM-FRAU1 and OPS-VEND2. The 1-hour tolerance of CLM-FRAU1 and CS-SURV2 and the 4-hour limit of OPS-PRIN1 leave less slack.",
+    "no critic score; neutral 10 used",
+    "no critic score; neutral 10 used",
+    "no critic score; neutral 10 used",
+    "no critic score; neutral 10 used",
+    "SHR-SSO serves every internal application and must stay available until the last consumer has moved, so a wave 6 cutover is timing-sensitive. SHR-ETL's nightly jobs pull from the general ledger and other sources, which risks month-end processing near Feb 28. Only one business unit is involved, but the enterprise-wide impact is high."
+   ],
+   "reasons": [
+    "These groups use no shared services, so they create no temporary hybrid links, and they have no readiness issues (6 apps, 18 servers).",
+    "Takes the clean tier-3 groups first (MG-04, MG-08, MG-17, MG-22), then fills to 10 apps and 33 servers with clean tier-2 groups (MG-05, MG-10). It skips groups with readiness issues, the HR-CORE freeze group (MG-09), and the shared services, whose consumers have not all moved.",
+    "Takes the groups with zero or one shared-service dependency, clustering the MG-32 consumers together and the MG-31 consumers (MG-11, MG-26) together, for 9 apps and 23 servers.",
+    "deterministic packing after the proposal failed validation",
+    "All three remaining consumers of MG-30 and MG-32 move together (25 servers, 6 apps, within capacity), so both shared services can move in the next wave and hybrid links are short-lived.",
+    "Only two groups remain, both with no readiness issues or freezes and all consumers already moved, so the lower-tier-risk MG-30 (tier 2) and MG-32 (tier 1) fit in 2 apps and 6 servers, within capacity."
+   ]
+  }
+ ],
+ "blocked": [
+  "MG-01"
+ ]
+}

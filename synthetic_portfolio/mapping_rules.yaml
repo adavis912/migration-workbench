@@ -1,0 +1,88 @@
+# Target mapping rules: OCI source -> AWS target
+# Fictional company: Harborview Insurance Group (synthetic capstone data).
+# These are general OCI-to-AWS migration patterns written for this project.
+# They contain no client data, counts, or product lists.
+
+version: 1
+source_platform: Oracle Cloud Infrastructure (OCI)
+target_platform: AWS
+
+compute:
+  oci_vm:
+    target: Amazon EC2
+  oke_cluster:
+    target: Amazon EKS
+
+operating_system:
+  homegrown:
+    # Homegrown apps are upgraded to the current OS during migration.
+    linux: RHEL 9
+    windows: Windows Server 2022
+  cots:
+    # COTS apps keep their current OS unless the vendor confirms a newer one.
+    rule: keep_current_os
+    flag: vendor_must_confirm_latest_os_during_discovery
+  oracle_linux:
+    database_servers: Oracle Linux (unchanged)
+    application_servers: RHEL 9
+
+databases:
+  oracle_exadata_or_rac: Oracle Database@AWS
+  oracle_autonomous: Oracle Database@AWS
+  oracle_other: "Oracle Database@AWS or Amazon RDS for Oracle (decision per app: TBD, needs human decision)"
+  mysql: Amazon RDS for MySQL
+  sql_server: Amazon RDS for SQL Server
+  mongodb: MongoDB on EC2
+  cassandra: Cassandra on EC2
+
+app_runtimes:
+  # Like-for-like on EC2. WebLogic runs on the app VM, not a separate server.
+  weblogic: WebLogic on EC2 (same VM as the app)
+  oracle_soa: Oracle SOA on EC2
+  tomcat: Tomcat on EC2
+  jetty: Jetty on EC2
+  tuxedo: Tuxedo on EC2
+  spring_boot: Spring / Spring Boot on EC2
+  nodejs: Node.js on EC2
+  jdk_rule: keep_same_jdk_version   # Oracle JDK 1.8 stays 1.8; OpenJDK 17 stays 17
+
+messaging:
+  rule: like_for_like_on_ec2   # IBM MQ, RabbitMQ, ActiveMQ, WebLogic JMS, Kafka, MSMQ
+
+cache_and_search:
+  redis: Amazon ElastiCache for Valkey (managed)
+  elasticsearch: Elasticsearch on EC2
+
+etl:
+  rule: like_for_like_on_ec2   # DataStage, Talend, Informatica
+
+web_servers:
+  rule: like_for_like_on_ec2   # Apache httpd, IIS
+
+security:
+  oci_vault: AWS Secrets Manager
+  oci_iam: AWS IAM
+
+cots_applications:
+  rule: retain_as_is_on_ec2_current_os
+
+storage:
+  block: Amazon EBS
+  file: Amazon EFS
+  object: Amazon S3
+
+networking:
+  vcn: Amazon VPC
+  load_balancer: Application Load Balancer + Network Load Balancer
+  fastconnect: AWS Direct Connect + AWS Transit Gateway
+
+cicd:
+  source: Jenkins + manual deploy
+  target: GitLab CI/CD + Terraform + Kiro
+
+wave_constraints:
+  max_apps_per_wave: 10
+  max_servers_per_wave: 40
+  freeze_buffer_business_days: 5
+  restricted_or_pci_requires_security_review: true
+  stale_record_days: 90

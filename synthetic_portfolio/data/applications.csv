@@ -1,0 +1,47 @@
+app_id,app_name,business_unit,owner,app_type,cots_product,security_level,pci_scope,criticality_tier,rto_hours,deployment,app_runtime,jdk,web_server,messaging,cache_search,etl_tools,database_engine,database_service,current_cicd,secrets_store,freeze_start,freeze_end,security_review,cmdb_server_count,last_updated
+FIN-GL,General Ledger,Finance,Aisha Whitfield,Homegrown,,Confidential,N,1,4,OCI VM,WebLogic 14c,Oracle JDK 1.8,,,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,2026-12-20,2027-01-10,Not required,3,2026-10-25
+FIN-RPT,Finance Reporting,Finance,Lena Sato,Homegrown,,Internal,N,3,24,OCI VM,Tomcat 9,OpenJDK 17,,,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-11-09
+FIN-RPT-LEGACY,"Finance Reporting (Legacy, retiring)",Finance,Jordan Lindqvist,Homegrown,,Internal,N,3,24,OCI VM,Tomcat 7,Oracle JDK 1.8,,,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,1,2026-04-21
+FIN-PAY,Payroll API,Finance,Sofia Castell,Homegrown,,Restricted,Y,1,4,OCI VM,Spring Boot,OpenJDK 17,,IBM MQ,,,SQL Server,OCI VM,Jenkins + manual deploy,OCI Vault,,,Required - no completion date,3,2026-10-18
+FIN-EXP,Expense Portal,Finance,Dana Varga,Homegrown,,Internal,N,3,24,OCI VM,Node.js 18,,Apache httpd,,Redis,,MySQL,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-10-16
+HR-PORTAL,Employee Self-Service Portal,HR,Isaac Novak,Homegrown,,Confidential,N,2,24,OCI VM,.NET Framework 4.8,,IIS,,,,SQL Server,OCI VM,Jenkins + manual deploy,config file,,,Not required,3,2026-09-30
+HR-CORE,HR Core (COTS HCM),HR,Dana Castell,COTS,PeopleNest HCM,Confidential,N,1,8,OCI VM,WebLogic 12c,Oracle JDK 1.8,,,,,Oracle,OCI DB System (VM),Jenkins + manual deploy,OCI Vault,2026-12-01,2027-01-15,Not required,3,2026-10-05
+CLM-INTAKE,Claims Intake,Claims,Aisha Pryor,Homegrown,,Confidential,N,1,24,OKE,Spring Boot,OpenJDK 17,,Kafka,Elasticsearch,,MongoDB,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,5,2026-10-16
+CLM-ADJ,Claims Adjudication,Claims,Owen Ramos,Homegrown,,Confidential,N,1,24,OKE,Spring Boot,OpenJDK 17,,Kafka,,,Oracle,Autonomous (ATP),Jenkins + manual deploy,OCI Vault,,,Not required,8,2026-09-29
+POL-ADMIN,Policy Administration (COTS),Policy,Felix Ellison,COTS,PolicyCore Suite,Confidential,N,1,4,OCI VM,Tuxedo,,,,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,2027-03-25,2027-04-15,Not required,3,2026-09-14
+POL-RATING,Policy Rating Engine,Policy,Ravi Castell,Homegrown,,Confidential,N,2,24,OCI VM,Oracle SOA,Oracle JDK 1.8,,,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-11-05
+SLS-CRM,Sales CRM (COTS),Sales,Jordan Ellison,COTS,Clientline CRM,Internal,N,2,24,OCI VM,Clientline App Server,,IIS,,,,SQL Server,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-11-11
+SLS-QUOTE,Quote Builder,Sales,Caleb Ramos,Homegrown,,Internal,N,2,24,OCI VM,Jetty,OpenJDK 17,,RabbitMQ,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-09-28
+CS-CONTACT,Contact Center Desktop,Customer Service,Lena Varga,Homegrown,,Confidential,N,2,24,OCI VM,Tomcat 9,OpenJDK 17,Apache httpd,ActiveMQ,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-10-06
+DOC-ARCHIVE,Document Archive (COTS),Customer Service,Dana Albright,COTS,ArchiveVault,Confidential,N,3,24,OCI VM,ArchiveVault Server,,,,,,Cassandra,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-10-07
+SHR-SSO,Enterprise Single Sign-On,Shared Services,Nina Brennan,COTS,GateKey SSO,Restricted,N,1,2,OCI VM,Tomcat 9,Oracle JDK 1.8,Apache httpd,,,,,,Jenkins + manual deploy,OCI Vault,,,Complete,3,2026-09-12
+SHR-MQ,Enterprise Messaging Hub,Shared Services,Owen Ramos,Homegrown,,Internal,N,1,2,OCI VM,,,,IBM MQ,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-10-28
+SHR-ETL,Enterprise Data Integration,Shared Services,Isaac Iyer,COTS,"DataStage, Talend, Informatica",Confidential,N,2,24,OCI VM,,,,,,IBM DataStage; Talend; Informatica,,,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-09-08
+FIN-ACCO1,Accounts Payable,Finance,Caleb Brennan,Homegrown,,Confidential,N,2,24,OCI VM,IIS / .NET Framework 4.8,,IIS,WebLogic JMS,,,SQL Server,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-09-05
+FIN-TREA2,Treasury Cash Position,Finance,Owen Lindqvist,Homegrown,,Restricted,Y,2,24,OCI VM,IIS / .NET Framework 4.8,,IIS,,,,MySQL,OCI VM,Jenkins + manual deploy,OCI Vault,,,Complete,3,2026-11-03
+FIN-BUDG3,Budget Planner,Finance,Mei Albright,Homegrown,,Confidential,N,3,24,OCI VM,Spring Boot,OpenJDK 17,,,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-07-02
+FIN-TAX4,Tax Reporting,Finance,Owen Lindqvist,Homegrown,,Confidential,N,2,24,OCI VM,Tomcat 9,OpenJDK 17,,WebLogic JMS,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-10-14
+HR-RECR1,Recruiting Tracker,HR,Isaac Brennan,Homegrown,,Internal,N,3,24,OCI VM,Tomcat 9,Oracle JDK 1.8,,,,,Oracle,OCI DB System (VM),Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-11-06
+HR-LEAR2,Learning Portal,HR,Tomas Mercer,Homegrown,,Confidential,N,3,24,OCI VM,Node.js 18,,Apache httpd,ActiveMQ,,,MySQL,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-06-15
+HR-BENE3,Benefits Enrollment,HR,Nina Quinlan,COTS,LedgerBridge,Confidential,N,3,24,OCI VM,Spring Boot,OpenJDK 17,,ActiveMQ,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-11-08
+CLM-FRAU1,Fraud Scoring,Claims,Sofia Haddad,Homegrown,,Internal,N,3,24,OCI VM,Tomcat 9,Oracle JDK 1.8,Apache httpd,Kafka,Redis,,,,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-10-01
+CLM-CLAI2,Claims Correspondence,Claims,Grace Novak,Homegrown,,Confidential,N,3,24,OCI VM,Tomcat 9,Oracle JDK 1.8,,Kafka,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-05-25
+CLM-SUBR3,Subrogation Tracker,Claims,Nina Whitfield,COTS,TalentArc,Confidential,N,2,24,OCI VM,Tomcat 9,OpenJDK 17,Apache httpd,ActiveMQ,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-09-30
+CLM-REPA4,Repair Shop Network,Claims,Owen Pryor,Homegrown,,Confidential,N,3,24,OCI VM,Tomcat 9,Oracle JDK 1.8,,,,,Oracle,Autonomous (ATP),Jenkins + manual deploy,OCI Vault,,,Not required,1,2026-10-23
+POL-UNDE1,Underwriting Workbench,Policy,Aisha Ramos,Homegrown,,Confidential,N,3,24,OCI VM,Node.js 18,,Apache httpd,WebLogic JMS,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-06-02
+POL-POLI2,Policy Documents,Policy,Lena Okafor,COTS,FormStack Pro,Internal,N,2,24,OCI VM,Node.js 18,,,ActiveMQ,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-09-19
+POL-AGEN3,Agent Commissions,Policy,Isaac Iyer,Homegrown,,Internal,N,3,24,OCI VM,Jetty,OpenJDK 17,Apache httpd,ActiveMQ,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-10-03
+SLS-LEAD1,Lead Router,Sales,Marcus Varga,Homegrown,,Confidential,N,3,24,OCI VM,WebLogic 12c,Oracle JDK 1.8,,RabbitMQ,Redis,,Oracle,Autonomous (ATP),Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-05-15
+SLS-PART2,Partner Portal,Sales,Mei Whitfield,COTS,VendorHub,Public,N,2,24,OCI VM,Tomcat 9,Oracle JDK 1.8,Apache httpd,,,,Oracle,OCI DB System (VM),Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-11-02
+SLS-SALE3,Sales Analytics,Sales,Owen Albright,Homegrown,,Restricted,N,3,24,OCI VM,Spring Boot,OpenJDK 17,Apache httpd,,,,Oracle,OCI DB System (VM),Jenkins + manual deploy,OCI Vault,,,Complete,4,2026-10-01
+CS-CUST1,Customer Portal,Customer Service,Andre Brennan,Homegrown,,Internal,N,2,24,OCI VM,Node.js 18,,Apache httpd,WebLogic JMS,,,MySQL,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,5,2026-08-08
+CS-SURV2,Survey Service,Customer Service,Owen Quinlan,Homegrown,,Internal,N,3,24,OCI VM,Jetty,OpenJDK 17,Apache httpd,,,,SQL Server,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-09-17
+CS-KNOW3,Knowledge Base,Customer Service,Tomas Brennan,Homegrown,,Internal,N,3,24,OCI VM,Node.js 18,,Apache httpd,Kafka,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-05-10
+MKT-CAMP1,Campaign Manager,Marketing,Grace Brennan,Homegrown,,Confidential,N,2,24,OCI VM,Tomcat 9,Oracle JDK 1.8,Apache httpd,WebLogic JMS,,,MongoDB,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,5,2026-10-09
+MKT-EMAI2,Email Preferences,Marketing,Owen Whitfield,Homegrown,,Internal,N,3,24,OCI VM,IIS / .NET Framework 4.8,,IIS,,,,Oracle,OCI DB System (VM),Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-09-14
+MKT-WEB3,Web Content Service,Marketing,Isaac Okafor,Homegrown,,Internal,N,3,24,OCI VM,Spring Boot,OpenJDK 17,,,,,Oracle,Exadata (RAC),Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-08-06
+OPS-PRIN1,Print and Mail,Operations,Marcus Albright,COTS,PrintFlow,Internal,N,3,24,OCI VM,Spring Boot,OpenJDK 17,Apache httpd,,Redis,,Oracle,Autonomous (ATP),Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-11-03
+OPS-VEND2,Vendor Management,Operations,Andre Brennan,COTS,MarkPoint,Confidential,N,3,24,OCI VM,Tomcat 9,Oracle JDK 1.8,Apache httpd,,,,MongoDB,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-09-02
+OPS-FACI3,Facilities Booking,Operations,Tomas Ellison,COTS,LedgerBridge,Internal,N,2,24,OCI VM,Node.js 18,,,,Redis,,MySQL,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,3,2026-10-26
+OPS-ASSE4,Asset Inventory,Operations,Ravi Quinlan,COTS,TalentArc,Internal,N,3,24,OCI VM,Node.js 18,,,,,,,,Jenkins + manual deploy,OCI Vault,,,Not required,2,2026-11-10
+OPS-AUDI5,Audit Log Service,Operations,Lena Castell,Homegrown,,Confidential,N,2,24,OCI VM,IIS / .NET Framework 4.8,,IIS,,,,MongoDB,OCI VM,Jenkins + manual deploy,OCI Vault,,,Not required,4,2026-07-28
