@@ -188,7 +188,7 @@ a.job:hover { border-color: var(--accent); text-decoration: none; }
       </div>
     </div>
     <div class="table-scroll"><table id="apps" class="apps">
-      <thead><tr><th>App</th><th>Owner</th><th>Profile</th><th>GitLab pipeline</th><th>Policy checks</th><th>Approvals</th><th>Wave status</th></tr></thead>
+      <thead><tr><th>App</th><th>Owner</th><th>Profile</th><th id="thProv">GitLab pipeline</th><th>Policy checks</th><th>Approvals</th><th>Wave status</th></tr></thead>
       <tbody></tbody>
     </table></div>
   </section>
@@ -197,7 +197,7 @@ a.job:hover { border-color: var(--accent); text-decoration: none; }
     <div class="panel-head">
       <div>
         <h2 id="wb-h">Step 0 · Migration workbench</h2>
-        <p>The EC2 instance that runs the agents, Terraform and GitLab pushes. Replaces CloudShell. Connect through Session Manager; there are no inbound ports.</p>
+        <p id="wbDesc">The EC2 instance that runs the agents, Terraform and GitLab pushes. Replaces CloudShell. Connect through Session Manager; there are no inbound ports.</p>
       </div>
     </div>
     <div class="table-scroll"><table id="wb">
@@ -213,7 +213,7 @@ a.job:hover { border-color: var(--accent); text-decoration: none; }
     <div class="panel-head">
       <div>
         <h2 id="pl-h">Pipeline stages</h2>
-        <p>Program pipeline standard: source → build → publish → infrastructure → deploy → test → cutover. Click a job to open it in GitLab.</p>
+        <p id="stdDesc">Program pipeline standard: source → build → publish → infrastructure → deploy → test → cutover. Click a job to open it in GitLab.</p>
       </div>
       <div class="legend" id="legend"></div>
     </div>
@@ -247,7 +247,7 @@ a.job:hover { border-color: var(--accent); text-decoration: none; }
 
   <div class="foot">
     <span id="asof"></span>
-    <span>Source: GitLab project adavis912-group/capstone-migration-pilot · agent run records, Wave 1</span>
+    <span id="srcLine">Source: GitLab project adavis912-group/capstone-migration-pilot · agent run records, Wave 1</span>
   </div>
 </div>
 
@@ -378,6 +378,8 @@ const APPS = (LIVE && LIVE.apps) || [
   { id: "OPS-VEND2", name: "Vendor Management", bu: "Operations", owner: "Andre Brennan", profile: "cots", runtime: "MarkPoint on Tomcat 9", wave: "ready", policy: [29, 30], fails: ["ALB-TLS"],
     jobs: { source_scan: 3, build: 2, publish: 2, infra_validate: 1, infra_plan: 2, infra_apply: 2, deploy: 2, test: 3, cutover: 5 } }
 ];
+const PROV = DATA.provider || "GitLab";
+const GH = PROV === "GitHub";
 const STAGE_META = DATA.stages.map(s => ({ key: s.key, name: s.name, std: s.std }));
 STAGE_META[1].std = "Stage 2 · Build profile";
 
@@ -388,22 +390,23 @@ const REPOS = { "CS-SURV2": "survey-service-sample", "FIN-RPT-LEGACY": "finance-
   "MKT-WEB3": "web-content-sample", "OPS-ASSE4": "asset-inventory-sample", "OPS-PRIN1": "print-mail-sample", "OPS-VEND2": "vendor-management-sample" };
 function gateNote(app) {
   const r = REPOS[app.id];
+  if (GH) return `Not run yet: this app's code and workflow are not on GitHub yet.`;
   return r ? `Not run yet: the app's code is in GitLab (<a href="https://gitlab.com/${GL_GROUP}/${r}" target="_blank" rel="noopener">${GL_GROUP}/${r}</a>), but the generated pipeline has not been added to that project.`
            : "Not run yet: this app's code and pipeline are not in GitLab.";
 }
 
 const ANY_RUNNING = [DATA, ...Object.values(DATA.live || {})].some(x => x && x.pipeline && x.pipeline.status === "running");
 
-function liveOf(id) { return id === "CLM-FRAU1" ? DATA : ((DATA.live || {})[id] || null); }
+function liveOf(id) { return (!GH && id === "CLM-FRAU1") ? DATA : ((DATA.live || {})[id] || null); }
 
 function viewFor(app) {
-  if (app.id === "CLM-FRAU1") return DATA;
+  if (!GH && app.id === "CLM-FRAU1") return DATA;
   const L = liveOf(app.id);
   if (L) {
     const issues = app.fails.map(f => [f + ".", POLICY_TXT[f] || "See the policy report."]);
     if (app.hold) issues.unshift(["Held.", app.hold]);
     const bad = L.gates.filter(g => !g.group && g.s === "failed").map(g => g.name);
-    if (bad.length) issues.push(["Pipeline gates failing.", bad.join(", ") + ". Open the run in GitLab for the findings."]);
+    if (bad.length) issues.push(["Pipeline gates failing.", bad.join(", ") + ". Open the run in ${PROV} for the findings."]);
     if (!issues.length) issues.push(["No open issues.", "Every gate that ran in plan-only mode passed."]);
     return { ...L, issues };
   }
@@ -417,7 +420,7 @@ function viewFor(app) {
         (app.profile === "cots" ? "Vendor package checksum|sha256 verify|Build|Blocks if the vendor package does not match its published checksum."
                                 : "Dependency scan (SCA)|OWASP Dependency-Check|Build|Blocks on libraries with known critical vulnerabilities."),
         "Artifact vulnerability scan|Trivy|Publish|Blocks if the built artifact has critical vulnerabilities.",
-        "Terraform validate and plan|GitLab OIDC plan role|Infrastructure|Validates the Terraform and plans staging with a read-only role.",
+        `Terraform validate and plan|${PROV} OIDC plan role|Infrastructure|Validates the Terraform and plans staging with a read-only role.`,
         "Dynamic scan (DAST)|OWASP ZAP baseline|Test|Scans the running staging app for web vulnerabilities.",
         "Performance test|k6|Test|Checks staging response times under load.",
         "Cutover health alarm|CloudWatch + Route 53|Cutover|Shifts traffic back to OCI if the AWS servers turn unhealthy."]
@@ -431,7 +434,8 @@ function viewFor(app) {
   ];
   const issues = app.fails.map(f => [f + ".", POLICY_TXT[f]]);
   if (app.hold) issues.unshift(["Held.", app.hold]);
-  issues.push(["Pipeline not in GitLab yet.", REPOS[app.id]
+  if (GH) issues.push(["Not on GitHub yet.", "Add this app's code and a generated workflow to the GitHub pilots repository to run the gates."]);
+  else issues.push(["Pipeline not in GitLab yet.", REPOS[app.id]
     ? `The app's code is in ${GL_GROUP}/${REPOS[app.id]}, but the generated pipeline and Terraform have not been added to it, so these gates have not run.`
     : "Push this app's code and its generated pipeline to its own GitLab project to run the gates."]);
   return { generic: true, stages, gates, runs: [], issues };
@@ -485,7 +489,7 @@ function render(sel) {
   renderOverview(app.id);
   $("appTitle").textContent = `${app.id} ${app.name}`;
   $("appSub").innerHTML = `<span>${esc(app.bu)} · ${esc(app.runtime)} · ${esc(app.profile)} build profile</span><span>Owner: ${esc(app.owner)}</span>` +
-    (D.generic ? `<span><span class="pill s-queued">${ICON.queued}Generated, not yet run in GitLab</span></span>`
+    (D.generic ? `<span><span class="pill s-queued">${ICON.queued}Generated, not yet run in ${PROV}</span></span>`
                : `<span><span class="pill s-manual">${ICON.manual}${esc(D.mode)}</span></span>`);
 
   if (D.generic) {
@@ -493,16 +497,16 @@ function render(sel) {
       <dt>Policy checks</dt><dd>${app.policy[0]} / ${app.policy[1]}</dd><dt>Jobs defined</dt><dd>${Object.values(app.jobs).reduce((x, y) => x + y, 0)}</dd>`;
     const total = Object.values(app.jobs).reduce((x, y) => x + y, 0);
     $("summary").innerHTML = `
-      <div class="tile"><span class="label">GitLab pipeline</span><span class="num">Not run</span><span class="note">Generated code passed Terraform validate</span></div>
+      <div class="tile"><span class="label">${PROV} pipeline</span><span class="num">Not run</span><span class="note">Generated code passed Terraform validate</span></div>
       <div class="tile"><span class="label">Policy checks</span><span class="num">${app.policy[0]}<small> / ${app.policy[1]}</small></span><span class="note">${app.fails.length ? "Fails " + esc(app.fails.join(", ")) : "All pass"}</span></div>
       <div class="tile"><span class="label">Jobs defined</span><span class="num">${total}</span><span class="note">Across 9 stages of the standard</span></div>
       <div class="tile"><span class="label">Wave status</span><span class="num">${app.wave === "held" ? "Held" : "Ready"}</span><span class="note">${esc(app.hold || "Lead and owner build approvals recorded")}</span></div>`;
   } else {
     const p = D.pipeline;
     $("meta").innerHTML = `
-      <dt>Pipeline</dt><dd><a href="${D.base}/-/pipelines/${p.id}" target="_blank" rel="noopener">#${p.id}</a></dd>
+      <dt>Pipeline</dt><dd><a href="${p.url || D.base + "/-/pipelines/" + p.id}" target="_blank" rel="noopener">#${p.id}</a></dd>
       <dt>Status</dt><dd>${pill(p.status)}</dd>
-      <dt>Branch · commit</dt><dd>${esc(p.branch)} · <a href="${D.base}/-/commit/${p.sha}" target="_blank" rel="noopener">${p.sha}</a></dd>
+      <dt>Branch · commit</dt><dd>${esc(p.branch)} · <a href="${p.commitUrl || D.base + "/-/commit/" + p.sha}" target="_blank" rel="noopener">${p.sha}</a></dd>
       <dt>Finished</dt><dd>${fmtTime(p.finished)} · ${p.duration}s</dd>`;
     const secGates = D.gates.slice(1, D.gates.findIndex((g, i) => i > 0 && g.group));
     const secRun = secGates.filter(g => g.s !== "off");
@@ -514,7 +518,7 @@ function render(sel) {
       <div class="tile"><span class="label">Jobs run</span><span class="num">${ran.filter(j => j.s === "passed").length}<small> / ${jobs.length}</small></span><span class="note">${[jobs.filter(j => j.s === "running" || j.s === "queued").length ? jobs.filter(j => j.s === "running" || j.s === "queued").length + " running or waiting" : "", jobs.filter(j => j.s === "off").length ? jobs.filter(j => j.s === "off").length + " turned off for the pilot" : "", jobs.filter(j => j.s === "skipped").length ? jobs.filter(j => j.s === "skipped").length + " skipped (rollback not needed)" : ""].filter(Boolean).join(" · ") || "All jobs ran"}</span></div>
       <div class="tile"><span class="label">Terraform plan · staging</span><span class="num">${D.plan ? `+${D.plan.add}<small> ~${D.plan.change} −${D.plan.destroy}</small>` : "—"}</span><span class="note">${D.plan ? "Resources to add, change, destroy" : "Plan has not completed yet"}</span></div>
       ${app.id === "CLM-FRAU1" ? `<div class="tile"><span class="label">Scan findings open</span><span class="num">0<small> of 9 found</small></span><span class="note">Semgrep 2 and Checkov 7, all fixed</span></div>`
-        : `<div class="tile"><span class="label">Runs in GitLab</span><span class="num">${D.runs.length}</span><span class="note">${D.runs.filter(r => r.s === "failed").length} blocked by a gate, ${D.runs.filter(r => r.s === "passed").length} passed</span></div>`}`;
+        : `<div class="tile"><span class="label">Runs in ${PROV}</span><span class="num">${D.runs.length}</span><span class="note">${D.runs.filter(r => r.s === "failed").length} blocked by a gate, ${D.runs.filter(r => r.s === "passed").length} passed</span></div>`}`;
   }
 
   $("legend").innerHTML = (D.generic ? ["queued"] : ["passed", "failed", "running", "queued", "skipped", "off", "manual"]).map(pill).join("");
@@ -529,7 +533,7 @@ function render(sel) {
           const right = j.d ? `${j.d}s` : (j.manual ? "manual" : (j.note || ""));
           const title = `${j.n}: ${LABEL[j.s]}${j.gate ? " · security/quality gate" : ""}${j.manual ? " · manual" : ""}${j.note ? " · " + j.note : ""}`;
           const inner = `<span class="dot c-${vis}">${ICON[vis]}</span><span class="jn">${esc(j.n)}</span><span class="jd">${esc(right)}</span>`;
-          return j.id ? `<a class="${cls}" href="${D.base}/-/jobs/${j.id}" target="_blank" rel="noopener" title="${esc(title)}">${inner}</a>`
+          return j.id ? `<a class="${cls}" href="${j.url || D.base + "/-/jobs/" + j.id}" target="_blank" rel="noopener" title="${esc(title)}">${inner}</a>`
                       : `<div class="${cls}" title="${esc(title)}">${inner}</div>`;
         }).join("");
     return `<div class="stage">
@@ -547,21 +551,27 @@ function render(sel) {
 
   $("runs").innerHTML = D.runs.length ? D.runs.map(r => `
     <li class="run"><span class="c-${r.s}">${ICON[r.s]}</span>
-      <div><div class="rt"><a class="rid" href="${D.base}/-/pipelines/${r.id}" target="_blank" rel="noopener">#${r.id}</a>
+      <div><div class="rt"><a class="rid" href="${r.url || D.base + "/-/pipelines/" + r.id}" target="_blank" rel="noopener">#${r.id}</a>
         <span class="rtime">${fmtTime(r.t)}</span></div>
         <div class="rmsg">${esc(r.msg)}</div><div class="rwhy">${esc(r.why)}</div></div></li>`).join("")
-    : `<li class="empty">No GitLab runs yet for ${esc(app.id)}.</li>`;
+    : `<li class="empty">No ${PROV} runs yet for ${esc(app.id)}.</li>`;
 
   $("issues").innerHTML = D.issues.map(([b, t]) => `<li><div><b>${esc(b)}</b> <span>${esc(t)}</span></div></li>`).join("");
 }
 
+if (GH) {
+  $("thProv").textContent = "GitHub workflow";
+  $("wbDesc").textContent = "The GitHub edition of the workbench: its own EC2 instance, reading GitHub Actions. Connect through Session Manager; only HTTPS is open.";
+  $("stdDesc").textContent = "Program pipeline standard: source → build → publish → infrastructure → deploy → test → cutover. Click a job to open it in GitHub Actions.";
+  $("srcLine").textContent = "Source: GitHub repository adavis912/migration-pilots · GitHub Actions workflows, Wave 1";
+}
 // workbench (shared by all apps)
 document.querySelector("#wb tbody").innerHTML = DATA.workbench.map(g =>
   `<tr><td><div class="g-name">${esc(g.name)}</div><div class="g-tool">${esc(g.tool)}</div></td>
      <td>${pill(g.s)}</td><td class="g-detail">${esc(g.detail)}</td></tr>`).join("");
 $("asof").textContent = LIVE
   ? `Live from the workbench · updated ${fmtTime(DATA.asOf)} · ${ANY_RUNNING ? "a pipeline is running: refreshing every 15 seconds" : "refreshes every 20 seconds"}`
-  : `Snapshot taken ${fmtTime(DATA.asOf)}. Ask Claude to refresh it from GitLab and the workbench.`;
+  : `Snapshot taken ${fmtTime(DATA.asOf)}. Ask Claude to refresh it from ${PROV} and the workbench.`;
 if (LIVE) setTimeout(() => location.reload(), ANY_RUNNING ? 15 * 1000 : 20 * 1000);
 
 // Selection follows the shared Wave / App filter (top of every page).
@@ -569,7 +579,7 @@ const F = window.WBFilter;
 function show() {
   const f = F.get();
   const inWave = APPS.filter(a => F.inWave(a.id));
-  let id = f.app !== "all" ? f.app : (inWave.find(a => a.id === "CLM-FRAU1") || inWave[0] || {}).id;
+  let id = f.app !== "all" ? f.app : (inWave.find(a => GH ? liveOf(a.id) : a.id === "CLM-FRAU1") || inWave[0] || {}).id;
   const has = APPS.some(a => a.id === id);
   $("detail").hidden = !has;
   $("noPipe").hidden = has;

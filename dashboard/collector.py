@@ -14,6 +14,7 @@ FLOW = os.path.join(ROOT, "kb_aws", "migration_flow")
 PORTFOLIO = os.path.join(ROOT, "synthetic_portfolio")
 RUNS = os.path.join(FLOW, "runs", "wave-1")
 REGION = os.environ.get("AWS_REGION", "us-east-1")
+PROVIDER = os.environ.get("WB_PROVIDER", "gitlab")   # "gitlab" (default) or "github" (GitHub edition)
 GITLAB = "https://gitlab.com"
 # app_id -> GitLab project path. Apps not listed have not been pushed yet.
 PROJECTS = {"CLM-FRAU1": "adavis912-group/capstone-migration-pilot",
@@ -267,6 +268,8 @@ def build(snapshot):
 
     if not apps:  # no run records on this machine: keep the last good app list
         apps = json.loads(json.dumps(snapshot["apps"]))
+    if PROVIDER == "github":
+        return _build_github(data, apps)
     # Live GitLab detail for every app that has a project. The pilot fills the page's main data; the others go in data["live"].
     tokens = [x for x in (_glpat(secret("capstone/gitlab-read-token")), _samples_token()) if x]
     app = "CLM-FRAU1"
@@ -290,6 +293,40 @@ def build(snapshot):
             data.setdefault("live", {})[a] = d
     data["issues"] = [[f + ".", POLICY_TXT.get(f, "See the policy report.")] for f in next((x for x in apps if x["id"] == app), {"fails": []})["fails"]] + \
         [i for i in snapshot["data"]["issues"] if not i[0].startswith("Stage order")]
+    data["asOf"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    return {"data": data, "apps": apps}
+
+
+def _build_github(data, apps):
+    """GitHub edition: live detail comes from GitHub Actions. The GitLab pilot's snapshot is not shown as live."""
+    import gh_provider as gh
+    token = gh.token_from(secret("capstone-gh/github-read-token"))
+    data["provider"] = "GitHub"
+    data["live"] = {}
+    err = None
+    for a in gh.WORKFLOWS:
+        me = next((x for x in apps if x["id"] == a), None)
+        if not me:
+            continue
+        try:
+            d = gh.live_detail(a, me, token, SECURITY_GATES, GATE_JOBS, STAGES)
+        except Exception as e:  # GitHub unreachable or rate-limited: keep the page working
+            err = type(e).__name__
+            print(f"collector: GitHub detail for {a} skipped: {err}", file=sys.stderr)
+            continue
+        if d:
+            data["live"][a] = d
+    data["workbench"] = [
+        {"name": "Instance", "tool": "capstone-gh-migration-workbench · EC2", "s": "passed",
+         "detail": "GitHub edition of the workbench. Connect through Session Manager; only HTTPS is open."},
+        {"name": "GitHub Actions", "tool": f"{gh.REPO}", "s": "failed" if err else "passed",
+         "detail": (f"Last refresh could not read GitHub ({err}); showing the last good data." if err else
+                    f"Reading {len(data['live'])} app workflows" + ("" if token else " without a token (low rate limit)") + ".")},
+        {"name": "Secrets", "tool": "Secrets Manager · capstone-gh/*", "s": "passed" if token else "pending",
+         "detail": "GitHub read token present; value never shown." if token else "capstone-gh/github-read-token is not set yet."},
+        {"name": "AWS access for pipelines", "tool": "GitHub OIDC → capstone-gh-plan (read-only)", "s": "passed",
+         "detail": "Workflows sign in with short-lived OIDC credentials; no stored AWS keys."}]
+    data["issues"] = []
     data["asOf"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     return {"data": data, "apps": apps}
 

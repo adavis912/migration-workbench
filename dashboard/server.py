@@ -28,6 +28,8 @@ _status = {"value": None, "error": None}
 _lock = threading.Lock()
 _arch_lock = threading.Lock()   # one Eraser drawing at a time
 _rules_lock = threading.Lock()  # one rules check (Claude call) at a time
+LOGIN_SECRET = os.environ.get("DASHBOARD_LOGIN_SECRET", "capstone/dashboard-login")
+SCANS_ENABLED = os.environ.get("WB_SCANS", "1") == "1"
 ANTHROPIC_SECRET = "capstone/anthropic-api-key"
 ERASER_SECRET = "capstone/eraser-api-key"
 
@@ -61,7 +63,7 @@ def refresher():
 
 
 def credentials():
-    raw = collector._secrets.get_secret_value(SecretId="capstone/dashboard-login")["SecretString"]
+    raw = collector._secrets.get_secret_value(SecretId=LOGIN_SECRET)["SecretString"]
     d = json.loads(raw)
     return d["username"], d["password"]
 
@@ -248,6 +250,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
         host = self.headers.get("Host", "")
         if not origin or urllib.parse.urlsplit(origin).netloc != host:
             return self._json(403, {"error": "Cross-site request refused."})
+        if not SCANS_ENABLED:
+            return self._json(503, {"error": "Code scans are not set up on this workbench edition yet."})
         if not self.headers.get("Content-Type", "").startswith("application/json"):
             return self._json(415, {"error": "JSON body expected."})
         length = min(int(self.headers.get("Content-Length", "0") or 0), 2048)
