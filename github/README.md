@@ -32,4 +32,4 @@ The GitLab edition (its host, projects, pipelines, secrets and login) is not cha
 3. Store a read-only GitHub token as `capstone-gh/github-read-token` so the workbench can poll the Actions API.
 4. Open the `workbench_url` output. The login is in `capstone-gh/dashboard-login`.
 
-Code scans (AWS Transform) stay on the GitLab edition for now; the Assessment page here shows no scans.
+Code scans: `github/install_scans.sh` installs the AWS Transform CLI and the scan runner on the host; scans run on copies of the apps in `migration-pilots`.

@@ -10,7 +10,7 @@ import glob, json, os, re, shutil, subprocess, sys, time
 
 SRC_ROOT = "/home/ssm-user/.aws/atx/custom"
 OUT_ROOT = "/opt/capstone/scans/results"
-REGISTRY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "apps.json")
+REGISTRY = os.environ.get("SCAN_REGISTRY", os.path.join(os.path.dirname(os.path.abspath(__file__)), "apps.json"))
 TEXT = (".md", ".json", ".html", ".txt", ".csv", ".mmd")
 MAX = 2 * 1024 * 1024
 ANSI = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]")

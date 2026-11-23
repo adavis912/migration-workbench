@@ -9,7 +9,7 @@ import datetime as dt, json, os, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 QUEUE = "/var/lib/capstone-dashboard/scan-queue"
 STATUS = "/var/lib/capstone-dashboard/scan-status"
-REGISTRY = os.path.join(HERE, "apps.json")
+REGISTRY = os.environ.get("SCAN_REGISTRY", os.path.join(HERE, "apps.json"))
 LOGDIR = "/opt/capstone/scans"
 USER, HOME = "ssm-user", "/home/ssm-user"
 ATX = f"{HOME}/.local/bin/atx"

@@ -145,6 +145,12 @@ resource "aws_iam_role_policy_attachment" "ssm" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
+# AWS Transform code scans (same managed policy as the GitLab workbench)
+resource "aws_iam_role_policy_attachment" "transform" {
+  role       = aws_iam_role.wb.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSTransformCustomExecuteTransformations"
+}
+
 data "aws_iam_policy_document" "wb" {
   statement {
     sid     = "ReadSecrets"
