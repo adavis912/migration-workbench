@@ -167,6 +167,11 @@ data "aws_iam_policy_document" "wb" {
     resources = ["arn:aws:secretsmanager:us-east-1:${local.acct}:secret:capstone-gh/dashboard-login-*"]
   }
   statement {
+    sid       = "TransformReadOnly"
+    actions   = ["transform-custom:List*", "transform-custom:Get*"]
+    resources = ["*"]
+  }
+  statement {
     sid    = "NeverChangeIam"
     effect = "Deny"
     actions = ["iam:Create*", "iam:Delete*", "iam:Put*", "iam:Attach*", "iam:Detach*", "iam:Update*", "iam:Add*",
