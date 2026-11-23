@@ -25,16 +25,6 @@ runuser -l ssm-user -c 'git config --global user.name "Migration Workbench (GitH
 mkdir -p $W && chown ssm-user:ssm-user $W
 rm -rf /tmp/pilots && git clone -q https://github.com/adavis912/migration-pilots.git /tmp/pilots
 SHA=$(git -C /tmp/pilots rev-parse --short HEAD)
-python3 - "$REG" "$SHA" <<'PY'
-import json, sys
-reg, sha = sys.argv[1], sys.argv[2]
-apps = {"cs-surv2": "CS-SURV2", "fin-rpt-legacy": "FIN-RPT-LEGACY"}
-out = {"_comment": "GitHub edition: scanned repo path -> portfolio app. Source: github.com/adavis912/migration-pilots."}
-for slug, app in apps.items():
-    out[f"/opt/capstone/scans/gh-{slug}"] = {"app": app, "repo": f"adavis912/migration-pilots/apps/{slug}",
-        "repo_url": f"https://github.com/adavis912/migration-pilots/tree/main/apps/{slug}", "base_commit": sha}
-json.dump(out, open(reg, "w"), indent=1)
-PY
 for slug in cs-surv2 fin-rpt-legacy; do
   D=$W/gh-$slug
   if [ ! -d $D/.git ]; then
@@ -44,6 +34,18 @@ for slug in cs-surv2 fin-rpt-legacy; do
     runuser -u ssm-user -- git -C $D commit -qm "apps/$slug from adavis912/migration-pilots@$SHA"
   fi
 done
+python3 - "$REG" "$SHA" "$(runuser -u ssm-user -- git -C $W/gh-cs-surv2 rev-parse --short main)" "$(runuser -u ssm-user -- git -C $W/gh-fin-rpt-legacy rev-parse --short main)" <<'PY'
+import json, sys
+reg, sha = sys.argv[1], sys.argv[2]
+local = {"cs-surv2": sys.argv[3], "fin-rpt-legacy": sys.argv[4]}   # the scan diffs its result branch against this commit
+apps = {"cs-surv2": "CS-SURV2", "fin-rpt-legacy": "FIN-RPT-LEGACY"}
+out = {"_comment": "GitHub edition: scanned repo path -> portfolio app. Source: github.com/adavis912/migration-pilots."}
+for slug, app in apps.items():
+    out[f"/opt/capstone/scans/gh-{slug}"] = {"app": app, "repo": f"adavis912/migration-pilots/apps/{slug}",
+        "repo_url": f"https://github.com/adavis912/migration-pilots/tree/main/apps/{slug}", "base_commit": local[slug],
+        "note": f"Copy of apps/{slug} from adavis912/migration-pilots@{sha}"}
+json.dump(out, open(reg, "w"), indent=1)
+PY
 chmod 644 $REG
 
 # 3) Root runner (every minute) and result sync (every 2 minutes), pointed at the GitHub registry
