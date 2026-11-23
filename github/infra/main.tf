@@ -71,7 +71,8 @@ data "aws_iam_policy_document" "plan_trust" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${var.github_repo}:ref:refs/heads/main"]
+      # GitHub now sends immutable owner and repo IDs in the subject; the older form is kept for compatibility.
+      values   = ["repo:${var.github_repo}:ref:refs/heads/main", "repo:adavis912@133921026/migration-pilots@1468097768:ref:refs/heads/main"]
     }
   }
 }
