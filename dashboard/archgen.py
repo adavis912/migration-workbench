@@ -19,6 +19,9 @@ import urllib.error
 import urllib.request
 
 ARCH_OUT = os.environ.get("ARCH_OUT", "/var/lib/capstone-dashboard/arch")
+# The GitHub edition builds with GitHub Actions; the GitLab edition with GitLab CI/CD.
+_GH = os.environ.get("WB_PROVIDER", "gitlab") == "github"
+CI_NAME, CI_ICON, OIDC_NAME = ("GitHub Actions", "github", "GitHub OIDC role") if _GH else ("GitLab CI/CD", "gitlab", "GitLab OIDC role")
 APP_RE = re.compile(r"^[A-Z0-9][A-Z0-9-]{1,30}$")
 ERASER_RENDER = "https://app.eraser.io/api/render/elements"   # Eraser DSL -> diagram (no AI)
 
@@ -181,15 +184,15 @@ def _current(data, a, servers, dbs, deps, bu_users):
 
 def _future(data, a, live, gone, dbs, deps, bu_users):
     d = D(f"{a['id']} · {a['name']} — future state (AWS us-east-1)",
-          f"Rehost on AWS · cutover by Route 53 weighted routing 5% → 25% → 100% · built by GitLab CI/CD + Terraform")
+          f"Rehost on AWS · cutover by Route 53 weighted routing 5% → 25% → 100% · built by {CI_NAME} + Terraform")
     d.node("users", 0, bu_users, ["on-premises / OCI"], "people", "USR", "users")
-    d.node("gitlab", 0, "GitLab CI/CD", ["scan > build > publish", "plan/apply > deploy > cutover"], "devtools", "CI", "gitlab")
+    d.node("gitlab", 0, CI_NAME, ["scan > build > publish", "plan/apply > deploy > cutover"], "devtools", "CI", CI_ICON)
     d.node("legacy", 0, "Legacy OCI endpoint", ["until 100% cutover"], "oci", "OCI", "oracle")
     for o, dirn, _ in deps:
         if dirn == "in":
             d.node("dep:" + o, 0, o, [_name(data, o), _dep_where(data, o)], "ext", "APP", "server")
     d.node("r53", 1, "Route 53 private zone", ["weighted 5% > 25% > 100%"], "network", "R53", "aws-route-53")
-    d.node("oidc", 1, "GitLab OIDC role", ["no stored keys"], "security", "IAM", "aws-iam")
+    d.node("oidc", 1, OIDC_NAME, ["no stored keys"], "security", "IAM", "aws-iam")
 
     web_s = [s for s in live if s["role"] == "web"]
     app_s = [s for s in live if s["role"] not in ("web", "db")]
